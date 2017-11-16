@@ -1,0 +1,7 @@
+./example/*
+./src/*
+./node_modules/*
+
+./yarn.lock
+./webpack.config.js
+./.gitignore
