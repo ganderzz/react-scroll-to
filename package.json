@@ -1,0 +1,37 @@
+{
+  "name": "react-scroll-to",
+  "version": "1.0.0",
+  "description": "Scroll to a position using react",
+  "main": "./dist/react-scroll-to.js",
+  "scripts": {
+    "build": "webpack",
+    "build:prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganderzz/react-scroll-to.git"
+  },
+  "keywords": [
+    "react",
+    "scroll",
+    "to",
+    "window",
+    "position"
+  ],
+  "author": "Dylan Paulus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ganderzz/react-scroll-to/issues"
+  },
+  "homepage": "https://github.com/ganderzz/react-scroll-to#readme",
+  "peerDepedencies": {
+    "react": "^16.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.8.1"
+  }
+}
