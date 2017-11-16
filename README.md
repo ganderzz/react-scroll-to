@@ -1,9 +1,10 @@
 <center>
-<h1>👟 React Scroll-To</h1>
+    <h1>👟 React Scroll-To</h1>
 </center>
-<hr />
 
-A render prop component that allows child components to trigger scrolling to a window position.
+A React component that helps in scrolling around a page.
+
+React Scroll-To provides two different components. The first, a render-prop implementation. Second, a higher order component.
 
 ### Install
 
