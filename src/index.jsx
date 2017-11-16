@@ -21,8 +21,8 @@ function handleScroll(x = 0, y = 0) {
  * position in the window.
  */
 export function ScrollTo(props) {
-    return this.props.children(
-        (x, y) => this.handleScroll(x, y)
+    return props.children(
+        (x, y) => handleScroll(x, y)
     );
 }
 
