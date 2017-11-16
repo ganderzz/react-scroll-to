@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { ScrollTo } from "../dist/react-scroll-to";
+import { ScrollTo, ScrollToHOC } from "../dist/react-scroll-to";
+
+function ToTop(props) {
+    return (
+        <button onClick={props.scroll(0, 0)} style={props.style}>
+            To Top
+        </button>
+    );
+}
+
+const Elem = ScrollToHOC(ToTop);
 
 window.onload = () => {
     render(
@@ -31,18 +41,7 @@ window.onload = () => {
                 }
             </ScrollTo>
 
-            <ScrollTo>
-                {
-                    (onScroll) => (
-                        <button
-                            onClick={onScroll(0, 0)}
-                            style={{ display: "block", marginTop: "500px" }}
-                        >
-                            Scroll to Top
-                        </button>
-                    )
-                }
-            </ScrollTo>
+            <Elem style={{ display: "block", marginTop: "500px" }} />
         </div>,
         document.getElementById("APP")
     );

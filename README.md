@@ -14,9 +14,11 @@ A render prop component that allows child components to trigger scrolling to a w
 
 ### Example
 
+**Render Props:**
+
 ```
 import React, { Component } from "react";
-import { ScrollTo} from "react-scroll-to";
+import { ScrollTo } from "react-scroll-to";
 
 export default class MyComponent extends React {
     render() {
@@ -33,4 +35,19 @@ export default class MyComponent extends React {
         );
     }
 }
+```
+
+**Higher Order Component:**
+
+```
+import React, { Component } from "react";
+import { ScrollToHOC } from "react-scroll-to";
+
+export default ScrollToHOC(function(props) {
+    return (
+        <a onClick={props.scroll(0, 500)}>
+            Scroll to Bottom
+        </a>
+    );
+})
 ```

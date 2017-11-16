@@ -950,6 +950,18 @@ var _reactScrollTo = __webpack_require__(27);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function ToTop(props) {
+    return _react2.default.createElement(
+        "button",
+        { onClick: props.scroll(0, 0), style: props.style },
+        "To Top"
+    );
+}
+
+console.log(_reactScrollTo.ScrollToHOC);
+
+var Elem = (0, _reactScrollTo.ScrollToHOC)(ToTop);
+
 window.onload = function () {
     (0, _reactDom.render)(_react2.default.createElement(
         "div",
@@ -982,20 +994,7 @@ window.onload = function () {
                 );
             }
         ),
-        _react2.default.createElement(
-            _reactScrollTo.ScrollTo,
-            null,
-            function (onScroll) {
-                return _react2.default.createElement(
-                    "button",
-                    {
-                        onClick: onScroll(0, 0),
-                        style: { display: "block", marginTop: "500px" }
-                    },
-                    "Scroll to Top"
-                );
-            }
-        )
+        _react2.default.createElement(Elem, { style: { display: "block", marginTop: "500px" } })
     ), document.getElementById("APP"));
 };
 
@@ -18307,114 +18306,132 @@ module.exports = camelize;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!function (e, t) {
-  "object" == ( false ? "undefined" : _typeof(exports)) && "object" == ( false ? "undefined" : _typeof(module)) ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+!function (t, e) {
+  "object" == ( false ? "undefined" : _typeof(exports)) && "object" == ( false ? "undefined" : _typeof(module)) ? module.exports = e() :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (e),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports["react-scroll-to"] = t() : e["react-scroll-to"] = t();
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? exports["react-scroll-to"] = e() : t["react-scroll-to"] = e();
 }(undefined, function () {
-  return function (e) {
-    function t(r) {
-      if (n[r]) return n[r].exports;var o = n[r] = { i: r, l: !1, exports: {} };return e[r].call(o.exports, o, o.exports, t), o.l = !0, o.exports;
-    }var n = {};return t.m = e, t.c = n, t.d = function (e, n, r) {
-      t.o(e, n) || Object.defineProperty(e, n, { configurable: !1, enumerable: !0, get: r });
-    }, t.n = function (e) {
-      var n = e && e.__esModule ? function () {
-        return e.default;
+  return function (t) {
+    function e(r) {
+      if (n[r]) return n[r].exports;var o = n[r] = { i: r, l: !1, exports: {} };return t[r].call(o.exports, o, o.exports, e), o.l = !0, o.exports;
+    }var n = {};return e.m = t, e.c = n, e.d = function (t, n, r) {
+      e.o(t, n) || Object.defineProperty(t, n, { configurable: !1, enumerable: !0, get: r });
+    }, e.n = function (t) {
+      var n = t && t.__esModule ? function () {
+        return t.default;
       } : function () {
-        return e;
-      };return t.d(n, "a", n), n;
-    }, t.o = function (e, t) {
-      return Object.prototype.hasOwnProperty.call(e, t);
-    }, t.p = "/", t(t.s = 0);
-  }([function (e, t, n) {
+        return t;
+      };return e.d(n, "a", n), n;
+    }, e.o = function (t, e) {
+      return Object.prototype.hasOwnProperty.call(t, e);
+    }, e.p = "/", e(e.s = 0);
+  }([function (t, e, n) {
     "use strict";
-    function r(e, t) {
-      if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-    }function o(e, t) {
-      if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !t || "object" != (typeof t === "undefined" ? "undefined" : _typeof(t)) && "function" != typeof t ? e : t;
-    }function u(e, t) {
-      if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + (typeof t === "undefined" ? "undefined" : _typeof(t)));e.prototype = Object.create(t && t.prototype, { constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 } }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t);
-    }Object.defineProperty(t, "__esModule", { value: !0 }), t.ScrollTo = void 0;var i = function () {
-      function e(e, t) {
-        for (var n = 0; n < t.length; n++) {
-          var r = t[n];r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
-        }
-      }return function (t, n, r) {
-        return n && e(t.prototype, n), r && e(t, r), t;
+    function r(t, e) {
+      if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
+    }function o(t, e) {
+      if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !e || "object" != (typeof e === "undefined" ? "undefined" : _typeof(e)) && "function" != typeof e ? t : e;
+    }function u(t, e) {
+      if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + (typeof e === "undefined" ? "undefined" : _typeof(e)));t.prototype = Object.create(e && e.prototype, { constructor: { value: t, enumerable: !1, writable: !0, configurable: !0 } }), e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e);
+    }function i() {
+      var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0,
+          e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;return function () {
+        return window.scroll(t, e);
       };
-    }(),
-        c = n(1);(function (e) {
-      e && e.__esModule;
-    })(c), t.ScrollTo = function (e) {
-      function t(e) {
-        r(this, t);var n = o(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));return n.handleScrollTo = n.handleScrollTo.bind(n), n;
-      }return u(t, e), i(t, [{ key: "handleScrollTo", value: function value() {
-          var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0,
-              t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;window.scroll(e, t);
+    }function c(t) {
+      return function (e) {
+        return p.default.createElement(t, l({}, e, { scroll: function scroll(t, e) {
+            return i(t, e);
+          } }));
+      };
+    }Object.defineProperty(e, "__esModule", { value: !0 }), e.ScrollTo = void 0;var l = Object.assign || function (t) {
+      for (var e = 1; e < arguments.length; e++) {
+        var n = arguments[e];for (var r in n) {
+          Object.prototype.hasOwnProperty.call(n, r) && (t[r] = n[r]);
+        }
+      }return t;
+    },
+        f = function () {
+      function t(t, e) {
+        for (var n = 0; n < e.length; n++) {
+          var r = e[n];r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+        }
+      }return function (e, n, r) {
+        return n && t(e.prototype, n), r && t(e, r), e;
+      };
+    }();e.ScrollToHOC = c;var a = n(1),
+        p = function (t) {
+      return t && t.__esModule ? t : { default: t };
+    }(a);e.ScrollTo = function (t) {
+      function e() {
+        return r(this, e), o(this, (e.__proto__ || Object.getPrototypeOf(e)).apply(this, arguments));
+      }return u(e, t), f(e, [{ key: "handleScrollTo", value: function value() {
+          var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0,
+              e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;window.scroll(t, e);
         } }, { key: "render", value: function value() {
-          var e = this;return this.props.children(function (t, n) {
+          var t = this;return this.props.children(function (e, n) {
             return function () {
-              return e.handleScrollTo(t, n);
+              return t.handleScrollTo(e, n);
             };
           });
-        } }]), t;
-    }(c.Component);
-  }, function (e, t, n) {
+        } }]), e;
+    }(a.Component);
+  }, function (t, e, n) {
     "use strict";
-    e.exports = n(2);
-  }, function (e, t, n) {
+    t.exports = n(2);
+  }, function (t, e, n) {
     "use strict";
-    function r(e) {
-      for (var t = arguments.length - 1, n = "Minified React error #" + e + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant=" + e, r = 0; r < t; r++) {
+    function r(t) {
+      for (var e = arguments.length - 1, n = "Minified React error #" + t + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant=" + t, r = 0; r < e; r++) {
         n += "&args[]=" + encodeURIComponent(arguments[r + 1]);
-      }throw t = Error(n + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings."), t.name = "Invariant Violation", t.framesToPop = 1, t;
-    }function o(e, t, n) {
-      this.props = e, this.context = t, this.refs = j, this.updater = n || O;
-    }function u(e, t, n) {
-      this.props = e, this.context = t, this.refs = j, this.updater = n || O;
-    }function i() {}function c(e, t, n) {
-      this.props = e, this.context = t, this.refs = j, this.updater = n || O;
-    }function l(e, t, n) {
+      }throw e = Error(n + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings."), e.name = "Invariant Violation", e.framesToPop = 1, e;
+    }function o(t, e, n) {
+      this.props = t, this.context = e, this.refs = g, this.updater = n || j;
+    }function u(t, e, n) {
+      this.props = t, this.context = e, this.refs = g, this.updater = n || j;
+    }function i() {}function c(t, e, n) {
+      this.props = t, this.context = e, this.refs = g, this.updater = n || j;
+    }function l(t, e, n) {
       var r,
           o = {},
           u = null,
-          i = null;if (null != t) for (r in void 0 !== t.ref && (i = t.ref), void 0 !== t.key && (u = "" + t.key), t) {
-        k.call(t, r) && !P.hasOwnProperty(r) && (o[r] = t[r]);
+          i = null;if (null != e) for (r in void 0 !== e.ref && (i = e.ref), void 0 !== e.key && (u = "" + e.key), e) {
+        k.call(e, r) && !P.hasOwnProperty(r) && (o[r] = e[r]);
       }var c = arguments.length - 2;if (1 === c) o.children = n;else if (1 < c) {
         for (var l = Array(c), f = 0; f < c; f++) {
           l[f] = arguments[f + 2];
         }o.children = l;
-      }if (e && e.defaultProps) for (r in c = e.defaultProps) {
+      }if (t && t.defaultProps) for (r in c = t.defaultProps) {
         void 0 === o[r] && (o[r] = c[r]);
-      }return { $$typeof: x, type: e, key: u, ref: i, props: o, _owner: w.current };
-    }function f(e) {
-      return "object" == (typeof e === "undefined" ? "undefined" : _typeof(e)) && null !== e && e.$$typeof === x;
-    }function a(e) {
-      var t = { "=": "=0", ":": "=2" };return "$" + ("" + e).replace(/[=:]/g, function (e) {
-        return t[e];
+      }return { $$typeof: x, type: t, key: u, ref: i, props: o, _owner: S.current };
+    }function f(t) {
+      return "object" == (typeof t === "undefined" ? "undefined" : _typeof(t)) && null !== t && t.$$typeof === x;
+    }function a(t) {
+      var e = { "=": "=0", ":": "=2" };return "$" + ("" + t).replace(/[=:]/g, function (t) {
+        return e[t];
       });
-    }function p(e, t, n, r) {
-      if (C.length) {
-        var o = C.pop();return o.result = e, o.keyPrefix = t, o.func = n, o.context = r, o.count = 0, o;
-      }return { result: e, keyPrefix: t, func: n, context: r, count: 0 };
-    }function s(e) {
-      e.result = null, e.keyPrefix = null, e.func = null, e.context = null, e.count = 0, 10 > C.length && C.push(e);
-    }function y(e, t, n, o) {
-      var u = typeof e === "undefined" ? "undefined" : _typeof(e);if ("undefined" !== u && "boolean" !== u || (e = null), null === e || "string" === u || "number" === u || "object" === u && e.$$typeof === E || "object" === u && e.$$typeof === T) return n(o, e, "" === t ? "." + h(e, 0) : t), 1;var i = 0;if (t = "" === t ? "." : t + ":", Array.isArray(e)) for (var c = 0; c < e.length; c++) {
-        u = e[c];var l = t + h(u, c);i += y(u, l, n, o);
-      } else if ("function" == typeof (l = R && e[R] || e["@@iterator"])) for (e = l.call(e), c = 0; !(u = e.next()).done;) {
-        u = u.value, l = t + h(u, c++), i += y(u, l, n, o);
-      } else "object" === u && (n = "" + e, r("31", "[object Object]" === n ? "object with keys {" + Object.keys(e).join(", ") + "}" : n, ""));return i;
-    }function h(e, t) {
-      return "object" == (typeof e === "undefined" ? "undefined" : _typeof(e)) && null !== e && null != e.key ? a(e.key) : t.toString(36);
-    }function d(e, t) {
-      e.func.call(e.context, t, e.count++);
-    }function b(e, t, n) {
-      var r = e.result,
-          o = e.keyPrefix;e = e.func.call(e.context, t, e.count++), Array.isArray(e) ? v(e, r, n, g.thatReturnsArgument) : null != e && (f(e) && (t = o + (!e.key || t && t.key === e.key ? "" : ("" + e.key).replace($, "$&/") + "/") + n, e = { $$typeof: x, type: e.type, key: t, ref: e.ref, props: e.props, _owner: e._owner }), r.push(e));
-    }function v(e, t, n, r, o) {
-      var u = "";null != n && (u = ("" + n).replace($, "$&/") + "/"), t = p(t, u, r, o), null == e || y(e, "", b, t), s(t);
+    }function p(t, e, n, r) {
+      if (T.length) {
+        var o = T.pop();return o.result = t, o.keyPrefix = e, o.func = n, o.context = r, o.count = 0, o;
+      }return { result: t, keyPrefix: e, func: n, context: r, count: 0 };
+    }function s(t) {
+      t.result = null, t.keyPrefix = null, t.func = null, t.context = null, t.count = 0, 10 > T.length && T.push(t);
+    }function y(t, e, n, o) {
+      var u = typeof t === "undefined" ? "undefined" : _typeof(t);if ("undefined" !== u && "boolean" !== u || (t = null), null === t || "string" === u || "number" === u || "object" === u && t.$$typeof === E || "object" === u && t.$$typeof === C) return n(o, t, "" === e ? "." + h(t, 0) : e), 1;var i = 0;if (e = "" === e ? "." : e + ":", Array.isArray(t)) for (var c = 0; c < t.length; c++) {
+        u = t[c];var l = e + h(u, c);i += y(u, l, n, o);
+      } else if ("function" == typeof (l = R && t[R] || t["@@iterator"])) for (t = l.call(t), c = 0; !(u = t.next()).done;) {
+        u = u.value, l = e + h(u, c++), i += y(u, l, n, o);
+      } else "object" === u && (n = "" + t, r("31", "[object Object]" === n ? "object with keys {" + Object.keys(t).join(", ") + "}" : n, ""));return i;
+    }function h(t, e) {
+      return "object" == (typeof t === "undefined" ? "undefined" : _typeof(t)) && null !== t && null != t.key ? a(t.key) : e.toString(36);
+    }function d(t, e) {
+      t.func.call(t.context, e, t.count++);
+    }function b(t, e, n) {
+      var r = t.result,
+          o = t.keyPrefix;t = t.func.call(t.context, e, t.count++), Array.isArray(t) ? v(t, r, n, O.thatReturnsArgument) : null != t && (f(t) && (e = o + (!t.key || e && e.key === t.key ? "" : ("" + t.key).replace($, "$&/") + "/") + n, t = { $$typeof: x, type: t.type, key: e, ref: t.ref, props: t.props, _owner: t._owner }), r.push(t));
+    }function v(t, e, n, r, o) {
+      var u = "";null != n && (u = ("" + n).replace($, "$&/") + "/"), e = p(e, u, r, o), null == t || y(t, "", b, e), s(e);
     } /** @license React v16.1.1
       * react.production.min.js
       *
@@ -18424,56 +18441,56 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       * LICENSE file in the root directory of this source tree.
       */
     var m = n(3),
-        j = n(4),
-        g = n(5),
-        O = { isMounted: function isMounted() {
+        g = n(4),
+        O = n(5),
+        j = { isMounted: function isMounted() {
         return !1;
-      }, enqueueForceUpdate: function enqueueForceUpdate() {}, enqueueReplaceState: function enqueueReplaceState() {}, enqueueSetState: function enqueueSetState() {} };o.prototype.isReactComponent = {}, o.prototype.setState = function (e, t) {
-      "object" != (typeof e === "undefined" ? "undefined" : _typeof(e)) && "function" != typeof e && null != e && r("85"), this.updater.enqueueSetState(this, e, t, "setState");
-    }, o.prototype.forceUpdate = function (e) {
-      this.updater.enqueueForceUpdate(this, e, "forceUpdate");
-    }, i.prototype = o.prototype;var _ = u.prototype = new i();_.constructor = u, m(_, o.prototype), _.isPureReactComponent = !0;var S = c.prototype = new i();S.constructor = c, m(S, o.prototype), S.unstable_isAsyncReactComponent = !0, S.render = function () {
+      }, enqueueForceUpdate: function enqueueForceUpdate() {}, enqueueReplaceState: function enqueueReplaceState() {}, enqueueSetState: function enqueueSetState() {} };o.prototype.isReactComponent = {}, o.prototype.setState = function (t, e) {
+      "object" != (typeof t === "undefined" ? "undefined" : _typeof(t)) && "function" != typeof t && null != t && r("85"), this.updater.enqueueSetState(this, t, e, "setState");
+    }, o.prototype.forceUpdate = function (t) {
+      this.updater.enqueueForceUpdate(this, t, "forceUpdate");
+    }, i.prototype = o.prototype;var _ = u.prototype = new i();_.constructor = u, m(_, o.prototype), _.isPureReactComponent = !0;var w = c.prototype = new i();w.constructor = c, m(w, o.prototype), w.unstable_isAsyncReactComponent = !0, w.render = function () {
       return this.props.children;
-    };var w = { current: null },
+    };var S = { current: null },
         k = Object.prototype.hasOwnProperty,
         x = "function" == typeof Symbol && Symbol.for && Symbol.for("react.element") || 60103,
         P = { key: !0, ref: !0, __self: !0, __source: !0 },
         R = "function" == typeof Symbol && Symbol.iterator,
         E = "function" == typeof Symbol && Symbol.for && Symbol.for("react.element") || 60103,
-        T = "function" == typeof Symbol && Symbol.for && Symbol.for("react.portal") || 60106,
+        C = "function" == typeof Symbol && Symbol.for && Symbol.for("react.portal") || 60106,
         $ = /\/+/g,
-        C = [];"function" == typeof Symbol && Symbol.for && Symbol.for("react.fragment");var A = { Children: { map: function map(e, t, n) {
-          if (null == e) return e;var r = [];return v(e, r, null, t, n), r;
-        }, forEach: function forEach(e, t, n) {
-          if (null == e) return e;t = p(null, null, t, n), null == e || y(e, "", d, t), s(t);
-        }, count: function count(e) {
-          return null == e ? 0 : y(e, "", g.thatReturnsNull, null);
-        }, toArray: function toArray(e) {
-          var t = [];return v(e, t, null, g.thatReturnsArgument), t;
-        }, only: function only(e) {
-          return f(e) || r("143"), e;
-        } }, Component: o, PureComponent: u, unstable_AsyncComponent: c, createElement: l, cloneElement: function cloneElement(e, t, n) {
-        var r = m({}, e.props),
-            o = e.key,
-            u = e.ref,
-            i = e._owner;if (null != t) {
-          if (void 0 !== t.ref && (u = t.ref, i = w.current), void 0 !== t.key && (o = "" + t.key), e.type && e.type.defaultProps) var c = e.type.defaultProps;for (l in t) {
-            k.call(t, l) && !P.hasOwnProperty(l) && (r[l] = void 0 === t[l] && void 0 !== c ? c[l] : t[l]);
+        T = [];"function" == typeof Symbol && Symbol.for && Symbol.for("react.fragment");var A = { Children: { map: function map(t, e, n) {
+          if (null == t) return t;var r = [];return v(t, r, null, e, n), r;
+        }, forEach: function forEach(t, e, n) {
+          if (null == t) return t;e = p(null, null, e, n), null == t || y(t, "", d, e), s(e);
+        }, count: function count(t) {
+          return null == t ? 0 : y(t, "", O.thatReturnsNull, null);
+        }, toArray: function toArray(t) {
+          var e = [];return v(t, e, null, O.thatReturnsArgument), e;
+        }, only: function only(t) {
+          return f(t) || r("143"), t;
+        } }, Component: o, PureComponent: u, unstable_AsyncComponent: c, createElement: l, cloneElement: function cloneElement(t, e, n) {
+        var r = m({}, t.props),
+            o = t.key,
+            u = t.ref,
+            i = t._owner;if (null != e) {
+          if (void 0 !== e.ref && (u = e.ref, i = S.current), void 0 !== e.key && (o = "" + e.key), t.type && t.type.defaultProps) var c = t.type.defaultProps;for (l in e) {
+            k.call(e, l) && !P.hasOwnProperty(l) && (r[l] = void 0 === e[l] && void 0 !== c ? c[l] : e[l]);
           }
         }var l = arguments.length - 2;if (1 === l) r.children = n;else if (1 < l) {
           c = Array(l);for (var f = 0; f < l; f++) {
             c[f] = arguments[f + 2];
           }r.children = c;
-        }return { $$typeof: x, type: e.type, key: o, ref: u, props: r, _owner: i };
-      }, createFactory: function createFactory(e) {
-        var t = l.bind(null, e);return t.type = e, t;
-      }, isValidElement: f, version: "16.1.1", __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: { ReactCurrentOwner: w, assign: m } },
+        }return { $$typeof: x, type: t.type, key: o, ref: u, props: r, _owner: i };
+      }, createFactory: function createFactory(t) {
+        var e = l.bind(null, t);return e.type = t, e;
+      }, isValidElement: f, version: "16.1.1", __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: { ReactCurrentOwner: S, assign: m } },
         q = Object.freeze({ default: A }),
-        N = q && A || q;e.exports = N.default ? N.default : N;
-  }, function (e, t, n) {
+        N = q && A || q;t.exports = N.default ? N.default : N;
+  }, function (t, e, n) {
     "use strict";
-    function r(e) {
-      if (null === e || void 0 === e) throw new TypeError("Object.assign cannot be called with null or undefined");return Object(e);
+    function r(t) {
+      if (null === t || void 0 === t) throw new TypeError("Object.assign cannot be called with null or undefined");return Object(t);
     } /*
       object-assign
       (c) Sindre Sorhus
@@ -18481,20 +18498,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       */
     var o = Object.getOwnPropertySymbols,
         u = Object.prototype.hasOwnProperty,
-        i = Object.prototype.propertyIsEnumerable;e.exports = function () {
+        i = Object.prototype.propertyIsEnumerable;t.exports = function () {
       try {
-        if (!Object.assign) return !1;var e = new String("abc");if (e[5] = "de", "5" === Object.getOwnPropertyNames(e)[0]) return !1;for (var t = {}, n = 0; n < 10; n++) {
-          t["_" + String.fromCharCode(n)] = n;
-        }if ("0123456789" !== Object.getOwnPropertyNames(t).map(function (e) {
-          return t[e];
-        }).join("")) return !1;var r = {};return "abcdefghijklmnopqrst".split("").forEach(function (e) {
-          r[e] = e;
+        if (!Object.assign) return !1;var t = new String("abc");if (t[5] = "de", "5" === Object.getOwnPropertyNames(t)[0]) return !1;for (var e = {}, n = 0; n < 10; n++) {
+          e["_" + String.fromCharCode(n)] = n;
+        }if ("0123456789" !== Object.getOwnPropertyNames(e).map(function (t) {
+          return e[t];
+        }).join("")) return !1;var r = {};return "abcdefghijklmnopqrst".split("").forEach(function (t) {
+          r[t] = t;
         }), "abcdefghijklmnopqrst" === Object.keys(Object.assign({}, r)).join("");
-      } catch (e) {
+      } catch (t) {
         return !1;
       }
-    }() ? Object.assign : function (e, t) {
-      for (var n, c, l = r(e), f = 1; f < arguments.length; f++) {
+    }() ? Object.assign : function (t, e) {
+      for (var n, c, l = r(t), f = 1; f < arguments.length; f++) {
         n = Object(arguments[f]);for (var a in n) {
           u.call(n, a) && (l[a] = n[a]);
         }if (o) {
@@ -18504,20 +18521,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
       }return l;
     };
-  }, function (e, t, n) {
+  }, function (t, e, n) {
     "use strict";
-    var r = {};e.exports = r;
-  }, function (e, t, n) {
+    var r = {};t.exports = r;
+  }, function (t, e, n) {
     "use strict";
-    function r(e) {
+    function r(t) {
       return function () {
-        return e;
+        return t;
       };
     }var o = function o() {};o.thatReturns = r, o.thatReturnsFalse = r(!1), o.thatReturnsTrue = r(!0), o.thatReturnsNull = r(null), o.thatReturnsThis = function () {
       return this;
-    }, o.thatReturnsArgument = function (e) {
-      return e;
-    }, e.exports = o;
+    }, o.thatReturnsArgument = function (t) {
+      return t;
+    }, t.exports = o;
   }]);
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)(module)))
