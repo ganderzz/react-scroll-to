@@ -21,13 +21,13 @@ React Scroll-To provides two different components. The first, a render-prop impl
 import React, { Component } from "react";
 import { ScrollTo } from "react-scroll-to";
 
-export default class MyComponent extends React {
+export default class MyComponent extends Component {
     render() {
         return (
             <ScrollTo>
                 {
-                    (onScroll) => (
-                        <a onClick={onScroll(0, 500)}>
+                    (scroll) => (
+                        <a onClick={scroll(0, 500)}>
                             Scroll to Bottom
                         </a>
                     ) 
@@ -41,7 +41,7 @@ export default class MyComponent extends React {
 **Higher Order Component:**
 
 ```
-import React, { Component } from "react";
+import React from "react";
 import { ScrollToHOC } from "react-scroll-to";
 
 export default ScrollToHOC(function(props) {
