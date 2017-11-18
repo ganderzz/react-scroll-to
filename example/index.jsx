@@ -4,7 +4,7 @@ import { ScrollTo, ScrollToHOC } from "../src";
 
 const ToTop = ScrollToHOC(function(props) {
     return (
-        <button onClick={props.scroll(0, 0)} style={props.style}>
+        <button onClick={() => props.scroll(0, 0)} style={props.style}>
             To Top
         </button>
     );
@@ -17,7 +17,7 @@ window.onload = () => {
                 {
                     (onScroll) => (
                         <button
-                            onClick={onScroll(0, document.body.offsetHeight)}
+                            onClick={() => onScroll(0, document.body.offsetHeight)}
                             style={{ display: "block" }}
                         >
                             Scroll to Bottom
@@ -28,9 +28,9 @@ window.onload = () => {
 
             <ScrollTo>
                 {
-                    (onScroll) => (
+                    (scroll) => (
                         <button
-                            onClick={onScroll(0, 20)}
+                            onClick={() => scroll(0, 20)}
                             style={{ display: "block", marginTop: "500px" }}
                         >
                             Scroll to Top

@@ -29,7 +29,7 @@ export default class MyComponent extends Component {
             <ScrollTo>
                 {
                     (scroll) => (
-                        <a onClick={scroll(0, 500)}>
+                        <a onClick={() => scroll(0, 500)}>
                             Scroll to Bottom
                         </a>
                     ) 
@@ -48,7 +48,7 @@ import { ScrollToHOC } from "react-scroll-to";
 
 export default ScrollDownFiveHundred(function(props) {
     return (
-        <a onClick={props.scroll(0, 500)}>
+        <a onClick={() => props.scroll(0, 500)}>
             Scroll to Bottom
         </a>
     );
