@@ -19,7 +19,7 @@ React Scroll-To provides a Higher Order Component, and Render Props implementati
 
 **Render Props:**
 
-```
+```jsx
 import React, { Component } from "react";
 import { ScrollTo } from "react-scroll-to";
 
@@ -42,7 +42,7 @@ export default class MyComponent extends Component {
 
 **Higher Order Component:**
 
-```
+```jsx
 import React from "react";
 import { ScrollToHOC } from "react-scroll-to";
 
