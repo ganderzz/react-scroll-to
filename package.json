@@ -5,7 +5,9 @@
   "main": "./dist/react-scroll-to.js",
   "scripts": {
     "build": "webpack",
-    "build:prod": "webpack -p"
+    "build:prod": "webpack -p",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "react": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "all-contributors-cli": "^4.8.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",

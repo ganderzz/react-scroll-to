@@ -1,4 +1,5 @@
 <h1 align="center">
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
     👟 React Scroll-To
 </h1>
 
@@ -54,3 +55,14 @@ export default ScrollDownFiveHundred(function(props) {
     );
 })
 ```
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;"/><br /><sub><b>Dylan Paulus</b></sub>](http://www.dylanpaulus.com)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;"/><br /><sub><b>Anthony Ng</b></sub>](http://anthonyng.me)<br />[📖](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Documentation") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
