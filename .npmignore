@@ -5,3 +5,5 @@
 ./yarn.lock
 ./webpack.config.js
 ./.gitignore
+./.all-contributorsrc
+./CODE_OF_CONDUCT

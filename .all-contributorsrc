@@ -1,0 +1,30 @@
+{
+  "projectName": "react-scroll-to",
+  "projectOwner": "ganderzz",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "ganderzz",
+      "name": "Dylan Paulus",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5566054?v=4",
+      "profile": "http://www.dylanpaulus.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "newyork-anthonyng",
+      "name": "Anthony Ng",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/14035529?v=4",
+      "profile": "http://anthonyng.me",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}
