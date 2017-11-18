@@ -1,10 +1,12 @@
-<center>
-    <h1>👟 React Scroll-To</h1>
-</center>
+<h1 align="center">
+    👟 React Scroll-To
+</h1>
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 A React component that helps in scrolling around a page.
 
-React Scroll-To provides two different components. The first, a render-prop implementation. Second, a higher order component.
+React Scroll-To provides a Higher Order Component, and Render Props implementation.
 
 ### Install
 
