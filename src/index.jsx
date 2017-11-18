@@ -12,7 +12,7 @@ import React from "react";
  * @returns {void}
  */
 function handleScroll(x = 0, y = 0) {
-    return () => window.scroll(x, y);
+    window.scroll(x, y);
 }
 
 /**
