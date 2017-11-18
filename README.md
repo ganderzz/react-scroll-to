@@ -46,7 +46,7 @@ export default class MyComponent extends Component {
 import React from "react";
 import { ScrollToHOC } from "react-scroll-to";
 
-export default ScrollToHOC(function(props) {
+export default ScrollDownFiveHundred(function(props) {
     return (
         <a onClick={props.scroll(0, 500)}>
             Scroll to Bottom
