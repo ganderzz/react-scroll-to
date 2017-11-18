@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 /**
  * Scrolls the window to
@@ -21,9 +21,7 @@ function handleScroll(x = 0, y = 0) {
  * position in the window.
  */
 export function ScrollTo(props) {
-    return props.children(
-        (x, y) => handleScroll(x, y)
-    );
+    return props.children(handleScroll);
 }
 
 /**
@@ -32,7 +30,9 @@ export function ScrollTo(props) {
  * takes an (x, y) coordinate to scroll to. [ie. props.scroll(0, 500)]
  */
 export function ScrollToHOC(Component) {
+    Component.displayName = "ScrollTo";
+
     return (props) => (
-        <Component {...props} scroll={(x, y) => handleScroll(x, y)} />
+        <Component {...props} scroll={handleScroll} />
     )
 }
