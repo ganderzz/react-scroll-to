@@ -16,7 +16,7 @@ React Scroll-To provides a Higher Order Component, and Render Props implementati
 **yarn:** `yarn add react-scroll-to`
 
 
-### Example
+### API
 
 **Render Props:**
 
@@ -55,6 +55,9 @@ export default ScrollDownFiveHundred(function(props) {
     );
 })
 ```
+
+### Example
+Check out this [example on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41).
 
 ## Contributors
 
