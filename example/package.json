@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "build": "../node_modules/.bin/webpack"
-  },
-  "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1"
-  }
-}
