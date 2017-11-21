@@ -30,8 +30,6 @@ export function ScrollTo(props) {
  * takes an (x, y) coordinate to scroll to. [ie. props.scroll(0, 500)]
  */
 export function ScrollToHOC(Component) {
-    Component.displayName = "ScrollTo";
-
     return (props) => (
         <Component {...props} scroll={handleScroll} />
     )
