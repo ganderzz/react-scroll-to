@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import getDisplayName from "react-display-name";
 
 /**
  * Scrolls the window to
@@ -21,8 +23,16 @@ function handleScroll(x = 0, y = 0) {
  * position in the window.
  */
 export function ScrollTo(props) {
-    return props.children(handleScroll);
+    return props.children && props.children(handleScroll);
 }
+
+ScrollTo.defaultProps = {
+  children: () => {}
+};
+
+ScrollTo.propTypes = {
+  children: PropTypes.func.isRequired
+};
 
 /**
  * Higher Order Component version of the ScrollTo.
@@ -30,7 +40,10 @@ export function ScrollTo(props) {
  * takes an (x, y) coordinate to scroll to. [ie. props.scroll(0, 500)]
  */
 export function ScrollToHOC(Component) {
-    return (props) => (
+    const WrappedComponent = (props) => (
         <Component {...props} scroll={handleScroll} />
-    )
+    );
+    WrappedComponent.displayName = `WithScrollToHOC(${getDisplayName(Component)})`;
+
+    return WrappedComponent;
 }
