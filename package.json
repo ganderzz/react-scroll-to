@@ -8,7 +8,8 @@
     "build": "webpack",
     "build:prod": "webpack -p",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,16 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.2.2",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.8.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "lint-staged": "^5.0.0",
+    "prettier": "1.8.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-test-renderer": "^16.1.1",
@@ -50,7 +60,16 @@
     "prop-types": "^15.6.0",
     "react-display-name": "^0.2.3"
   },
-  "jest" : {
-    "setupFiles": ["./src/shim.js", "./src/setupTests.js"]
-  }
+  "jest": {
+    "setupFiles": [
+      "./src/shim.js",
+      "./src/setupTests.js"
+    ]
+  },
+  "lint-staged": {
+      "src/*.{js,jsx}": [ 
+      "prettier --write",
+      "git add"
+    ]
+   }
 }
