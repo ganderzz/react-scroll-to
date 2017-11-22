@@ -2,8 +2,10 @@
     👟 React Scroll-To
 </h1>
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
+[![CircleCI](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master.svg?style=svg)](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
+
 
 A React component that helps in scrolling around a page.
 
@@ -64,7 +66,7 @@ Check out this [example on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41).
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;"/><br /><sub><b>Dylan Paulus</b></sub>](http://www.dylanpaulus.com)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;"/><br /><sub><b>Anthony Ng</b></sub>](http://anthonyng.me)<br />[📖](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Documentation") |
+| [<img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;"/><br /><sub><b>Dylan Paulus</b></sub>](http://www.dylanpaulus.com)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;"/><br /><sub><b>Anthony Ng</b></sub>](http://anthonyng.me)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Documentation") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
