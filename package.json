@@ -5,6 +5,7 @@
   "main": "./dist/react-scroll-to.js",
   "scripts": {
     "test": "jest",
+    "test:cover": "jest --coverage",
     "build": "webpack",
     "build:prod": "webpack -p",
     "contributors:add": "all-contributors add",
@@ -64,7 +65,19 @@
     "setupFiles": [
       "./src/shim.js",
       "./src/setupTests.js"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "src/*.{js,jsx}",
+      "!src/{setupTests,shim}.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   },
   "lint-staged": {
       "src/*.{js,jsx}": [ 
