@@ -3,6 +3,7 @@
 </h1>
 
 [![CircleCI](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master.svg?style=svg)](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/ganderzz/react-scroll-to/badge.svg?branch=feature%2Fcreate-circi-artifact)](https://coveralls.io/github/ganderzz/react-scroll-to?branch=feature%2Fcreate-circi-artifact)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
