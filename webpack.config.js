@@ -13,11 +13,21 @@ module.exports = {
     context: path.resolve("./"),
     resolve: {
         modules: [
-            path.join(__dirname, "src"),
+            path.resolve(__dirname, "src"),
             "node_modules"
         ],
         extensions: [".js", ".jsx"]
     },
+    externals: [
+        {
+            react: {
+              root: "React",
+              commonjs2: "react",
+              commonjs: "react",
+              amd: "react"
+            }
+        }
+    ],
     module: {
         rules: [
           {
