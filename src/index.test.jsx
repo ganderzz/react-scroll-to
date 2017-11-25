@@ -34,6 +34,20 @@ describe("Test ScrollTo Component.", () => {
       expect(window.scroll).toHaveBeenCalledTimes(1);
       expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
     });
+
+    it("Should call window.scroll with default x,y when no arguments are provided.", () => {
+      const wrapper = shallow(
+        <ScrollTo>
+          {scroll => <button onClick={() => scroll()}>test</button>}
+        </ScrollTo>
+      );
+
+      const buttonEl = wrapper.find("button");
+      buttonEl.simulate("click");
+
+      expect(window.scroll).toHaveBeenCalledTimes(1);
+      expect(window.scroll.mock.calls[0]).toEqual([0, 0]);
+    });
   });
 
   describe("Test HOC.", () => {
