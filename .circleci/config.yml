@@ -25,3 +25,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn test:cover
+
+      - store_artifacts:
+          path: ./coverage
+
+      - run: yarn run coveralls
