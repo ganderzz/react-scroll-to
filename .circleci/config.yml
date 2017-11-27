@@ -28,5 +28,3 @@ jobs:
 
       - store_artifacts:
           path: ./coverage
-
-      - run: yarn run coveralls

@@ -10,7 +10,6 @@
     "build:prod": "webpack -p",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "coveralls": "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
     "precommit": "lint-staged"
   },
   "repository": {
