@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test render prop. Should render nothing nothing on undefined. 1`] = `""`;
+
+exports[`Test render prop. Should render the functional children. 1`] = `
+<div>
+  test
+</div>
+`;
