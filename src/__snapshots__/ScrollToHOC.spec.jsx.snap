@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test HOC. Should render the functional children. 1`] = `
+<WithScrollToHOC(test)>
+  <test
+    scroll={[Function]}
+  >
+    <div>
+      test
+    </div>
+  </test>
+</WithScrollToHOC(test)>
+`;

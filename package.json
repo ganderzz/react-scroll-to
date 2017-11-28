@@ -69,7 +69,8 @@
     ],
     "collectCoverageFrom": [
       "src/*.{js,jsx}",
-      "!src/{setupTests,shim}.js"
+      "!src/{setupTests,shim}.js",
+      "!src/index.jsx"
     ],
     "coverageThreshold": {
       "global": {
