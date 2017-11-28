@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Scroll Area. should call addScrollArea when mounting. 1`] = `
+Array [
+  <div>
+    <h1>
+      Test
+    </h1>
+  </div>,
+]
+`;
+
+exports[`Test Scroll Area. should call removeScrollArea when unmounting. 1`] = `
+Array [
+  <div>
+    <h1>
+      Test
+    </h1>
+  </div>,
+]
+`;
+
+exports[`Test Scroll Area. should render correctly. 1`] = `
+<div
+  className="foo"
+>
+  <h1>
+    Test
+  </h1>
+</div>
+`;

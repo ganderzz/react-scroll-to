@@ -1,6 +1,6 @@
 import React from "react";
 import getDisplayName from "react-display-name";
-import handleScroll from "./handleScroll";
+import scrollWindow from "./scrollWindow";
 
 /**
  * Higher Order Component version of the ScrollTo.
@@ -9,7 +9,7 @@ import handleScroll from "./handleScroll";
  */
 function ScrollToHOC(Component) {
   const WrappedComponent = props => (
-    <Component {...props} scroll={handleScroll} />
+    <Component {...props} scroll={scrollWindow} />
   );
   WrappedComponent.displayName = `WithScrollToHOC(${getDisplayName(
     Component

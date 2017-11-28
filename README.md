@@ -36,7 +36,32 @@ export default class MyComponent extends Component {
                         <a onClick={() => scroll(0, 500)}>
                             Scroll to Bottom
                         </a>
-                    ) 
+                    )
+                }
+            </ScrollTo>
+        );
+    }
+}
+```
+
+```jsx
+// To scroll within a provided container, and not the window
+import React, { Component } from "react";
+import { ScrollTo, ScrollArea } from "react-scroll-to";
+
+export default class MyComponent extends Component {
+    render() {
+        return (
+            <ScrollTo>
+                {
+                  (scroll) => (
+                      <ScrollArea style={{ height: 1000 }}>
+                        <button onClick={() => scrollTo(0, 500)}>
+                          Scroll within this container
+                        </button>
+                      </ScrollArea>
+
+                  )
                 }
             </ScrollTo>
         );

@@ -9,8 +9,8 @@
  *
  * @returns {void}
  */
-function handleScroll(x = 0, y = 0) {
+function scrollWindow(x = 0, y = 0) {
   window.scroll(x, y);
 }
 
-export default handleScroll;
+export default scrollWindow;
