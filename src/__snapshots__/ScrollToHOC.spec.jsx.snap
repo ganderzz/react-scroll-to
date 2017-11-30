@@ -2,12 +2,14 @@
 
 exports[`Test HOC. Should render the functional children. 1`] = `
 <WithScrollToHOC(test)>
-  <test
-    scroll={[Function]}
-  >
-    <div>
-      test
-    </div>
-  </test>
+  <ScrollTo>
+    <test
+      scroll={[Function]}
+    >
+      <div>
+        test
+      </div>
+    </test>
+  </ScrollTo>
 </WithScrollToHOC(test)>
 `;

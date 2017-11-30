@@ -50,35 +50,23 @@ describe("Test render prop.", () => {
   });
 
   it("Should pass correct context to children.", () => {
-    const wrapper = shallow(
-      <ScrollTo>
-      {scroll => <div>Test</div>}
-      </ScrollTo>
-    );
+    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
 
     expect(wrapper.instance().getChildContext()).toMatchSnapshot();
   });
 
   it("Should add scroll area.", () => {
-    const wrapper = shallow(
-      <ScrollTo>
-        {scroll => <div>Test</div>}
-      </ScrollTo>
-    );
+    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
 
-    const childContext = wrapper.instance().getChildContext()
+    const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea("foo");
 
     expect(wrapper.instance().scrollArea).toMatchSnapshot("foo");
   });
 
   it("Should remove scroll area.", () => {
-    const wrapper = shallow(
-      <ScrollTo>
-        {scroll => <div>Test</div>}
-      </ScrollTo>
-    );
-    const childContext = wrapper.instance().getChildContext()
+    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
+    const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea("foo");
 
     childContext.removeScrollArea("foo");
@@ -96,7 +84,7 @@ describe("Test render prop.", () => {
         {scroll => <button onClick={() => scroll(100, 200)}>test</button>}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getChildContext()
+    const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea(mockNode);
 
     const buttonEl = wrapper.find("button");
