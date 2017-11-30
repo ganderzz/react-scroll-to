@@ -84,6 +84,22 @@ export default ScrollDownFiveHundred(function(props) {
 })
 ```
 
+```jsx
+// To scroll within a provided container, and not the window
+import React from "react";
+import { ScrollToHOC, ScrollArea } from "react-scroll-to";
+
+export default ScrollDownFiveHundred(function(props) {
+    return (
+        <ScrollArea style={{ height: 1000 }}>
+            <a onClick={() => props.scroll(0, 500)}>
+                Scroll to Bottom
+            </a>
+        </ScrollArea>
+    );
+})
+```
+
 ### Example
 Check out this [example on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41).
 
