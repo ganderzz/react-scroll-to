@@ -8,7 +8,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 
-A React component that helps in scrolling around a page.
+A React component that makes scrolling easy.
 
 React Scroll-To provides a Higher Order Component, and Render Props implementation.
 
@@ -24,6 +24,7 @@ React Scroll-To provides a Higher Order Component, and Render Props implementati
 **Render Props:**
 
 ```jsx
+// Scroll to position (0, 500) in the browser window
 import React, { Component } from "react";
 import { ScrollTo } from "react-scroll-to";
 
@@ -45,7 +46,7 @@ export default class MyComponent extends Component {
 ```
 
 ```jsx
-// To scroll within a provided container, and not the window
+// Scroll to position (0, 500) within a provided container
 import React, { Component } from "react";
 import { ScrollTo, ScrollArea } from "react-scroll-to";
 
@@ -60,7 +61,6 @@ export default class MyComponent extends Component {
                           Scroll within this container
                         </button>
                       </ScrollArea>
-
                   )
                 }
             </ScrollTo>
@@ -72,10 +72,11 @@ export default class MyComponent extends Component {
 **Higher Order Component:**
 
 ```jsx
+// Scroll to position (0, 500) within the browser window
 import React from "react";
 import { ScrollToHOC } from "react-scroll-to";
 
-export default ScrollDownFiveHundred(function(props) {
+export default ScrollToHOC(function(props) {
     return (
         <a onClick={() => props.scroll(0, 500)}>
             Scroll to Bottom
@@ -85,11 +86,11 @@ export default ScrollDownFiveHundred(function(props) {
 ```
 
 ```jsx
-// To scroll within a provided container, and not the window
+// Scroll to position (0, 500) within a provided container
 import React from "react";
 import { ScrollToHOC, ScrollArea } from "react-scroll-to";
 
-export default ScrollDownFiveHundred(function(props) {
+export default ScrollToHOC(function(props) {
     return (
         <ScrollArea style={{ height: 1000 }}>
             <a onClick={() => props.scroll(0, 500)}>
