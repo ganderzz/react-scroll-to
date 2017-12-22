@@ -37,10 +37,21 @@ class ScrollTo extends Component {
         container.scrollTop = y;
       });
     }
-  };
+  }
+
+  scrollById(id, x, y) {
+    var node = document.getElementById(id);
+    console.log("HI");
+    console.log(document);
+    console.log(node);
+    node.scroll(x, y);
+  }
 
   render() {
-    return this.props.children && this.props.children(this.handleScroll);
+    return (
+      this.props.children &&
+      this.props.children(this.handleScroll, this.scrollById)
+    );
   }
 }
 
