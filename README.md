@@ -57,7 +57,7 @@ export default class MyComponent extends Component {
                 {
                   (scroll) => (
                       <ScrollArea style={{ height: 1000 }}>
-                        <button onClick={() => scrollTo(0, 500)}>
+                        <button onClick={() => scroll(0, 500)}>
                           Scroll within this container
                         </button>
                       </ScrollArea>
