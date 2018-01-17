@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import toJSON from "enzyme-to-json";
 import ScrollTo from "./ScrollTo";
 
@@ -59,9 +58,9 @@ describe("Test render prop.", () => {
     const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
 
     const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea("foo");
+    childContext.addScrollArea("foo", "foo-id");
 
-    expect(wrapper.instance().scrollArea).toMatchSnapshot("foo");
+    expect(wrapper.instance().scrollArea).toMatchSnapshot();
   });
 
   it("Should remove scroll area.", () => {
@@ -71,7 +70,7 @@ describe("Test render prop.", () => {
 
     childContext.removeScrollArea("foo");
 
-    expect(wrapper.instance().scrollArea).toEqual([]);
+    expect(wrapper.instance().scrollArea).toEqual({});
   });
 
   it("Should update scroll position of ScrollArea's if present, rather than window", () => {
@@ -86,6 +85,52 @@ describe("Test render prop.", () => {
     );
     const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea(mockNode);
+
+    const buttonEl = wrapper.find("button");
+    buttonEl.simulate("click");
+
+    expect(mockNode).toMatchSnapshot();
+  });
+
+  it("Should scroll by ID", () => {
+    const mockNode = {
+      scrollLeft: 0,
+      scrollTop: 0,
+      id: "foo"
+    };
+    const wrapper = shallow(
+      <ScrollTo>
+        {(scroll, scrollById) => (
+          <button onClick={() => scrollById("foo", 100, 200)}>test</button>
+        )}
+      </ScrollTo>
+    );
+    const childContext = wrapper.instance().getChildContext();
+    childContext.addScrollArea(mockNode, "foo");
+
+    const buttonEl = wrapper.find("button");
+    buttonEl.simulate("click");
+
+    expect(mockNode).toMatchSnapshot();
+  });
+
+  it("Should not break if scrolling by an unknown ID", () => {
+    const mockNode = {
+      scrollLeft: 0,
+      scrollTop: 0,
+      id: "foo"
+    };
+    const wrapper = shallow(
+      <ScrollTo>
+        {(scroll, scrollById) => (
+          <button onClick={() => scrollById("unknown-id", 100, 200)}>
+            test
+          </button>
+        )}
+      </ScrollTo>
+    );
+    const childContext = wrapper.instance().getChildContext();
+    childContext.addScrollArea(mockNode, "foo");
 
     const buttonEl = wrapper.find("button");
     buttonEl.simulate("click");

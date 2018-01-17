@@ -46,7 +46,7 @@ export default class MyComponent extends Component {
 ```
 
 ```jsx
-// Scroll to position (0, 500) within a provided container
+// Scroll to position (0, 500) within all provided <ScrollArea /> children
 import React, { Component } from "react";
 import { ScrollTo, ScrollArea } from "react-scroll-to";
 
@@ -61,6 +61,36 @@ export default class MyComponent extends Component {
                           Scroll within this container
                         </button>
                       </ScrollArea>
+                  )
+                }
+            </ScrollTo>
+        );
+    }
+}
+```
+
+```jsx
+// Scroll to position (0, 500) within a specific <ScrollArea /> child
+import React, { Component } from "react";
+import { ScrollTo, ScrollArea } from "react-scroll-to";
+
+export default class MyComponent extends Component {
+    render() {
+        return (
+            <ScrollTo>
+                {
+                  (scroll, scrollById) => (
+                      <div>
+                          <ScrollArea id="foo" style={{ height: 1000 }}>
+                              <button onClick={() => scrollById("foo", 0, 500)}>
+                                  Scroll within this container
+                              </button>
+                          </ScrollArea>
+
+                          <ScrollArea style={{ height: 1000 }}>
+                              This container won't scroll
+                          </ScrollArea>
+                      </div>
                   )
                 }
             </ScrollTo>
@@ -86,7 +116,7 @@ export default ScrollToHOC(function(props) {
 ```
 
 ```jsx
-// Scroll to position (0, 500) within a provided container
+// Scroll to position (0, 500) within all provided <ScrollArea /> children
 import React from "react";
 import { ScrollToHOC, ScrollArea } from "react-scroll-to";
 
@@ -97,6 +127,28 @@ export default ScrollToHOC(function(props) {
                 Scroll to Bottom
             </a>
         </ScrollArea>
+    );
+})
+```
+
+```jsx
+// Scroll to position (0, 500) within a specific <ScrollArea /> child
+import React from "react";
+import { ScrollToHOC, ScrollArea } from "react-scroll-to";
+
+export default ScrollToHOC(function(props) {
+    return (
+        <div>
+            <ScrollArea id="foo" style={{ height: 1000 }}>
+                <a onClick={() => props.scrollById("foo", 0, 500)}>
+                    Scroll to Bottom
+                </a>
+            </ScrollArea>
+
+            <ScrollArea style={{ height: 1000 }}>
+              This container won't scroll
+            </ScrollArea>
+        </div>
     );
 })
 ```

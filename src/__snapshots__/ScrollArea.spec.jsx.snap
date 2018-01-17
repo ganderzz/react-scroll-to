@@ -7,6 +7,7 @@ Array [
       Test
     </h1>
   </div>,
+  "mock-id",
 ]
 `;
 
@@ -17,15 +18,20 @@ Array [
       Test
     </h1>
   </div>,
+  "mock-id",
 ]
 `;
 
 exports[`Test Scroll Area. should render correctly. 1`] = `
-<div
+<ScrollArea
   className="foo"
 >
-  <h1>
-    Test
-  </h1>
-</div>
+  <div
+    className="foo"
+  >
+    <h1>
+      Test
+    </h1>
+  </div>
+</ScrollArea>
 `;

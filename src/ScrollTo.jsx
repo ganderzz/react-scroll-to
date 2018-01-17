@@ -11,36 +11,48 @@ class ScrollTo extends Component {
   constructor(props) {
     super(props);
 
-    this.scrollArea = [];
+    this.scrollArea = {};
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleScrollById = this.handleScrollById.bind(this);
   }
 
   getChildContext() {
     return {
-      addScrollArea: ref => {
-        this.scrollArea = this.scrollArea.concat(ref);
+      addScrollArea: (ref, id) => {
+        this.scrollArea[id] = ref;
       },
-      removeScrollArea: ref => {
-        this.scrollArea = this.scrollArea.filter(container => {
-          return container !== ref;
-        });
+      removeScrollArea: (ref, id) => {
+        delete this.scrollArea[id];
       }
     };
   }
 
   handleScroll(x, y) {
-    if (this.scrollArea.length === 0) {
+    const scrollAreaKeys = Object.keys(this.scrollArea);
+
+    if (scrollAreaKeys.length === 0) {
       scrollWindow(x, y);
     } else {
-      this.scrollArea.forEach(container => {
-        container.scrollLeft = x;
-        container.scrollTop = y;
+      scrollAreaKeys.forEach(key => {
+        this.scrollArea[key].scrollLeft = x;
+        this.scrollArea[key].scrollTop = y;
       });
     }
-  };
+  }
+
+  handleScrollById(id, x, y) {
+    const node = this.scrollArea[id];
+    if (node) {
+      node.scrollLeft = x;
+      node.scrollTop = y;
+    }
+  }
 
   render() {
-    return this.props.children && this.props.children(this.handleScroll);
+    return (
+      this.props.children &&
+      this.props.children(this.handleScroll, this.handleScrollById)
+    );
   }
 }
 

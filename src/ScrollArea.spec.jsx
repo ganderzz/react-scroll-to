@@ -1,7 +1,8 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import toJSON from "enzyme-to-json";
 import ScrollArea from "./ScrollArea";
+jest.mock("./generateId", () => () => "mock-id");
 
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {
@@ -36,7 +37,7 @@ describe("Test Scroll Area.", () => {
   });
 
   it("should render correctly.", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ScrollArea className="foo">
         <h1>Test</h1>
       </ScrollArea>,
