@@ -153,8 +153,9 @@ export default ScrollToHOC(function(props) {
 })
 ```
 
-### Example
-Check out this [example on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41).
+### Examples
+* Check out this [demo on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41) to see how to use `<ScrollTo />`.
+* Check out this [demo on CodeSandbox](https://codesandbox.io/s/5wm7qolrmp) to see how to use `<ScrollArea />`.
 
 ## Contributors
 
