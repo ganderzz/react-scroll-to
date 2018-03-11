@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 import toJSON from "enzyme-to-json";
-import ScrollArea from "./ScrollArea";
-jest.mock("./generateId", () => () => "mock-id");
+import ScrollArea from "../ScrollArea";
+jest.mock("../generateId", () => () => "mock-id");
 
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {

@@ -1,4 +1,4 @@
-import generateId from "./generateId";
+import generateId from "../generateId";
 
 it("should return a unique ID whenever it is called", () => {
   expect(generateId()).toEqual("scrollto-0");

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJSON from "enzyme-to-json";
-import ScrollToHOC from "./ScrollToHOC";
+import ScrollToHOC from "../ScrollToHOC";
 
 beforeEach(() => {
   window.scroll = jest.fn();
