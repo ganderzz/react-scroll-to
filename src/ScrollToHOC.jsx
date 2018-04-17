@@ -9,7 +9,11 @@ import ScrollTo from "./ScrollTo";
  */
 function ScrollToHOC(Component) {
   const WrappedComponent = props => (
-    <ScrollTo>{scroll => <Component {...props} scroll={scroll} />}</ScrollTo>
+    <ScrollTo>
+      {(scroll, scrollById) => (
+        <Component {...props} scroll={scroll} scrollById={scrollById} />
+      )}
+    </ScrollTo>
   );
   WrappedComponent.displayName = `WithScrollToHOC(${getDisplayName(
     Component
