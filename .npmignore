@@ -1,9 +1,14 @@
-./example/*
-./src/*
+./src
 ./node_modules/*
+./.circleci/*
 
-./yarn.lock
-./webpack.config.js
-./.gitignore
-./.all-contributorsrc
-./CODE_OF_CONDUCT
+*.lock
+webpack.config.js
+.gitignore
+.all-contributorsrc
+.eslintrc.js
+.babelrc
+CODE_OF_CONDUCT.md
+ISSUE_TEMPLATE.md
+
+*.log
