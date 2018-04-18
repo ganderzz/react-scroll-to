@@ -1,5 +1,6 @@
-var webpack = require("webpack");
-var path = require("path");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require("path");
 
 module.exports = {
     entry: "./src/index.jsx",
@@ -36,5 +37,11 @@ module.exports = {
             exclude: /node_modules/,
           }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, "src", "definitions"),
+            to: path.resolve(__dirname, "dist", "definitions")
+        }])
+    ]
 };
