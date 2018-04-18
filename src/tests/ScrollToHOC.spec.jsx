@@ -31,4 +31,27 @@ describe("Test HOC.", () => {
     expect(window.scroll).toHaveBeenCalledTimes(1);
     expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
   });
+
+  it("Should call scrollById.", () => {
+    const mockNode = {
+      scrollLeft: 0,
+      scrollTop: 0,
+      id: "foo"
+    };
+    const WrappedComponent = ScrollToHOC(props => {
+      return(
+        <div>
+          <div id="foo"> </div>
+          <button onClick={() => props.scrollById("foo", 100, 200)}>
+            test
+          </button>
+        </div>
+      )
+    });
+    const wrapper = mount(<WrappedComponent />);
+
+    const buttonEl = wrapper.find("button");
+    buttonEl.simulate("click");
+    expect(toJSON(wrapper)).toMatchSnapshot();
+  });
 });

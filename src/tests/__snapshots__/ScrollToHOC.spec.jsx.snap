@@ -1,10 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test HOC. Should call scrollById. 1`] = `
+<WithScrollToHOC(Unknown)>
+  <ScrollTo>
+    <Component
+      scroll={[Function]}
+      scrollById={[Function]}
+    >
+      <div>
+        <div
+          id="foo"
+        >
+           
+        </div>
+        <button
+          onClick={[Function]}
+        >
+          test
+        </button>
+      </div>
+    </Component>
+  </ScrollTo>
+</WithScrollToHOC(Unknown)>
+`;
+
 exports[`Test HOC. Should render the functional children. 1`] = `
 <WithScrollToHOC(test)>
   <ScrollTo>
     <test
       scroll={[Function]}
+      scrollById={[Function]}
     >
       <div>
         test
