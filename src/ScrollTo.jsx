@@ -1,6 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
-import scrollWindow from "./scrollWindow";
+import scrollWindow from "./utilities/scrollWindow";
 
 /**
  * Component that uses render props to inject
