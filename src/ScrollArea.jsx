@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import generateId from "./generateId";
+import generateId from "./utilities/generateId";
 
 class ScrollArea extends Component {
   componentDidMount() {

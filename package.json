@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "all-contributors-cli": "^4.11.1",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
@@ -53,27 +53,26 @@
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
-    "lint-staged": "^7.0.4",
+    "lint-staged": "^7.0.5",
     "prettier": "1.12.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-test-renderer": "^16.3.2",
     "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^2.0.15"
   },
   "dependencies": {
-    "prop-types": "^15.6.1",
-    "react-display-name": "^0.2.4"
+    "prop-types": "^15.6.1"
   },
   "jest": {
     "setupFiles": [
-      "./src/shim.js",
-      "./src/setupTests.js"
+      "./src/tests/setup/shim.js",
+      "./src/tests/setup/setupTests.js"
     ],
     "collectCoverageFrom": [
       "src/*.{js,jsx}",
       "!src/{setupTests,shim}.js",
-      "!src/index.jsx"
+      "!src/index.{js,jsx}"
     ],
     "coverageThreshold": {
       "global": {
