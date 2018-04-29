@@ -1,3 +1,3 @@
-export { ScrollTo } from "./ScrollTo";
-export { ScrollArea } from "./ScrollArea";
-export { ScrollToHOC } from "./ScrollToHOC";
+export { default as ScrollTo } from "./ScrollTo";
+export { default as ScrollArea } from "./ScrollArea";
+export { default as ScrollToHOC } from "./ScrollToHOC";
