@@ -21,7 +21,7 @@ Object {
 }
 `;
 
-exports[`Test render prop. Should render nothing nothing on undefined. 1`] = `""`;
+exports[`Test render prop. Should render nothing on undefined. 1`] = `""`;
 
 exports[`Test render prop. Should render the functional children. 1`] = `
 <div>

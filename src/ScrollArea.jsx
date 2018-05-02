@@ -1,23 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import generateId from "./utilities/generateId";
 
 class ScrollArea extends Component {
   componentDidMount() {
-    this.id = this.node.id || generateId();
+    this.node = createRef();
+    this.id = this.props.id || generateId();
 
     this.context.addScrollArea(this.node, this.id);
   }
 
   componentWillUnmount() {
-    this.context.removeScrollArea(this.node, this.id);
+    this.context.removeScrollArea(this.node.current, this.id);
   }
 
   render() {
     const { children, ...props } = this.props;
 
     return (
-      <div {...props} ref={node => (this.node = node)}>
+      <div {...props} ref={this.node}>
         {children}
       </div>
     );
