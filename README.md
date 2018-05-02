@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center" style="padding: 40px;">
     👟 React Scroll-To
 </h1>
 
