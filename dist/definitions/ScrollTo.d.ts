@@ -1,10 +1,10 @@
 import * as React from "react";
 
 interface Props {
-    children: (
+    children: (args: {
         handleScroll: (x: number, y: number) => void,
         handleScrollById: (id: string, x: number, y: number) => void
-    ) => React.ReactElement<any>;
+    }) => React.ReactElement<any>;
 }
 
 /**
