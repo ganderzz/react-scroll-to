@@ -33,8 +33,8 @@ export default class MyComponent extends Component {
         return (
             <ScrollTo>
                 {
-                    (scroll) => (
-                        <a onClick={() => scroll(0, 500)}>
+                    ({ scrollTo }) => (
+                        <a onClick={() => scrollTo(0, 500)}>
                             Scroll to Bottom
                         </a>
                     )
@@ -55,9 +55,9 @@ export default class MyComponent extends Component {
         return (
             <ScrollTo>
                 {
-                  (scroll) => (
+                  ({ scrollTo }) => (
                       <ScrollArea style={{ height: 1000 }}>
-                        <button onClick={() => scroll(0, 500)}>
+                        <button onClick={() => scrollTo(0, 500)}>
                           Scroll within this container
                         </button>
                       </ScrollArea>
@@ -79,7 +79,7 @@ export default class MyComponent extends Component {
         return (
             <ScrollTo>
                 {
-                  (scroll, scrollById) => (
+                  ({ scrollById }) => (
                       <div>
                           <ScrollArea id="foo" style={{ height: 1000 }}>
                               <button onClick={() => scrollById("foo", 0, 500)}>
@@ -108,7 +108,7 @@ import { ScrollToHOC } from "react-scroll-to";
 
 export default ScrollToHOC(function(props) {
     return (
-        <a onClick={() => props.scroll(0, 500)}>
+        <a onClick={() => props.scrollTo(0, 500)}>
             Scroll to Bottom
         </a>
     );
@@ -123,7 +123,7 @@ import { ScrollToHOC, ScrollArea } from "react-scroll-to";
 export default ScrollToHOC(function(props) {
     return (
         <ScrollArea style={{ height: 1000 }}>
-            <a onClick={() => props.scroll(0, 500)}>
+            <a onClick={() => props.scrollTo(0, 500)}>
                 Scroll to Bottom
             </a>
         </ScrollArea>

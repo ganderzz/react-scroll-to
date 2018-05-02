@@ -2,22 +2,16 @@
 
 exports[`Test Scroll Area. should call addScrollArea when mounting. 1`] = `
 Array [
-  <div>
-    <h1>
-      Test
-    </h1>
-  </div>,
+  Object {
+    "current": null,
+  },
   "mock-id",
 ]
 `;
 
 exports[`Test Scroll Area. should call removeScrollArea when unmounting. 1`] = `
 Array [
-  <div>
-    <h1>
-      Test
-    </h1>
-  </div>,
+  null,
   "mock-id",
 ]
 `;

@@ -19,7 +19,7 @@ describe("Test HOC.", () => {
 
   it("Should call window.scroll.", () => {
     const TestComponent = props => (
-      <button onClick={() => props.scroll(100, 200)}>test</button>
+      <button onClick={() => props.scrollTo(100, 200)}>test</button>
     );
     TestComponent.displayName = "test";
     const WrappedComponent = ScrollToHOC(TestComponent);
@@ -41,7 +41,7 @@ describe("Test HOC.", () => {
     const WrappedComponent = ScrollToHOC(props => {
       return(
         <div>
-          <div id="foo"> </div>
+          <div id="foo"></div>
           <button onClick={() => props.scrollById("foo", 100, 200)}>
             test
           </button>

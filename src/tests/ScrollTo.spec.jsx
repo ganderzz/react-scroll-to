@@ -9,12 +9,12 @@ beforeEach(() => {
 
 describe("Test render prop.", () => {
   it("Should render the functional children.", () => {
-    const wrapper = shallow(<ScrollTo>{scroll => <div>test</div>}</ScrollTo>);
+    const wrapper = shallow(<ScrollTo>{() => <div>test</div>}</ScrollTo>);
 
     expect(toJSON(wrapper)).toMatchSnapshot();
   });
 
-  it("Should render nothing nothing on undefined.", () => {
+  it("Should render nothing on undefined.", () => {
     const wrapper = shallow(<ScrollTo>{undefined}</ScrollTo>);
 
     expect(toJSON(wrapper)).toMatchSnapshot();
@@ -23,7 +23,7 @@ describe("Test render prop.", () => {
   it("Should call window.scroll.", () => {
     const wrapper = shallow(
       <ScrollTo>
-        {scroll => <button onClick={() => scroll(100, 200)}>test</button>}
+        {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
       </ScrollTo>
     );
 
@@ -37,7 +37,7 @@ describe("Test render prop.", () => {
   it("Should call window.scroll with default x,y when no arguments are provided.", () => {
     const wrapper = shallow(
       <ScrollTo>
-        {scroll => <button onClick={() => scroll()}>test</button>}
+        {({ scrollTo }) => <button onClick={() => scrollTo()}>test</button>}
       </ScrollTo>
     );
 
@@ -49,13 +49,13 @@ describe("Test render prop.", () => {
   });
 
   it("Should pass correct context to children.", () => {
-    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
+    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
 
     expect(wrapper.instance().getChildContext()).toMatchSnapshot();
   });
 
   it("Should add scroll area.", () => {
-    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
+    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
 
     const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea("foo", "foo-id");
@@ -64,7 +64,7 @@ describe("Test render prop.", () => {
   });
 
   it("Should remove scroll area.", () => {
-    const wrapper = shallow(<ScrollTo>{scroll => <div>Test</div>}</ScrollTo>);
+    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
     const childContext = wrapper.instance().getChildContext();
     childContext.addScrollArea("foo");
 
@@ -80,7 +80,7 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {scroll => <button onClick={() => scroll(100, 200)}>test</button>}
+        {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
       </ScrollTo>
     );
     const childContext = wrapper.instance().getChildContext();
@@ -100,7 +100,7 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {(scroll, scrollById) => (
+        {({ scrollById }) => (
           <button onClick={() => scrollById("foo", 100, 200)}>test</button>
         )}
       </ScrollTo>
@@ -122,7 +122,7 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {(scroll, scrollById) => (
+        {({ scrollById }) => (
           <button onClick={() => scrollById("unknown-id", 100, 200)}>
             test
           </button>

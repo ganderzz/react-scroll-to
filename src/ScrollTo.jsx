@@ -51,7 +51,10 @@ class ScrollTo extends Component {
   render() {
     return (
       this.props.children &&
-      this.props.children(this.handleScroll, this.handleScrollById)
+      this.props.children({
+        scrollTo: this.handleScroll,
+        scrollById: this.handleScrollById
+      })
     );
   }
 }
