@@ -5,7 +5,7 @@ import generateId from "./utilities/generateId";
 class ScrollArea extends Component {
   componentDidMount() {
     this.node = createRef();
-    this.id = (this.node.curret && this.node.current.id) || generateId();
+    this.id = this.props.id || generateId();
 
     this.context.addScrollArea(this.node, this.id);
   }
