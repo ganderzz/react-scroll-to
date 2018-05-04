@@ -1,6 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import toJSON from "enzyme-to-json";
+import { render, Simulate } from "react-testing-library";
 import ScrollToHOC from "../ScrollToHOC";
 
 beforeEach(() => {
@@ -11,10 +10,11 @@ describe("Test HOC.", () => {
   it("Should render the functional children.", () => {
     const TestComponent = () => <div>test</div>;
     TestComponent.displayName = "test";
-    const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = mount(<WrappedComponent />);
 
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    const WrappedComponent = ScrollToHOC(TestComponent);
+    const wrapper = render(<WrappedComponent />);
+
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("Should call window.scroll.", () => {
@@ -22,36 +22,32 @@ describe("Test HOC.", () => {
       <button onClick={() => props.scrollTo(100, 200)}>test</button>
     );
     TestComponent.displayName = "test";
-    const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = mount(<WrappedComponent />);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    const WrappedComponent = ScrollToHOC(TestComponent);
+    const wrapper = render(<WrappedComponent />);
+
+    Simulate.click(wrapper.getByText("test"));
 
     expect(window.scroll).toHaveBeenCalledTimes(1);
     expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
   });
 
   it("Should call scrollById.", () => {
-    const mockNode = {
-      scrollLeft: 0,
-      scrollTop: 0,
-      id: "foo"
-    };
     const WrappedComponent = ScrollToHOC(props => {
-      return(
+      return (
         <div>
-          <div id="foo"></div>
+          <div id="foo" />
           <button onClick={() => props.scrollById("foo", 100, 200)}>
             test
           </button>
         </div>
-      )
+      );
     });
-    const wrapper = mount(<WrappedComponent />);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    const wrapper = render(<WrappedComponent />);
+
+    Simulate.click(wrapper.getByText("test"));
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

@@ -51,24 +51,24 @@ describe("Test render prop.", () => {
   it("Should pass correct context to children.", () => {
     const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
 
-    expect(wrapper.instance().getChildContext()).toMatchSnapshot();
+    expect(wrapper.instance().getContext).toMatchSnapshot();
   });
 
   it("Should add scroll area.", () => {
     const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
 
-    const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea("foo", "foo-id");
+    const childContext = wrapper.instance().getContext;
+    childContext.addScrollArea("foo-id", "foo");
 
     expect(wrapper.instance().scrollArea).toMatchSnapshot();
   });
 
   it("Should remove scroll area.", () => {
     const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
-    const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea("foo");
+    const childContext = wrapper.instance().getContext;
+    childContext.addScrollArea("id", "foo");
 
-    childContext.removeScrollArea("foo");
+    childContext.removeScrollArea("id");
 
     expect(wrapper.instance().scrollArea).toEqual({});
   });
@@ -83,8 +83,8 @@ describe("Test render prop.", () => {
         {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea(mockNode);
+    const childContext = wrapper.instance().getContext;
+    childContext.addScrollArea("id", mockNode);
 
     const buttonEl = wrapper.find("button");
     buttonEl.simulate("click");
@@ -105,8 +105,8 @@ describe("Test render prop.", () => {
         )}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea(mockNode, "foo");
+    const childContext = wrapper.instance().getContext;
+    childContext.addScrollArea("foo", mockNode);
 
     const buttonEl = wrapper.find("button");
     buttonEl.simulate("click");
@@ -129,8 +129,8 @@ describe("Test render prop.", () => {
         )}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getChildContext();
-    childContext.addScrollArea(mockNode, "foo");
+    const childContext = wrapper.instance().getContext;
+    childContext.addScrollArea("foo", mockNode);
 
     const buttonEl = wrapper.find("button");
     buttonEl.simulate("click");

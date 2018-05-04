@@ -62,7 +62,8 @@
     "react-dom": "16.3.2",
     "react-test-renderer": "16.3.2",
     "webpack": "4.6.0",
-    "webpack-cli": "2.1.2"
+    "webpack-cli": "2.1.2",
+    "react-testing-library": "2.5.1"
   },
   "jest": {
     "setupFiles": [

@@ -20,22 +20,10 @@ class ScrollTo extends Component {
 
     this.getContext = {
       addScrollArea: (id, ref) => {
-        this.scrollArea = {
-          ...this.scrollArea,
-          [id]: ref
-        };
+        this.scrollArea[id] = ref;
       },
       removeScrollArea: id => {
-        if (!id) {
-          return;
-        }
-
-        const {
-          [id]: {},
-          ...rest
-        } = this.scrollArea;
-
-        this.scrollArea = rest;
+        delete this.scrollArea[id];
       }
     };
   }
@@ -47,8 +35,12 @@ class ScrollTo extends Component {
       scrollWindow(x, y);
     } else {
       scrollAreaKeys.forEach(key => {
-        this.scrollArea[key].scrollLeft = x;
-        this.scrollArea[key].scrollTop = y;
+        const node = this.scrollArea[key];
+
+        if (node) {
+          node.scrollLeft = x;
+          node.scrollTop = y;
+        }
       });
     }
   }
@@ -73,11 +65,6 @@ class ScrollTo extends Component {
     );
   }
 }
-
-ScrollTo.childContextTypes = {
-  addScrollArea: PropTypes.func.isRequired,
-  removeScrollArea: PropTypes.func.isRequired
-};
 
 ScrollTo.defaultProps = {
   children: () => {}

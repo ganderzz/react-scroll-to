@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 
-class ScrollArea extends Component {
+export class ScrollArea extends Component {
   constructor(props) {
     super(props);
 
@@ -29,11 +29,6 @@ class ScrollArea extends Component {
     );
   }
 }
-
-ScrollArea.contextTypes = {
-  addScrollArea: PropTypes.func.isRequired,
-  removeScrollArea: PropTypes.func.isRequired
-};
 
 export default props => (
   <ScrollToContext.Consumer>

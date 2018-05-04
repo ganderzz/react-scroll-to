@@ -1,19 +1,17 @@
 import React from "react";
 import { mount } from "enzyme";
 import toJSON from "enzyme-to-json";
-import ScrollArea from "../ScrollArea";
+import { ScrollToContext } from "../ScrollTo";
+import { ScrollArea } from "../ScrollArea";
 jest.mock("../utilities/generateId", () => () => "mock-id");
 
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {
     const addScrollArea = jest.fn();
     const wrapper = mount(
-      <ScrollArea>
+      <ScrollArea addScrollArea={addScrollArea} removeScrollArea={() => {}}>
         <h1>Test</h1>
-      </ScrollArea>,
-      {
-        context: { addScrollArea, removeScrollArea: () => {} }
-      }
+      </ScrollArea>
     );
 
     expect(addScrollArea).toHaveBeenCalledTimes(1);
@@ -23,12 +21,9 @@ describe("Test Scroll Area.", () => {
   it("should call removeScrollArea when unmounting.", () => {
     const removeScrollArea = jest.fn();
     const wrapper = mount(
-      <ScrollArea>
+      <ScrollArea addScrollArea={() => {}} removeScrollArea={removeScrollArea}>
         <h1>Test</h1>
-      </ScrollArea>,
-      {
-        context: { addScrollArea: () => {}, removeScrollArea }
-      }
+      </ScrollArea>
     );
     wrapper.unmount();
 
@@ -38,10 +33,13 @@ describe("Test Scroll Area.", () => {
 
   it("should render correctly.", () => {
     const wrapper = mount(
-      <ScrollArea className="foo">
+      <ScrollArea
+        className="foo"
+        addScrollArea={() => {}}
+        removeScrollArea={() => {}}
+      >
         <h1>Test</h1>
-      </ScrollArea>,
-      { context: { addScrollArea: () => {}, removeScrollArea: () => {} } }
+      </ScrollArea>
     );
 
     expect(toJSON(wrapper)).toMatchSnapshot();
