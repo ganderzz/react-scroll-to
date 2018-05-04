@@ -21,12 +21,30 @@ Object {
 }
 `;
 
-exports[`Test render prop. Should render nothing on undefined. 1`] = `""`;
+exports[`Test render prop. Should render nothing on undefined. 1`] = `
+<[object Object]
+  value={
+    Object {
+      "addScrollArea": [Function],
+      "removeScrollArea": [Function],
+    }
+  }
+/>
+`;
 
 exports[`Test render prop. Should render the functional children. 1`] = `
-<div>
-  test
-</div>
+<[object Object]
+  value={
+    Object {
+      "addScrollArea": [Function],
+      "removeScrollArea": [Function],
+    }
+  }
+>
+  <div>
+    test
+  </div>
+</[object Object]>
 `;
 
 exports[`Test render prop. Should scroll by ID 1`] = `

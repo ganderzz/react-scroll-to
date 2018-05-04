@@ -1,19 +1,17 @@
 import React from "react";
-import { mount } from "enzyme";
-import toJSON from "enzyme-to-json";
-import ScrollArea from "../ScrollArea";
+import { render } from "react-testing-library";
+import { ScrollToContext } from "../ScrollTo";
+import ScrollArea, { ScrollArea as BaseScrollArea } from "../ScrollArea";
+
 jest.mock("../utilities/generateId", () => () => "mock-id");
 
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {
     const addScrollArea = jest.fn();
-    const wrapper = mount(
-      <ScrollArea>
+    const wrapper = render(
+      <BaseScrollArea addScrollArea={addScrollArea} removeScrollArea={() => {}}>
         <h1>Test</h1>
-      </ScrollArea>,
-      {
-        context: { addScrollArea, removeScrollArea: () => {} }
-      }
+      </BaseScrollArea>
     );
 
     expect(addScrollArea).toHaveBeenCalledTimes(1);
@@ -22,13 +20,10 @@ describe("Test Scroll Area.", () => {
 
   it("should call removeScrollArea when unmounting.", () => {
     const removeScrollArea = jest.fn();
-    const wrapper = mount(
-      <ScrollArea>
+    const wrapper = render(
+      <BaseScrollArea addScrollArea={() => {}} removeScrollArea={removeScrollArea}>
         <h1>Test</h1>
-      </ScrollArea>,
-      {
-        context: { addScrollArea: () => {}, removeScrollArea }
-      }
+      </BaseScrollArea>
     );
     wrapper.unmount();
 
@@ -37,13 +32,31 @@ describe("Test Scroll Area.", () => {
   });
 
   it("should render correctly.", () => {
-    const wrapper = mount(
-      <ScrollArea className="foo">
+    const wrapper = render(
+      <BaseScrollArea
+        className="foo"
+        addScrollArea={() => {}}
+        removeScrollArea={() => {}}
+      >
         <h1>Test</h1>
-      </ScrollArea>,
-      { context: { addScrollArea: () => {}, removeScrollArea: () => {} } }
+      </BaseScrollArea>
     );
 
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
+
+  it("should render default context.", () => {
+    const fns = {
+      addScrollArea: () => {},
+      removeScrollArea: () => {}
+    }
+
+    const wrapper = render(
+      <ScrollToContext.Provider value={fns}>
+        <ScrollArea style={{ padding: 20 }}>
+          test
+        </ScrollArea>
+      </ScrollToContext.Provider>
+    );
+  })
 });

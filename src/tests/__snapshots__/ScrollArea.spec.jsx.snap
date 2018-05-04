@@ -2,30 +2,53 @@
 
 exports[`Test Scroll Area. should call addScrollArea when mounting. 1`] = `
 Array [
-  Object {
-    "current": null,
-  },
   "mock-id",
+  <div>
+    <h1>
+      Test
+    </h1>
+  </div>,
 ]
 `;
 
 exports[`Test Scroll Area. should call removeScrollArea when unmounting. 1`] = `
 Array [
-  null,
   "mock-id",
 ]
 `;
 
 exports[`Test Scroll Area. should render correctly. 1`] = `
-<ScrollArea
-  className="foo"
->
-  <div
-    className="foo"
-  >
-    <h1>
-      Test
-    </h1>
-  </div>
-</ScrollArea>
+Object {
+  "container": <div>
+    <div
+      class="foo"
+    >
+      <h1>
+        Test
+      </h1>
+    </div>
+  </div>,
+  "getAllByAltText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getByAltText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryByAltText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

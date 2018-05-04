@@ -1,38 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test HOC. Should call scrollById. 1`] = `
-<WithScrollToHOC(Unknown)>
-  <ScrollTo>
-    <Component
-      scrollById={[Function]}
-      scrollTo={[Function]}
-    >
-      <div>
-        <div
-          id="foo"
-        />
-        <button
-          onClick={[Function]}
-        >
-          test
-        </button>
-      </div>
-    </Component>
-  </ScrollTo>
-</WithScrollToHOC(Unknown)>
+Object {
+  "container": <div>
+    <div>
+      <div
+        id="foo"
+      />
+      <button>
+        test
+      </button>
+    </div>
+  </div>,
+  "getAllByAltText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getByAltText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryByAltText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`Test HOC. Should render the functional children. 1`] = `
-<WithScrollToHOC(test)>
-  <ScrollTo>
-    <test
-      scrollById={[Function]}
-      scrollTo={[Function]}
-    >
-      <div>
-        test
-      </div>
-    </test>
-  </ScrollTo>
-</WithScrollToHOC(test)>
+Object {
+  "container": <div>
+    <div>
+      test
+    </div>
+  </div>,
+  "getAllByAltText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getByAltText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryByAltText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
