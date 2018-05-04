@@ -1,6 +1,8 @@
-import { Component } from "react";
+import React, { Component, createContext } from "react";
 import PropTypes from "prop-types";
 import scrollWindow from "./utilities/scrollWindow";
+
+export const ScrollToContext = createContext("scrollToContext");
 
 /**
  * Component that uses render props to inject
@@ -11,18 +13,29 @@ class ScrollTo extends Component {
   constructor(props) {
     super(props);
 
-    this.scrollArea = {};
     this.handleScroll = this.handleScroll.bind(this);
     this.handleScrollById = this.handleScrollById.bind(this);
-  }
 
-  getChildContext() {
-    return {
-      addScrollArea: (ref, id) => {
-        this.scrollArea[id] = ref;
+    this.scrollArea = {};
+
+    this.getContext = {
+      addScrollArea: (id, ref) => {
+        this.scrollArea = {
+          ...this.scrollArea,
+          [id]: ref
+        };
       },
-      removeScrollArea: (ref, id) => {
-        delete this.scrollArea[id];
+      removeScrollArea: id => {
+        if (!id) {
+          return;
+        }
+
+        const {
+          [id]: {},
+          ...rest
+        } = this.scrollArea;
+
+        this.scrollArea = rest;
       }
     };
   }
@@ -50,11 +63,13 @@ class ScrollTo extends Component {
 
   render() {
     return (
-      this.props.children &&
-      this.props.children({
-        scrollTo: this.handleScroll,
-        scrollById: this.handleScrollById
-      })
+      <ScrollToContext.Provider value={this.getContext}>
+        {this.props.children &&
+          this.props.children({
+            scrollTo: this.handleScroll,
+            scrollById: this.handleScrollById
+          })}
+      </ScrollToContext.Provider>
     );
   }
 }

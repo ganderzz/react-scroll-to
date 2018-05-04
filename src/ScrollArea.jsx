@@ -1,21 +1,26 @@
 import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
+import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 
 class ScrollArea extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
     this.node = createRef();
     this.id = this.props.id || generateId();
+  }
 
-    this.context.addScrollArea(this.node, this.id);
+  componentDidMount() {
+    this.props.addScrollArea(this.id, this.node.current);
   }
 
   componentWillUnmount() {
-    this.context.removeScrollArea(this.node.current, this.id);
+    this.props.removeScrollArea(this.id);
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, addScrollArea, removeScrollArea, ...props } = this.props;
 
     return (
       <div {...props} ref={this.node}>
@@ -30,4 +35,14 @@ ScrollArea.contextTypes = {
   removeScrollArea: PropTypes.func.isRequired
 };
 
-export default ScrollArea;
+export default props => (
+  <ScrollToContext.Consumer>
+    {({ addScrollArea, removeScrollArea }) => (
+      <ScrollArea
+        {...props}
+        addScrollArea={addScrollArea}
+        removeScrollArea={removeScrollArea}
+      />
+    )}
+  </ScrollToContext.Consumer>
+);
