@@ -37,10 +37,8 @@ class ScrollTo extends Component {
       scrollAreaKeys.forEach(key => {
         const node = this.scrollArea[key];
 
-        if (node) {
-          node.scrollLeft = x;
-          node.scrollTop = y;
-        }
+        node.scrollLeft = x;
+        node.scrollTop = y;
       });
     }
   }
