@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test render prop. Should add scroll area. 1`] = `
-Object {
-  "foo-id": "foo",
-}
-`;
-
 exports[`Test render prop. Should not break if scrolling by an unknown ID 1`] = `
 Object {
   "id": "foo",
@@ -14,37 +8,14 @@ Object {
 }
 `;
 
-exports[`Test render prop. Should pass correct context to children. 1`] = `
-Object {
-  "addScrollArea": [Function],
-  "removeScrollArea": [Function],
-}
-`;
-
-exports[`Test render prop. Should render nothing on undefined. 1`] = `
-<[object Object]
-  value={
-    Object {
-      "addScrollArea": [Function],
-      "removeScrollArea": [Function],
-    }
-  }
-/>
-`;
+exports[`Test render prop. Should render nothing on undefined. 1`] = `<div />`;
 
 exports[`Test render prop. Should render the functional children. 1`] = `
-<[object Object]
-  value={
-    Object {
-      "addScrollArea": [Function],
-      "removeScrollArea": [Function],
-    }
-  }
->
+<div>
   <div>
     test
   </div>
-</[object Object]>
+</div>
 `;
 
 exports[`Test render prop. Should scroll by ID 1`] = `

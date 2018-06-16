@@ -1,5 +1,4 @@
 import React, { Component, createRef } from "react";
-import PropTypes from "prop-types";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 

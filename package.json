@@ -36,34 +36,32 @@
     "prop-types": ">=15.6.0"
   },
   "devDependencies": {
-    "@storybook/react": "3.4.3",
-    "all-contributors-cli": "4.11.1",
+    "@storybook/react": "3.4.7",
+    "all-contributors-cli": "5.0.0",
     "babel-core": "6.26.3",
-    "babel-jest": "22.4.3",
+    "babel-jest": "23.0.1",
     "babel-loader": "^7.1.4",
-    "babel-preset-env": "1.6.1",
+    "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
     "copy-webpack-plugin": "4.5.1",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.3",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-prettier": "2.9.0",
-    "eslint-plugin-import": "2.11.0",
+    "eslint-plugin-import": "2.12.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-react": "7.7.0",
+    "eslint-plugin-react": "7.9.1",
     "husky": "0.14.3",
-    "jest": "22.4.3",
-    "lint-staged": "7.0.5",
-    "prettier": "1.12.1",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "react-test-renderer": "16.3.2",
-    "webpack": "4.6.0",
-    "webpack-cli": "2.1.2",
-    "react-testing-library": "2.5.1"
+    "jest": "23.1.0",
+    "lint-staged": "7.2.0",
+    "prettier": "1.13.5",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "webpack": "4.12.0",
+    "webpack-cli": "3.0.8",
+    "react-testing-library": "3.1.7"
   },
   "jest": {
     "setupFiles": [
@@ -87,7 +85,7 @@
     }
   },
   "lint-staged": {
-    "src/*.{js,jsx}": [
+    "src/*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "git add"
     ]
