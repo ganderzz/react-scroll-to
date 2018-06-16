@@ -12,9 +12,9 @@ describe("Test HOC.", () => {
     TestComponent.displayName = "test";
 
     const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = render(<WrappedComponent />);
+    const { container } = render(<WrappedComponent />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("Should call window.scroll.", () => {
@@ -24,9 +24,9 @@ describe("Test HOC.", () => {
     TestComponent.displayName = "test";
 
     const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = render(<WrappedComponent />);
+    const { getByText } = render(<WrappedComponent />);
 
-    Simulate.click(wrapper.getByText("test"));
+    Simulate.click(getByText("test"));
 
     expect(window.scroll).toHaveBeenCalledTimes(1);
     expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
@@ -44,10 +44,10 @@ describe("Test HOC.", () => {
       );
     });
 
-    const wrapper = render(<WrappedComponent />);
+    const { getByText, container } = render(<WrappedComponent />);
 
-    Simulate.click(wrapper.getByText("test"));
+    Simulate.click(getByText("test"));
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -18,37 +18,13 @@ Array [
 `;
 
 exports[`Test Scroll Area. should render correctly. 1`] = `
-Object {
-  "container": <div>
-    <div
-      class="foo"
-    >
-      <h1>
-        Test
-      </h1>
-    </div>
-  </div>,
-  "getAllByAltText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getByAltText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryByAltText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+<div>
+  <div
+    class="foo"
+  >
+    <h1>
+      Test
+    </h1>
+  </div>
+</div>
 `;

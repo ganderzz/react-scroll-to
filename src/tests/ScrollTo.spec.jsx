@@ -1,6 +1,6 @@
 import React from "react";
+import { render, Simulate } from "react-testing-library";
 import { shallow } from "enzyme";
-import toJSON from "enzyme-to-json";
 import ScrollTo from "../ScrollTo";
 
 beforeEach(() => {
@@ -9,58 +9,41 @@ beforeEach(() => {
 
 describe("Test render prop.", () => {
   it("Should render the functional children.", () => {
-    const wrapper = shallow(<ScrollTo>{() => <div>test</div>}</ScrollTo>);
+    const { container } = render(<ScrollTo>{() => <div>test</div>}</ScrollTo>);
 
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("Should render nothing on undefined.", () => {
-    const wrapper = shallow(<ScrollTo>{undefined}</ScrollTo>);
+    const { container } = render(<ScrollTo>{undefined}</ScrollTo>);
 
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("Should call window.scroll.", () => {
-    const wrapper = shallow(
+    const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
       </ScrollTo>
     );
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    Simulate.click(container.querySelector("button"));
 
     expect(window.scroll).toHaveBeenCalledTimes(1);
     expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
   });
 
   it("Should call window.scroll with default x,y when no arguments are provided.", () => {
-    const wrapper = shallow(
+    const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => <button onClick={() => scrollTo()}>test</button>}
       </ScrollTo>
     );
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    Simulate.click(container.querySelector("button"));
 
     expect(window.scroll).toHaveBeenCalledTimes(1);
     expect(window.scroll.mock.calls[0]).toEqual([0, 0]);
-  });
-
-  it("Should pass correct context to children.", () => {
-    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
-
-    expect(wrapper.instance().getContext).toMatchSnapshot();
-  });
-
-  it("Should add scroll area.", () => {
-    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
-
-    const childContext = wrapper.instance().getContext;
-    childContext.addScrollArea("foo-id", "foo");
-
-    expect(wrapper.instance().scrollArea).toMatchSnapshot();
   });
 
   it("Should remove scroll area.", () => {

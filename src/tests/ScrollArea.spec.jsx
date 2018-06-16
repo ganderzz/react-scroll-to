@@ -8,7 +8,7 @@ jest.mock("../utilities/generateId", () => () => "mock-id");
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {
     const addScrollArea = jest.fn();
-    const wrapper = render(
+    render(
       <BaseScrollArea addScrollArea={addScrollArea} removeScrollArea={() => {}}>
         <h1>Test</h1>
       </BaseScrollArea>
@@ -20,19 +20,20 @@ describe("Test Scroll Area.", () => {
 
   it("should call removeScrollArea when unmounting.", () => {
     const removeScrollArea = jest.fn();
-    const wrapper = render(
+    const { unmount } = render(
       <BaseScrollArea addScrollArea={() => {}} removeScrollArea={removeScrollArea}>
         <h1>Test</h1>
       </BaseScrollArea>
     );
-    wrapper.unmount();
+
+    unmount();
 
     expect(removeScrollArea).toHaveBeenCalledTimes(1);
     expect(removeScrollArea.mock.calls[0]).toMatchSnapshot();
   });
 
   it("should render correctly.", () => {
-    const wrapper = render(
+    const { container } = render(
       <BaseScrollArea
         className="foo"
         addScrollArea={() => {}}
@@ -42,16 +43,17 @@ describe("Test Scroll Area.", () => {
       </BaseScrollArea>
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
+  // Used to make coverage 100%
   it("should render default context.", () => {
     const fns = {
-      addScrollArea: () => {},
-      removeScrollArea: () => {}
+      addScrollArea: jest.fn(),
+      removeScrollArea: jest.fn()
     }
 
-    const wrapper = render(
+    const { container, debug } = render(
       <ScrollToContext.Provider value={fns}>
         <ScrollArea style={{ padding: 20 }}>
           test
