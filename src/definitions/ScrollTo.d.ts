@@ -1,9 +1,14 @@
 import * as React from "react";
 
+export interface IScrollProps {
+    id: string;
+    x: number;
+    y: number;
+}
+
 interface Props {
     children: (args: {
-        handleScroll: (x: number, y: number) => void,
-        handleScrollById: (id: string, x: number, y: number) => void
+        handleScroll: (props: Partial<IScrollProps>) => void,
     }) => React.ReactElement<any>;
 }
 
