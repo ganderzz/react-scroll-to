@@ -13,9 +13,6 @@ class ScrollTo extends Component {
   constructor(props) {
     super(props);
 
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleScrollById = this.handleScrollById.bind(this);
-
     this.scrollArea = {};
 
     this.getContext = {
@@ -28,10 +25,15 @@ class ScrollTo extends Component {
     };
   }
 
-  handleScroll(x, y) {
+  handleScroll = (props = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
+    const id = props.id || null;
+    const x = props.x || 0;
+    const y = props.y || 0;
 
-    if (scrollAreaKeys.length === 0) {
+    if (id) {
+      this._handleScrollById(id, x, y);
+    } else if (scrollAreaKeys.length === 0) {
       scrollWindow(x, y);
     } else {
       scrollAreaKeys.forEach(key => {
@@ -41,23 +43,22 @@ class ScrollTo extends Component {
         node.scrollTop = y;
       });
     }
-  }
+  };
 
-  handleScrollById(id, x, y) {
+  _handleScrollById = (id, x, y) => {
     const node = this.scrollArea[id];
     if (node) {
       node.scrollLeft = x;
       node.scrollTop = y;
     }
-  }
+  };
 
   render() {
     return (
       <ScrollToContext.Provider value={this.getContext}>
         {this.props.children &&
           this.props.children({
-            scrollTo: this.handleScroll,
-            scrollById: this.handleScrollById
+            scrollTo: this.handleScroll
           })}
       </ScrollToContext.Provider>
     );

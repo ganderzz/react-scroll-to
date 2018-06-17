@@ -1,13 +1,13 @@
 import * as React from "react";
+import { IScrollProps } from "./ScrollTo";
 
 interface IProps {
     /**
      * Scroll to a position in the window.
      * 
-     * @param {number} x The x position to scroll to
-     * @param {number} y The Y position to scroll to
+     * @param {IScrollProps} props
      */
-    scroll: (x: number, y: number) => void;
+    scroll: (props: Partial<IScrollProps>) => void;
 }
 
 /**

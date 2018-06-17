@@ -23,7 +23,7 @@ describe("Test render prop.", () => {
   it("Should call window.scroll.", () => {
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
+        {({ scrollTo }) => <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>}
       </ScrollTo>
     );
 
@@ -63,7 +63,7 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {({ scrollTo }) => <button onClick={() => scrollTo(100, 200)}>test</button>}
+        {({ scrollTo }) => <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>}
       </ScrollTo>
     );
     const childContext = wrapper.instance().getContext;
@@ -83,8 +83,8 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {({ scrollById }) => (
-          <button onClick={() => scrollById("foo", 100, 200)}>test</button>
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}>test</button>
         )}
       </ScrollTo>
     );
@@ -105,8 +105,8 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {({ scrollById }) => (
-          <button onClick={() => scrollById("unknown-id", 100, 200)}>
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ id: "unknown-id", x: 100, y: 200 })}>
             test
           </button>
         )}

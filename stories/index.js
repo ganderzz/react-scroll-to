@@ -15,13 +15,13 @@ storiesOf("ScrollTo", module)
       <ScrollTo>
         {({ scrollTo }) => (
           <React.Fragment>
-            <button style={{ padding: 20 }} onClick={() => scrollTo(0, 500)}>
+            <button style={{ padding: 20 }} onClick={() => scrollTo({ y: 500 })}>
               Scroll Down!
             </button>
 
             <button
               style={{ padding: 20, position: "absolute", left: 0, bottom: 0 }}
-              onClick={() => scrollTo(0, 0)}
+              onClick={scrollTo}
             >
               Scroll Up!
             </button>
@@ -35,11 +35,12 @@ storiesOf("ScrollTo", module)
       <ScrollTo>
         {({ scrollTo }) => (
           <React.Fragment>
-            <button style={{ padding: 5 }} onClick={() => scrollTo(0, 1000)}>
+            <button style={{ padding: 5 }} onClick={() => scrollTo({ x: 0, y: 1000 })}>
               Scroll area down
             </button>
 
             <ScrollArea
+              id="my-scroll-area"
               style={{
                 height: "50vh",
                 overflow: "auto",
@@ -56,7 +57,7 @@ storiesOf("ScrollTo", module)
                 HELLO!
                 <button
                   style={{ padding: 5, margin: 5 }}
-                  onClick={() => scrollTo(0, 0)}
+                  onClick={() => scrollTo({ id: "my-scroll-area", x: 0, y: 0 })}
                 >
                   Scroll area up
                 </button>
@@ -78,7 +79,7 @@ storiesOf("ScrollTo", module)
   ))
   .add("higher order component", () => {
     const YButton = ScrollToHOC(props => (
-      <button onClick={() => props.scrollTo(0, props.y || 0)} style={props.style}>
+      <button onClick={() => props.scrollTo({ x: 0, y: props.y || 0 })} style={props.style}>
         {props.children}
       </button>
     ));
