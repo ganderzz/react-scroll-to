@@ -50,8 +50,6 @@ class ScrollTo extends Component {
     if (node) {
       node.scrollLeft = x;
       node.scrollTop = y;
-    } else {
-      console.warn(`Could not find a ScrollArea with id: ${id}.`);
     }
   };
 
