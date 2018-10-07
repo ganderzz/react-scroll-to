@@ -12,7 +12,8 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "precommit": "lint-staged",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build:docs": "build-storybook -c .storybook -o docs"
   },
   "repository": {
     "type": "git",
@@ -57,7 +58,7 @@
     "husky": "0.14.3",
     "jest": "23.1.0",
     "lint-staged": "7.2.0",
-    "prettier": "1.13.5",
+    "prettier": "1.14.3",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-testing-library": "3.1.7",
