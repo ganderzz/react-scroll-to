@@ -1,9 +1,11 @@
 import React from "react";
-import { render, Simulate } from "react-testing-library";
+import { render, fireEvent, cleanup } from "react-testing-library";
 import ScrollToHOC from "../ScrollToHOC";
 
+afterAll(cleanup);
+
 beforeEach(() => {
-  window.scroll = jest.fn();
+  window.scrollTo = jest.fn();
 });
 
 describe("Test HOC.", () => {
@@ -19,17 +21,23 @@ describe("Test HOC.", () => {
 
   it("Should call window.scroll.", () => {
     const TestComponent = props => (
-      <button onClick={() => props.scrollTo({ x: 100, y: 200})}>test</button>
+      <button onClick={() => props.scrollTo({ x: 100, y: 200 })}>mybtn</button>
     );
     TestComponent.displayName = "test";
 
     const WrappedComponent = ScrollToHOC(TestComponent);
     const { getByText } = render(<WrappedComponent />);
 
-    Simulate.click(getByText("test"));
+    fireEvent.click(getByText("mybtn"));
 
-    expect(window.scroll).toHaveBeenCalledTimes(1);
-    expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: 100,
+        top: 200,
+        behavior: "auto"
+      }
+    ]);
   });
 
   it("Should call scrollById.", () => {
@@ -46,7 +54,7 @@ describe("Test HOC.", () => {
 
     const { getByText, container } = render(<WrappedComponent />);
 
-    Simulate.click(getByText("test"));
+    fireEvent.click(getByText("test"));
 
     expect(container).toMatchSnapshot();
   });

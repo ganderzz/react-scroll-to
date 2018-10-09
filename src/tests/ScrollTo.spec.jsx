@@ -1,10 +1,12 @@
 import React from "react";
-import { render, Simulate } from "react-testing-library";
+import { render, cleanup, fireEvent } from "react-testing-library";
 import { shallow } from "enzyme";
 import ScrollTo from "../ScrollTo";
 
+afterEach(cleanup);
+
 beforeEach(() => {
-  window.scroll = jest.fn();
+  window.scrollTo = jest.fn();
 });
 
 describe("Test render prop.", () => {
@@ -20,30 +22,44 @@ describe("Test render prop.", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("Should call window.scroll.", () => {
+  it("Should call window.scrollTo.", () => {
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>}
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>
+        )}
       </ScrollTo>
     );
 
-    Simulate.click(container.querySelector("button"));
+    fireEvent.click(container.querySelector("button"));
 
-    expect(window.scroll).toHaveBeenCalledTimes(1);
-    expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: 100,
+        top: 200,
+        behavior: "auto"
+      }
+    ]);
   });
 
-  it("Should call window.scroll with default x,y when no arguments are provided.", () => {
+  it("Should call window.scrollTo with default x,y when no arguments are provided.", () => {
     const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => <button onClick={() => scrollTo()}>test</button>}
       </ScrollTo>
     );
 
-    Simulate.click(container.querySelector("button"));
+    fireEvent.click(container.querySelector("button"));
 
-    expect(window.scroll).toHaveBeenCalledTimes(1);
-    expect(window.scroll.mock.calls[0]).toEqual([0, 0]);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: undefined,
+        top: undefined,
+        behavior: "auto"
+      }
+    ]);
   });
 
   it("Should remove scroll area.", () => {
@@ -63,7 +79,9 @@ describe("Test render prop.", () => {
     };
     const wrapper = shallow(
       <ScrollTo>
-        {({ scrollTo }) => <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>}
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>
+        )}
       </ScrollTo>
     );
     const childContext = wrapper.instance().getContext;
@@ -84,7 +102,9 @@ describe("Test render prop.", () => {
     const wrapper = shallow(
       <ScrollTo>
         {({ scrollTo }) => (
-          <button onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}>test</button>
+          <button onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}>
+            test
+          </button>
         )}
       </ScrollTo>
     );
@@ -106,7 +126,9 @@ describe("Test render prop.", () => {
     const wrapper = shallow(
       <ScrollTo>
         {({ scrollTo }) => (
-          <button onClick={() => scrollTo({ id: "unknown-id", x: 100, y: 200 })}>
+          <button
+            onClick={() => scrollTo({ id: "unknown-id", x: 100, y: 200 })}
+          >
             test
           </button>
         )}
@@ -119,5 +141,29 @@ describe("Test render prop.", () => {
     buttonEl.simulate("click");
 
     expect(mockNode).toMatchSnapshot();
+  });
+
+  it("Should use smooth scrolling when enabled", () => {
+    const { getByText } = render(
+      <ScrollTo>
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ x: 100, y: 200, smooth: true })}>
+            myBtn
+          </button>
+        )}
+      </ScrollTo>
+    );
+
+    const buttonEl = getByText("myBtn");
+    fireEvent.click(buttonEl);
+
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: 100,
+        top: 200,
+        behavior: "smooth"
+      }
+    ]);
   });
 });

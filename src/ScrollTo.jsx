@@ -1,6 +1,4 @@
 import React, { Component, createContext } from "react";
-import PropTypes from "prop-types";
-import scrollWindow from "./utilities/scrollWindow";
 
 export const ScrollToContext = createContext("scrollToContext");
 
@@ -27,29 +25,40 @@ class ScrollTo extends Component {
 
   handleScroll = (props = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
-    const id = props.id || null;
-    const x = props.x || 0;
-    const y = props.y || 0;
+    const { id, ...rest } = props;
 
     if (id) {
-      this._handleScrollById(id, x, y);
+      const node = this.scrollArea[id];
+
+      this._scrollNode(node, rest);
     } else if (scrollAreaKeys.length === 0) {
-      scrollWindow(x, y);
+      this._scrollNode(window, rest);
     } else {
       scrollAreaKeys.forEach(key => {
         const node = this.scrollArea[key];
 
-        node.scrollLeft = x;
-        node.scrollTop = y;
+        this._scrollNode(node, rest);
       });
     }
   };
 
-  _handleScrollById = (id, x, y) => {
-    const node = this.scrollArea[id];
-    if (node) {
-      node.scrollLeft = x;
-      node.scrollTop = y;
+  _scrollNode = (node, options) => {
+    if (!node) {
+      return;
+    }
+
+    const top = options.y;
+    const left = options.x;
+
+    if (node.scrollTo) {
+      node.scrollTo({
+        top,
+        left,
+        behavior: options.smooth ? "smooth" : "auto"
+      });
+    } else {
+      node.scrollLeft = left;
+      node.scrollTop = top;
     }
   };
 
@@ -67,10 +76,6 @@ class ScrollTo extends Component {
 
 ScrollTo.defaultProps = {
   children: () => {}
-};
-
-ScrollTo.propTypes = {
-  children: PropTypes.func.isRequired
 };
 
 export default ScrollTo;

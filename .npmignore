@@ -3,6 +3,9 @@
 ./.circleci
 ./.github
 ./config
+./docs
+./stories
+./.storybook
 
 *.lock
 .gitignore

@@ -11,9 +11,11 @@ A React component that makes scrolling easy.
 
 React Scroll-To provides a Higher Order Component, and Render Props implementation.
 
+[Visit React Storybook Examples](https://ganderzz.github.io/react-scroll-to/)
+
 ### Install
 
-**npm:** `npm install react-scroll-to --save`
+**npm:** `npm i react-scroll-to --save`
 
 **yarn:** `yarn add react-scroll-to`
 
@@ -70,10 +72,10 @@ export default class MyComponent extends Component {
   render() {
     return (
       <ScrollTo>
-        {({ scrollById }) => (
+        {({ scrollTo }) => (
           <div>
             <ScrollArea id="foo" style={{ height: 1000 }}>
-              <button onClick={() => scrollById({ id: "foo", y: 500 })}>
+              <button onClick={() => scrollTo({ id: "foo", y: 500 })}>
                 Scroll within this container
               </button>
             </ScrollArea>
@@ -124,7 +126,7 @@ export default ScrollToHOC(function(props) {
   return (
     <div>
       <ScrollArea id="foo" style={{ height: 1000 }}>
-        <a onClick={() => props.scrollById({ id: "foo", y: 500 })}>Scroll to Bottom</a>
+        <a onClick={() => props.scrollTo({ id: "foo", y: 500 })}>Scroll to Bottom</a>
       </ScrollArea>
 
       <ScrollArea style={{ height: 1000 }}>
@@ -134,6 +136,24 @@ export default ScrollToHOC(function(props) {
   );
 });
 ```
+
+### 2.0 Changes
+
+* v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an objects.
+
+```js
+scrollTo({
+  x: 25 // The horizontal x position to scroll to
+  y: 10 // The vertical y position to scroll to
+  id: "myId" // The ID of the ScrollArea we want to scroll
+  smooth: true // If true, this will animate the scroll to be smooth. False will give an instant scroll. (defaults: false)
+})
+```
+
+Mixing and matching these options give different results.
+
+* The `scrollById` function has been deprecated in favor of the `id` field in `scrollTo`
+
 
 ### Examples
 
