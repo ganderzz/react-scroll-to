@@ -25,20 +25,28 @@ class ScrollTo extends Component {
 
   handleScroll = (props = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
-    const { id, ...rest } = props;
+    const { id, ref, ...rest } = props;
 
-    if (id) {
+    if (ref) {
+      const refNode = ref.current ? ref.current : ref;
+
+      // Scroll by ref
+      this._scrollNode(refNode, rest);
+    } else if (id) {
+      // Scroll by id
       const node = this.scrollArea[id];
 
       this._scrollNode(node, rest);
-    } else if (scrollAreaKeys.length === 0) {
-      this._scrollNode(window, rest);
-    } else {
+    } else if (scrollAreaKeys.length > 0) {
+      // Scroll by all scroll areas
       scrollAreaKeys.forEach(key => {
         const node = this.scrollArea[key];
 
         this._scrollNode(node, rest);
       });
+    } else {
+      // Scroll by window
+      this._scrollNode(window, rest);
     }
   };
 

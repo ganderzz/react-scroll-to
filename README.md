@@ -91,6 +91,32 @@ export default class MyComponent extends Component {
 }
 ```
 
+```jsx
+// Scroll by a component's ref
+import React, { Component } from "react";
+import { ScrollTo } from "react-scroll-to";
+
+export default class MyComponent extends Component {
+  myRef = React.createRef();
+
+  render() {
+    return (
+      <>
+        <ScrollTo>
+          {({ scrollTo }) => (
+            <a onClick={() => scrollTo({ ref: this.myRef, x: 20, y: 500 })}>Scroll to Bottom</a>
+          )}
+        </ScrollTo>
+
+        <div ref={this.myRef}>
+          My Element
+        </div>
+      </>
+    );
+  }
+}
+```
+
 **Higher Order Component:**
 
 ```jsx
@@ -139,13 +165,14 @@ export default ScrollToHOC(function(props) {
 
 ### 2.0 Changes
 
-* v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an objects.
+* v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an object.
 
 ```js
 scrollTo({
   x: 25 // The horizontal x position to scroll to
   y: 10 // The vertical y position to scroll to
   id: "myId" // The ID of the ScrollArea we want to scroll
+  ref: refObj // A reference to a component to scroll
   smooth: true // If true, this will animate the scroll to be smooth. False will give an instant scroll. (defaults: false)
 })
 ```

@@ -2,6 +2,7 @@ import * as React from "react";
 
 export interface IScrollProps {
   id: string;
+  ref: React.RefObject<any>;
   x: number;
   y: number;
   smooth: boolean;
@@ -12,7 +13,7 @@ interface Props {
     args: {
       scrollTo: (props: Partial<IScrollProps>) => void;
     }
-  ) => React.ReactElement<any>;
+  ) => React.ReactNode;
 }
 
 /**
@@ -20,5 +21,5 @@ interface Props {
  *
  * @param  {Props} props
  */
-declare function ScrollTo(props: Props): React.ReactElement<any>;
+declare function ScrollTo(props: Props): React.ReactNode;
 export default ScrollTo;

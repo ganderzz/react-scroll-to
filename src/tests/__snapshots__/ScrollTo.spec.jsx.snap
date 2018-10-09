@@ -26,6 +26,12 @@ Object {
 }
 `;
 
+exports[`Test render prop. Should scroll by ref when provided 1`] = `
+<div>
+  test
+</div>
+`;
+
 exports[`Test render prop. Should update scroll position of ScrollArea's if present, rather than window 1`] = `
 Object {
   "scrollLeft": 100,

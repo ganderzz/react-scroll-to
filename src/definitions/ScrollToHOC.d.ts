@@ -15,9 +15,9 @@ interface IProps {
  *
  * @param {React.ReactElement<IProps> | React.StatelessComponent<IProps>} component
  *
- * @returns {React.ReactElement<any>}
+ * @returns {React.ReactNode}
  */
 declare function ScrollToHOC(
   component: React.ReactElement<IProps> | React.StatelessComponent<IProps>
-): (props: {}) => React.ReactElement<any>;
+): (props: {}) => React.ReactNode;
 export default ScrollToHOC;
