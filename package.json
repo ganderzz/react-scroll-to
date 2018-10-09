@@ -11,7 +11,6 @@
     "build:prod": "webpack --config=./config/webpack.config.js --mode=production",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "precommit": "lint-staged",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build:docs": "build-storybook -c .storybook -o docs"
   },
@@ -90,5 +89,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
