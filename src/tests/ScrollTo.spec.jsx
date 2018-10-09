@@ -142,4 +142,28 @@ describe("Test render prop.", () => {
 
     expect(mockNode).toMatchSnapshot();
   });
+
+  it("Should use smooth scrolling when enabled", () => {
+    const { getByText } = render(
+      <ScrollTo>
+        {({ scrollTo }) => (
+          <button onClick={() => scrollTo({ x: 100, y: 200, smooth: true })}>
+            myBtn
+          </button>
+        )}
+      </ScrollTo>
+    );
+
+    const buttonEl = getByText("myBtn");
+    fireEvent.click(buttonEl);
+
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: 100,
+        top: 200,
+        behavior: "smooth"
+      }
+    ]);
+  });
 });

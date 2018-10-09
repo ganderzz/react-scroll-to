@@ -24,7 +24,7 @@ class ScrollTo extends Component {
   }
 
   handleScroll = (props = {}) => {
-    const scrollAreaKeys = Object.keys(this.scrollArea || {});
+    const scrollAreaKeys = Object.keys(this.scrollArea);
     const { id, ...rest } = props;
 
     if (id) {
@@ -42,7 +42,7 @@ class ScrollTo extends Component {
     }
   };
 
-  _scrollNode = (node, options = {}) => {
+  _scrollNode = (node, options) => {
     if (!node) {
       return;
     }
