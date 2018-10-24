@@ -1,9 +1,19 @@
 import React from "react";
 import { render } from "react-testing-library";
 import { ScrollToContext } from "../ScrollTo";
-import ScrollArea, { ScrollArea as BaseScrollArea } from "../ScrollArea";
+import ScrollArea from "../ScrollArea";
 
 jest.mock("../utilities/generateId", () => () => "mock-id");
+
+const BaseScrollArea = props => {
+  const { addScrollArea, removeScrollArea, ...rest } = props;
+
+  return (
+    <ScrollToContext.Provider value={{ addScrollArea, removeScrollArea }}>
+      <ScrollArea {...rest} />
+    </ScrollToContext.Provider>
+  );
+};
 
 describe("Test Scroll Area.", () => {
   it("should call addScrollArea when mounting.", () => {
@@ -21,7 +31,10 @@ describe("Test Scroll Area.", () => {
   it("should call removeScrollArea when unmounting.", () => {
     const removeScrollArea = jest.fn();
     const { unmount } = render(
-      <BaseScrollArea addScrollArea={() => {}} removeScrollArea={removeScrollArea}>
+      <BaseScrollArea
+        addScrollArea={() => {}}
+        removeScrollArea={removeScrollArea}
+      >
         <h1>Test</h1>
       </BaseScrollArea>
     );
@@ -51,14 +64,12 @@ describe("Test Scroll Area.", () => {
     const fns = {
       addScrollArea: jest.fn(),
       removeScrollArea: jest.fn()
-    }
+    };
 
     const { container, debug } = render(
       <ScrollToContext.Provider value={fns}>
-        <ScrollArea style={{ padding: 20 }}>
-          test
-        </ScrollArea>
+        <ScrollArea style={{ padding: 20 }}>test</ScrollArea>
       </ScrollToContext.Provider>
     );
-  })
+  });
 });
