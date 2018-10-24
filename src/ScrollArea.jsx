@@ -2,7 +2,9 @@ import React, { Component, createRef } from "react";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 
-export class ScrollArea extends Component {
+export default class ScrollArea extends Component {
+  static contextType = ScrollToContext;
+
   constructor(props) {
     super(props);
 
@@ -11,15 +13,15 @@ export class ScrollArea extends Component {
   }
 
   componentDidMount() {
-    this.props.addScrollArea(this.id, this.node.current);
+    this.context.addScrollArea(this.id, this.node.current);
   }
 
   componentWillUnmount() {
-    this.props.removeScrollArea(this.id);
+    this.context.removeScrollArea(this.id);
   }
 
   render() {
-    const { children, addScrollArea, removeScrollArea, ...props } = this.props;
+    const { children, ...props } = this.props;
 
     return (
       <div {...props} ref={this.node}>
@@ -28,15 +30,3 @@ export class ScrollArea extends Component {
     );
   }
 }
-
-export default props => (
-  <ScrollToContext.Consumer>
-    {({ addScrollArea, removeScrollArea }) => (
-      <ScrollArea
-        {...props}
-        addScrollArea={addScrollArea}
-        removeScrollArea={removeScrollArea}
-      />
-    )}
-  </ScrollToContext.Consumer>
-);
