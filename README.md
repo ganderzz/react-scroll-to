@@ -1,17 +1,21 @@
-<h1 align="center" style="padding: 40px;">
+<h1 align="center">
     👟 React Scroll-To
 </h1>
+
+<div align="center">
 
 [![CircleCI](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master.svg?style=svg)](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/ganderzz/react-scroll-to/badge.svg?branch=feature%2Fcreate-circi-artifact)](https://coveralls.io/github/ganderzz/react-scroll-to?branch=feature%2Fcreate-circi-artifact)
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+</div>
+
 A React component that makes scrolling easy.
 
 React Scroll-To provides a Higher Order Component, and Render Props implementation.
 
-[Visit React Storybook Examples](https://ganderzz.github.io/react-scroll-to/)
+**Example:** [View React Storybook Examples](https://ganderzz.github.io/react-scroll-to/)
 
 ### Install
 
@@ -52,7 +56,7 @@ export default class MyComponent extends Component {
       <ScrollTo>
         {({ scrollTo }) => (
           <ScrollArea style={{ height: 1000 }}>
-            <button onClick={() => scrollTo({ y: 500 })}>
+            <button onClick={() => scrollTo({ y: 500, smooth: true })}>
               Scroll within this container
             </button>
           </ScrollArea>
@@ -163,6 +167,11 @@ export default ScrollToHOC(function(props) {
 });
 ```
 
+### Types:
+
+* **Typescript** definitions are built in
+* **Flow** is currently not support (Open for PRs!)
+
 ### 2.0 Changes
 
 * v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an object.
@@ -180,12 +189,6 @@ scrollTo({
 Mixing and matching these options give different results.
 
 * The `scrollById` function has been deprecated in favor of the `id` field in `scrollTo`
-
-
-### Examples
-
-* Check out this [demo on CodeSandbox](https://codesandbox.io/s/yqlj0yjr41) to see how to use `<ScrollTo />`.
-* Check out this [demo on CodeSandbox](https://codesandbox.io/s/5wm7qolrmp) to see how to use `<ScrollArea />`.
 
 ## Contributors
 
