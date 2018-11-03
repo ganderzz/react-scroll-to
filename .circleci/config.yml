@@ -1,11 +1,14 @@
 version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:latest
+
 jobs:
   build:
+    <<: *defaults
     parallelism: 1
-    docker:
-      - image: circleci/node:latest
-
-    working_directory: ~/repo
 
     steps:
       - checkout
@@ -28,3 +31,33 @@ jobs:
 
       - store_artifacts:
           path: ./coverage
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Build prod code
+          command: yarn build:prod
+      - run:
+          name: Publish package
+          command: npm publish
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
