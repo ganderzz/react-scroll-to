@@ -56,8 +56,8 @@ class ScrollTo extends Component {
       return;
     }
 
-    const top = ScrollTo._parseLocation(options.y, node);
-    const left = ScrollTo._parseLocation(options.x, node);
+    const top = ScrollTo._parseLocation(options.y, node, true);
+    const left = ScrollTo._parseLocation(options.x, node, false);
 
     if (node.scrollTo) {
       node.scrollTo({
@@ -71,12 +71,12 @@ class ScrollTo extends Component {
     }
   };
 
-  static _parseLocation = (parameter, node) => {
+  static _parseLocation = (parameter, node, isHorizontal) => {
     if (typeof parameter !== "function") {
       return parameter;
     }
 
-    return parameter(node, true);
+    return parameter(node, isHorizontal);
   };
 
   render() {
