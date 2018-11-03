@@ -1,8 +1,10 @@
-import { configure } from '@storybook/react';
+import { configure } from "@storybook/react";
 
 function loadStories() {
-  require("../stories/index.jsx");
-  // You can require as many stories as you need.
+  require("../stories/Default.jsx");
+  require("../stories/HigherOrderComponent.jsx");
+  require("../stories/ScrollByRef.jsx");
+  require("../stories/WithScrollArea.jsx");
 }
 
 configure(loadStories, module);
