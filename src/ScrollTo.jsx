@@ -1,4 +1,5 @@
 import React, { Component, createContext } from "react";
+import { relative } from "./utilities/relative";
 
 export const ScrollToContext = createContext("scrollToContext");
 
@@ -55,8 +56,8 @@ class ScrollTo extends Component {
       return;
     }
 
-    const top = options.y;
-    const left = options.x;
+    const top = ScrollTo._parseLocation(options.y, node);
+    const left = ScrollTo._parseLocation(options.x, node);
 
     if (node.scrollTo) {
       node.scrollTo({
@@ -70,12 +71,21 @@ class ScrollTo extends Component {
     }
   };
 
+  static _parseLocation = (parameter, node) => {
+    if (typeof parameter !== "function") {
+      return parameter;
+    }
+
+    return parameter(node, true);
+  };
+
   render() {
     return (
       <ScrollToContext.Provider value={this.getContext}>
         {this.props.children &&
           this.props.children({
-            scrollTo: this.handleScroll
+            scrollTo: this.handleScroll,
+            relative
           })}
       </ScrollToContext.Provider>
     );

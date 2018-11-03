@@ -5,7 +5,7 @@ import { ScrollTo, ScrollArea } from "../src";
 ScrollStory.add("With ScrollArea", () => (
   <div style={{ padding: 20 }}>
     <ScrollTo>
-      {({ scrollTo }) => (
+      {({ scrollTo, relative }) => (
         <React.Fragment>
           <button
             type="button"
@@ -34,7 +34,11 @@ ScrollStory.add("With ScrollArea", () => (
                 type="button"
                 style={{ marginLeft: 5 }}
                 onClick={() =>
-                  scrollTo({ id: "my-scroll-area", x: 0, y: 0, smooth: true })
+                  scrollTo({
+                    id: "my-scroll-area",
+                    y: relative(-10),
+                    smooth: true
+                  })
                 }
               >
                 Scroll area up
