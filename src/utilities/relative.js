@@ -1,12 +1,12 @@
 export function relative(input) {
-  if (!input || typeof input !== "number") {
+  if (input == null || input == undefined || typeof input !== "number") {
     console.warn(
       `Invalid input (${input}) given to relative(). Is this a number?`
     );
   }
 
   return function(element, isHorizontal) {
-    if (!element || !isHorizontal) {
+    if (!element) {
       return input;
     }
 
