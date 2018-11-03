@@ -1,6 +1,6 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import scrollWindow from "./utilities/scrollWindow";
+import React, { Component, createContext } from "react";
+
+export const ScrollToContext = createContext("scrollToContext");
 
 /**
  * Component that uses render props to inject
@@ -12,61 +12,78 @@ class ScrollTo extends Component {
     super(props);
 
     this.scrollArea = {};
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleScrollById = this.handleScrollById.bind(this);
-  }
 
-  getChildContext() {
-    return {
-      addScrollArea: (ref, id) => {
+    this.getContext = {
+      addScrollArea: (id, ref) => {
         this.scrollArea[id] = ref;
       },
-      removeScrollArea: (ref, id) => {
+      removeScrollArea: id => {
         delete this.scrollArea[id];
       }
     };
   }
 
-  handleScroll(x, y) {
+  handleScroll = (props = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
+    const { id, ref, ...rest } = props;
 
-    if (scrollAreaKeys.length === 0) {
-      scrollWindow(x, y);
-    } else {
+    if (ref) {
+      const refNode = ref.current ? ref.current : ref;
+
+      // Scroll by ref
+      this._scrollNode(refNode, rest);
+    } else if (id) {
+      // Scroll by id
+      const node = this.scrollArea[id];
+
+      this._scrollNode(node, rest);
+    } else if (scrollAreaKeys.length > 0) {
+      // Scroll by all scroll areas
       scrollAreaKeys.forEach(key => {
-        this.scrollArea[key].scrollLeft = x;
-        this.scrollArea[key].scrollTop = y;
-      });
-    }
-  }
+        const node = this.scrollArea[key];
 
-  handleScrollById(id, x, y) {
-    const node = this.scrollArea[id];
-    if (node) {
-      node.scrollLeft = x;
-      node.scrollTop = y;
+        this._scrollNode(node, rest);
+      });
+    } else {
+      // Scroll by window
+      this._scrollNode(window, rest);
     }
-  }
+  };
+
+  _scrollNode = (node, options) => {
+    if (!node) {
+      return;
+    }
+
+    const top = options.y;
+    const left = options.x;
+
+    if (node.scrollTo) {
+      node.scrollTo({
+        top,
+        left,
+        behavior: options.smooth ? "smooth" : "auto"
+      });
+    } else {
+      node.scrollLeft = left;
+      node.scrollTop = top;
+    }
+  };
 
   render() {
     return (
-      this.props.children &&
-      this.props.children(this.handleScroll, this.handleScrollById)
+      <ScrollToContext.Provider value={this.getContext}>
+        {this.props.children &&
+          this.props.children({
+            scrollTo: this.handleScroll
+          })}
+      </ScrollToContext.Provider>
     );
   }
 }
 
-ScrollTo.childContextTypes = {
-  addScrollArea: PropTypes.func.isRequired,
-  removeScrollArea: PropTypes.func.isRequired
-};
-
 ScrollTo.defaultProps = {
   children: () => {}
-};
-
-ScrollTo.propTypes = {
-  children: PropTypes.func.isRequired
 };
 
 export default ScrollTo;

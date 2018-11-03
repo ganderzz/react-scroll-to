@@ -1,57 +1,61 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import toJSON from "enzyme-to-json";
+import { render, fireEvent, cleanup } from "react-testing-library";
 import ScrollToHOC from "../ScrollToHOC";
 
+afterAll(cleanup);
+
 beforeEach(() => {
-  window.scroll = jest.fn();
+  window.scrollTo = jest.fn();
 });
 
 describe("Test HOC.", () => {
   it("Should render the functional children.", () => {
     const TestComponent = () => <div>test</div>;
     TestComponent.displayName = "test";
-    const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = mount(<WrappedComponent />);
 
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    const WrappedComponent = ScrollToHOC(TestComponent);
+    const { container } = render(<WrappedComponent />);
+
+    expect(container).toMatchSnapshot();
   });
 
   it("Should call window.scroll.", () => {
     const TestComponent = props => (
-      <button onClick={() => props.scroll(100, 200)}>test</button>
+      <button onClick={() => props.scrollTo({ x: 100, y: 200 })}>mybtn</button>
     );
     TestComponent.displayName = "test";
+
     const WrappedComponent = ScrollToHOC(TestComponent);
-    const wrapper = mount(<WrappedComponent />);
+    const { getByText } = render(<WrappedComponent />);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    fireEvent.click(getByText("mybtn"));
 
-    expect(window.scroll).toHaveBeenCalledTimes(1);
-    expect(window.scroll.mock.calls[0]).toEqual([100, 200]);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo.mock.calls[0]).toEqual([
+      {
+        left: 100,
+        top: 200,
+        behavior: "auto"
+      }
+    ]);
   });
 
   it("Should call scrollById.", () => {
-    const mockNode = {
-      scrollLeft: 0,
-      scrollTop: 0,
-      id: "foo"
-    };
     const WrappedComponent = ScrollToHOC(props => {
-      return(
+      return (
         <div>
-          <div id="foo"> </div>
-          <button onClick={() => props.scrollById("foo", 100, 200)}>
+          <div id="foo" />
+          <button onClick={() => props.scrollTo({ id: "foo", x: 100, y: 200 })}>
             test
           </button>
         </div>
-      )
+      );
     });
-    const wrapper = mount(<WrappedComponent />);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    const { getByText, container } = render(<WrappedComponent />);
+
+    fireEvent.click(getByText("test"));
+
+    expect(container).toMatchSnapshot();
   });
 });

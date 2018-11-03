@@ -2,36 +2,29 @@
 
 exports[`Test Scroll Area. should call addScrollArea when mounting. 1`] = `
 Array [
+  "mock-id",
   <div>
     <h1>
       Test
     </h1>
   </div>,
-  "mock-id",
 ]
 `;
 
 exports[`Test Scroll Area. should call removeScrollArea when unmounting. 1`] = `
 Array [
-  <div>
-    <h1>
-      Test
-    </h1>
-  </div>,
   "mock-id",
 ]
 `;
 
 exports[`Test Scroll Area. should render correctly. 1`] = `
-<ScrollArea
-  className="foo"
->
+<div>
   <div
-    className="foo"
+    class="foo"
   >
     <h1>
       Test
     </h1>
   </div>
-</ScrollArea>
+</div>
 `;
