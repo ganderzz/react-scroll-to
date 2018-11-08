@@ -9,7 +9,8 @@ module.exports = {
     publicPath: path.resolve(__dirname, ".."),
     filename: "react-scroll-to.js",
     library: ["react-scroll-to"],
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    globalObject: "typeof self !== 'undefined' ? self : this"
   },
   context: path.resolve(__dirname, ".."),
   resolve: {
