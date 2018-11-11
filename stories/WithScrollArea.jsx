@@ -34,7 +34,7 @@ ScrollStory.add("With ScrollArea", () => (
                 type="button"
                 style={{ marginLeft: 5 }}
                 onClick={() =>
-                  scrollTo({ id: "my-scroll-area", x: 0, y: 0, smooth: true })
+                  scrollTo({ id: "my-scroll-area", y: 0, smooth: true })
                 }
               >
                 Scroll area up

@@ -224,4 +224,31 @@ describe("Test render prop.", () => {
     expect(window.scrollTo).toHaveBeenCalledTimes(0);
     expect(window.scrollTo.mock.calls[0]).toEqual(undefined);
   });
+
+  it("Should handle using the relative() function", () => {
+    const refDOM = React.createRef();
+    const { getByText, baseElement } = render(
+      <ScrollTo>
+        {({ scrollTo, relative }) => (
+          <>
+            <button
+              type="button"
+              onClick={() => {
+                scrollTo({ ref: refDOM, y: 500 });
+                scrollTo({ ref: refDOM, y: relative(-50) });
+              }}
+            >
+              myBtn
+            </button>
+            <div ref={refDOM} />
+          </>
+        )}
+      </ScrollTo>
+    );
+
+    const buttonEl = getByText("myBtn");
+    fireEvent.click(buttonEl);
+
+    expect(refDOM.current.scrollTop).toBe(450);
+  });
 });

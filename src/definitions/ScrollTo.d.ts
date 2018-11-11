@@ -12,6 +12,17 @@ interface Props {
   children: (
     args: {
       scrollTo: (props: Partial<IScrollProps>) => void;
+      relative: (
+        value: number
+      ) => (
+        node:
+          | React.RefObject<any>
+          | React.Component
+          | HTMLElement
+          | HTMLDocument
+          | Window,
+        isHorizontal: boolean
+      ) => number;
     }
   ) => React.ReactNode;
 }
