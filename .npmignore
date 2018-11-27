@@ -1,11 +1,11 @@
-./src
-./node_modules
-./.circleci
-./.github
-./config
-./docs
-./stories
-./.storybook
+src/*
+node_modules/*
+.circleci/*
+.github/*
+config/*
+docs/*
+stories/*
+.storybook/*
 
 *.lock
 .gitignore

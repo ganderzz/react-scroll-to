@@ -1,8 +1,8 @@
-import * as React from "react";
+import { RefObject, Component, ReactNode } from "react";
 
 export interface IScrollProps {
   id: string;
-  ref: React.RefObject<any>;
+  ref: RefObject<any>;
   x: number;
   y: number;
   smooth: boolean;
@@ -15,16 +15,11 @@ interface Props {
       relative: (
         value: number
       ) => (
-        node:
-          | React.RefObject<any>
-          | React.Component
-          | HTMLElement
-          | HTMLDocument
-          | Window,
+        node: RefObject<any> | Component | HTMLElement | HTMLDocument | Window,
         isHorizontal: boolean
       ) => number;
     }
-  ) => React.ReactNode;
+  ) => ReactNode;
 }
 
 /**
@@ -32,5 +27,5 @@ interface Props {
  *
  * @param  {Props} props
  */
-declare function ScrollTo(props: Props): React.ReactNode;
+declare function ScrollTo(props: Props): ReactNode;
 export default ScrollTo;
