@@ -1,6 +1,7 @@
 import React, { Component, createRef } from "react";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
+import createReactContext from "create-react-context";
 
 export default class ScrollArea extends Component {
   static contextType = ScrollToContext;
@@ -8,7 +9,7 @@ export default class ScrollArea extends Component {
   constructor(props) {
     super(props);
 
-    this.node = createRef();
+    this.node = createRef ? createRef() : createReactContext();
     this.id = this.props.id || generateId();
   }
 
