@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 
-function createRefPoly() {
+export function createRefPoly() {
   function ref(instanceOrNode) {
     ref.current = instanceOrNode || null;
   }
@@ -25,7 +25,7 @@ export class ScrollArea extends Component {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, removeScrollArea, addScrollArea, ...props } = this.props;
 
     return (
       <div {...props} ref={this.node}>
