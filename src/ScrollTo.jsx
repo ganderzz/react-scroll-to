@@ -1,8 +1,11 @@
 import React, { Component, createContext, isValidElement } from "react";
 import { findDOMNode } from "react-dom";
 import { relative } from "./utilities/relative";
+import createReactContext from "create-react-context";
 
-export const ScrollToContext = createContext("scrollToContext");
+export const ScrollToContext = !createContext
+  ? createReactContext({})
+  : createContext({});
 
 /**
  * Component that uses render props to inject

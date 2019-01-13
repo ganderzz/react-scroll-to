@@ -1,0 +1,98 @@
+{
+  "name": "react-scroll-to",
+  "version": "2.0.1",
+  "description": "Scroll to a position using react",
+  "main": "./dist/react-scroll-to.js",
+  "types": "./dist/definitions",
+  "scripts": {
+    "test": "jest",
+    "test:cover": "jest --coverage",
+    "build": "webpack --config=./config/webpack.config.js --mode=development",
+    "build:prod": "webpack --config=./config/webpack.config.js --mode=production",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build:docs": "build-storybook -c .storybook -o docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganderzz/react-scroll-to.git"
+  },
+  "keywords": [
+    "react",
+    "scroll",
+    "to",
+    "window",
+    "position"
+  ],
+  "author": "Dylan Paulus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ganderzz/react-scroll-to/issues"
+  },
+  "homepage": "https://github.com/ganderzz/react-scroll-to#readme",
+  "peerDepedencies": {
+    "react": "^15.0.0 || ^16.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0",
+    "@storybook/react": "4.0.2",
+    "all-contributors-cli": "5.4.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "23.6.0",
+    "babel-loader": "8.0.4",
+    "copy-webpack-plugin": "4.6.0",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.6.0",
+    "eslint": "5.8.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
+    "husky": "1.1.3",
+    "jest": "23.6.0",
+    "lint-staged": "8.0.4",
+    "prettier": "1.14.3",
+    "react": "16.6.0",
+    "react-dom": "16.6.0",
+    "react-testing-library": "5.2.3",
+    "webpack": "4.24.0",
+    "webpack-cli": "3.1.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "./src/tests/setup/shim.js",
+      "./src/tests/setup/setupTests.js"
+    ],
+    "collectCoverageFrom": [
+      "src/*.{js,jsx}",
+      "!src/definitions",
+      "!src/tests",
+      "!src/{setupTests,shim}.js",
+      "!src/index.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

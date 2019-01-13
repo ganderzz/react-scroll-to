@@ -1,4 +1,4 @@
-import * as React from "react";
+import { StatelessComponent, ReactElement, ReactNode } from "react";
 import { IScrollProps } from "./ScrollTo";
 
 interface IProps {
@@ -13,11 +13,11 @@ interface IProps {
 /**
  * Higher order component that bind scroll functionality to a component's props.
  *
- * @param {React.ReactElement<IProps> | React.StatelessComponent<IProps>} component
+ * @param {ReactElement<IProps> | StatelessComponent<IProps>} component
  *
- * @returns {React.ReactNode}
+ * @returns {ReactNode}
  */
 declare function ScrollToHOC(
-  component: React.ReactElement<IProps> | React.StatelessComponent<IProps>
-): (props: {}) => React.ReactNode;
+  component: ReactElement<IProps> | StatelessComponent<IProps>
+): (props: {}) => ReactNode;
 export default ScrollToHOC;

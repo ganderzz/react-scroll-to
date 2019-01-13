@@ -1,8 +1,8 @@
-import * as React from "react";
+import { ReactElement } from "react";
 
 interface IProps {
   id?: string;
 }
 
-declare var ScrollArea: React.ReactElement<IProps>;
+declare var ScrollArea: ReactElement<IProps>;
 export default ScrollArea;
