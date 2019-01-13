@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { ScrollToContext } from "./ScrollTo";
 import generateId from "./utilities/generateId";
 
@@ -13,7 +13,8 @@ export function createRefPoly() {
 }
 
 export class ScrollArea extends Component {
-  node = createRef ? createRef() : createRefPoly();
+  // Using React.createRef so we can easily unit test this
+  node = React.createRef ? React.createRef() : createRefPoly();
   id = this.props.id || generateId();
 
   componentDidMount() {

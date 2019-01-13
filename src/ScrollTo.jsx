@@ -1,11 +1,12 @@
-import React, { Component, createContext, isValidElement } from "react";
-import { findDOMNode } from "react-dom";
+import React, { Component, isValidElement } from "react";
+import ReactDOM from "react-dom";
 import { relative } from "./utilities/relative";
 import createReactContext from "create-react-context";
 
-export const ScrollToContext = !createContext
-  ? createReactContext({})
-  : createContext({});
+/* istanbul ignore next */
+export const ScrollToContext = React.createContext
+  ? React.createContext({}) /* istanbul ignore next */
+  : createReactContext({});
 
 /**
  * Component that uses render props to inject
@@ -63,9 +64,12 @@ class ScrollTo extends Component {
     const top = ScrollTo._parseLocation(options.y, node, true);
     const left = ScrollTo._parseLocation(options.x, node, false);
 
+    /* istanbul ignore next */
     if (isValidElement(node)) {
-      const rNode = findDOMNode(node);
+      /* istanbul ignore next */
+      const rNode = ReactDOM.findDOMNode(node);
 
+      /* istanbul ignore next */
       if (rNode) {
         node = rNode;
       }

@@ -1,10 +1,8 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "react-testing-library";
 import { shallow } from "enzyme";
-import ScrollTo from "../ScrollTo";
 import createReactContext from "create-react-context";
-
-const { findDOMNode } = jest.requireMock("react-dom");
+import ScrollTo from "../ScrollTo";
 
 afterEach(cleanup);
 
@@ -177,7 +175,7 @@ describe("Test render prop.", () => {
     ]);
   });
 
-  it("Should scroll by ref when provided", () => {
+  it("Should scroll by ref when a DOM node is provided", () => {
     const refDOM = React.createRef ? React.createRef() : createReactContext();
     const { getByText } = render(
       <ScrollTo>
@@ -191,6 +189,34 @@ describe("Test render prop.", () => {
             </button>
 
             <div ref={refDOM}>test</div>
+          </>
+        )}
+      </ScrollTo>
+    );
+
+    const buttonEl = getByText("myBtn");
+    fireEvent.click(buttonEl);
+
+    expect(refDOM.current).toMatchSnapshot();
+  });
+
+  it("Should scroll by ref when a React node is provided", () => {
+    const refDOM = {};
+    const MyElement = ({ children, ...props }) => (
+      <div {...props}>{children}</div>
+    );
+
+    const { getByText } = render(
+      <ScrollTo>
+        {({ scrollTo }) => (
+          <>
+            <MyElement
+              onClick={() => scrollTo({ ref: refDOM, x: 100, y: 200 })}
+            >
+              myBtn
+            </MyElement>
+
+            <div ref={() => {}}>test</div>
           </>
         )}
       </ScrollTo>
@@ -230,7 +256,7 @@ describe("Test render prop.", () => {
 
   it("Should handle using the relative() function", () => {
     const refDOM = React.createRef ? React.createRef() : createReactContext();
-    const { getByText, baseElement } = render(
+    const { getByText } = render(
       <ScrollTo>
         {({ scrollTo, relative }) => (
           <>

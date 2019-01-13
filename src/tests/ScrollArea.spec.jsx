@@ -79,4 +79,26 @@ describe("Test Scroll Area.", () => {
 
     expect(ref.current).toBeTruthy();
   });
+
+  it("Should handle a null element passed to createRef", () => {
+    const ref = createRefPoly();
+
+    ref(null);
+
+    expect(ref.current).toBeFalsy();
+  });
+
+  it("Should use createRefPoly() when createRef() doesn't exist", () => {
+    const rCreateRefTemp = React.createRef;
+    React.createRef = false;
+
+    const { container, debug } = render(
+      <BaseScrollArea addScrollArea={() => {}} removeScrollArea={() => {}}>
+        <h1>Test</h1>
+      </BaseScrollArea>
+    );
+
+    expect(true).toBeTruthy();
+    React.createRef = rCreateRefTemp;
+  });
 });
