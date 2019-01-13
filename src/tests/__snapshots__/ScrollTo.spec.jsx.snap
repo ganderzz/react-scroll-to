@@ -26,11 +26,13 @@ Object {
 }
 `;
 
-exports[`Test render prop. Should scroll by ref when provided 1`] = `
+exports[`Test render prop. Should scroll by ref when a DOM node is provided 1`] = `
 <div>
   test
 </div>
 `;
+
+exports[`Test render prop. Should scroll by ref when a React node is provided 1`] = `undefined`;
 
 exports[`Test render prop. Should update scroll position of ScrollArea's if present, rather than window 1`] = `
 Object {
