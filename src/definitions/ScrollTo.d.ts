@@ -27,5 +27,5 @@ interface Props {
  *
  * @param  {Props} props
  */
-declare function ScrollTo(props: Props): ReactNode;
+declare function ScrollTo(props: Props): JSX.Element;
 export default ScrollTo;
