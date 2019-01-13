@@ -1,4 +1,4 @@
-import React, { Component, createContext } from "react";
+import React, { Component, createContext, isValidElement } from "react";
 import { findDOMNode } from "react-dom";
 import { relative } from "./utilities/relative";
 
@@ -60,10 +60,12 @@ class ScrollTo extends Component {
     const top = ScrollTo._parseLocation(options.y, node, true);
     const left = ScrollTo._parseLocation(options.x, node, false);
 
-    const rNode = findDOMNode(node);
+    if (isValidElement(node)) {
+      const rNode = findDOMNode(node);
 
-    if (rNode) {
-      node = rNode;
+      if (rNode) {
+        node = rNode;
+      }
     }
 
     if (node.scrollTo) {

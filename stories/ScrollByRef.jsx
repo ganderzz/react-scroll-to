@@ -1,5 +1,4 @@
 import React from "react";
-import { Object } from "es6-shim";
 import { ScrollStory } from ".";
 import { ScrollTo } from "../src/index";
 

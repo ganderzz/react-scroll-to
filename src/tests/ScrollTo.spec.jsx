@@ -3,6 +3,8 @@ import { render, cleanup, fireEvent } from "react-testing-library";
 import { shallow } from "enzyme";
 import ScrollTo from "../ScrollTo";
 
+const { findDOMNode } = jest.requireMock("react-dom");
+
 afterEach(cleanup);
 
 beforeEach(() => {
