@@ -1,6 +1,6 @@
 {
   "name": "react-scroll-to",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Scroll to a position using react",
   "main": "./dist/react-scroll-to.js",
   "types": "./dist/definitions",
