@@ -4,5 +4,5 @@ interface IProps {
   id?: string;
 }
 
-declare var ScrollArea: ReactElement<IProps>;
+declare var ScrollArea: JSX.Element;
 export default ScrollArea;
