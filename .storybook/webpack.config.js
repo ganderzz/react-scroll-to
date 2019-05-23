@@ -1,6 +1,6 @@
 const path = require("path");
 
-module.exports = (baseConfig, env, config) => {
+module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
@@ -12,6 +12,8 @@ module.exports = (baseConfig, env, config) => {
       }
     ]
   });
+
   config.resolve.extensions.push(".ts", ".tsx");
+
   return config;
 };
