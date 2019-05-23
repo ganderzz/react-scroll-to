@@ -7,7 +7,7 @@ exports[`Test HOC. Should call scrollById. 1`] = `
       id="foo"
     />
     <button>
-      test
+      test-btn
     </button>
   </div>
 </div>

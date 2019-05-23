@@ -46,7 +46,7 @@ describe("Test HOC.", () => {
         <div>
           <div id="foo" />
           <button onClick={() => props.scrollTo({ id: "foo", x: 100, y: 200 })}>
-            test
+            test-btn
           </button>
         </div>
       );
@@ -54,7 +54,7 @@ describe("Test HOC.", () => {
 
     const { getByText, container } = render(<WrappedComponent />);
 
-    fireEvent.click(getByText("test"));
+    fireEvent.click(getByText("test-btn"));
 
     expect(container).toMatchSnapshot();
   });
