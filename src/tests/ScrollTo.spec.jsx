@@ -1,7 +1,6 @@
 import React from "react";
-import { render, cleanup, fireEvent } from "react-testing-library";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import { shallow } from "enzyme";
-import createReactContext from "create-react-context";
 import ScrollTo from "../ScrollTo";
 
 afterEach(cleanup);
@@ -255,7 +254,7 @@ describe("Test render prop.", () => {
   });
 
   it("Should handle using the relative() function", () => {
-    const refDOM = React.createRef ? React.createRef() : createReactContext();
+    const refDOM = React.createRef();
     const { getByText } = render(
       <ScrollTo>
         {({ scrollTo, relative }) => (

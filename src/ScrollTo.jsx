@@ -1,12 +1,9 @@
 import React, { Component, isValidElement } from "react";
 import ReactDOM from "react-dom";
 import { relative } from "./utilities/relative";
-import createReactContext from "create-react-context";
 
 /* istanbul ignore next */
-export const ScrollToContext = React.createContext
-  ? React.createContext({}) /* istanbul ignore next */
-  : createReactContext({});
+export const ScrollToContext = React.createContext({});
 
 /**
  * Component that uses render props to inject
