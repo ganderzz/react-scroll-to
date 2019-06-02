@@ -30,8 +30,6 @@
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
     "copy-webpack-plugin": "5.0.3",
-    "enzyme": "3.7.0",
-    "enzyme-adapter-react-16": "1.6.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "4.3.0",
@@ -68,8 +66,7 @@
   "homepage": "https://github.com/ganderzz/react-scroll-to#readme",
   "jest": {
     "setupFiles": [
-      "./src/tests/setup/shim.js",
-      "./src/tests/setup/setupTests.js"
+      "./src/tests/setup/shim.js"
     ],
     "collectCoverageFrom": [
       "src/*.{js,jsx}",

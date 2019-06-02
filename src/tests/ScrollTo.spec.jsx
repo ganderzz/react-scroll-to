@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import { shallow } from "enzyme";
 import ScrollTo from "../ScrollTo";
+import ScrollArea from "../ScrollArea";
 
 afterEach(cleanup);
 
@@ -63,13 +63,12 @@ describe("Test render prop.", () => {
   });
 
   it("Should remove scroll area.", () => {
-    const wrapper = shallow(<ScrollTo>{() => <div>Test</div>}</ScrollTo>);
-    const childContext = wrapper.instance().getContext;
-    childContext.addScrollArea("id", "foo");
+    let element = new ScrollTo();
+    element.addScrollArea("id", "foo");
 
-    childContext.removeScrollArea("id");
+    element.removeScrollArea("id");
 
-    expect(wrapper.instance().scrollArea).toEqual({});
+    expect(element.scrollArea).toEqual({});
   });
 
   it("Should update scroll position of ScrollArea's if present, rather than window", () => {
@@ -77,18 +76,22 @@ describe("Test render prop.", () => {
       scrollLeft: 0,
       scrollTop: 0
     };
-    const wrapper = shallow(
+    const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => (
-          <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>
+          <React.Fragment>
+            <button onClick={() => scrollTo({ id: "id", x: 100, y: 200 })}>
+              test
+            </button>
+
+            <ScrollArea id="id">test</ScrollArea>
+          </React.Fragment>
         )}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getContext;
-    childContext.addScrollArea("id", mockNode);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    const buttonEl = container.querySelector("button");
+    fireEvent.click(buttonEl);
 
     expect(mockNode).toMatchSnapshot();
   });
@@ -99,23 +102,22 @@ describe("Test render prop.", () => {
       scrollTop: 0,
       id: "foo"
     };
-    const wrapper = shallow(
+    const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => (
-          <button
-            type="button"
-            onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}
-          >
-            test
-          </button>
+          <React.Fragment>
+            <button onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}>
+              test
+            </button>
+
+            <ScrollArea id="foo">test</ScrollArea>
+          </React.Fragment>
         )}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getContext;
-    childContext.addScrollArea("foo", mockNode);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    const buttonEl = container.querySelector("button");
+    fireEvent.click(buttonEl);
 
     expect(mockNode).toMatchSnapshot();
   });
@@ -126,23 +128,24 @@ describe("Test render prop.", () => {
       scrollTop: 0,
       id: "foo"
     };
-    const wrapper = shallow(
+    const { container } = render(
       <ScrollTo>
         {({ scrollTo }) => (
-          <button
-            type="button"
-            onClick={() => scrollTo({ id: "unknown-id", x: 100, y: 200 })}
-          >
-            test
-          </button>
+          <React.Fragment>
+            <button
+              onClick={() => scrollTo({ id: "UnKnOWN-id", x: 100, y: 200 })}
+            >
+              test
+            </button>
+
+            <ScrollArea id="foo">test</ScrollArea>
+          </React.Fragment>
         )}
       </ScrollTo>
     );
-    const childContext = wrapper.instance().getContext;
-    childContext.addScrollArea("foo", mockNode);
 
-    const buttonEl = wrapper.find("button");
-    buttonEl.simulate("click");
+    const buttonEl = container.querySelector("button");
+    fireEvent.click(buttonEl);
 
     expect(mockNode).toMatchSnapshot();
   });
