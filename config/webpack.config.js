@@ -15,7 +15,7 @@ module.exports = {
   context: path.resolve(__dirname, ".."),
   resolve: {
     modules: [path.resolve(__dirname, "..", "src"), "node_modules"],
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   externals: [
     {
