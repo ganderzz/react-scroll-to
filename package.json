@@ -25,11 +25,13 @@
     "@babel/preset-react": "7.0.0",
     "@storybook/react": "5.0.11",
     "@testing-library/react": "^8.0.1",
+    "@types/jest": "^24.0.13",
+    "@types/react": "^16.8.19",
     "all-contributors-cli": "6.6.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
-    "copy-webpack-plugin": "5.0.3",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "4.3.0",
@@ -68,12 +70,24 @@
     "setupFiles": [
       "./src/tests/setup/shim.js"
     ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./config/tsconfig.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "preset": "ts-jest",
     "collectCoverageFrom": [
-      "src/*.{js,jsx}",
+      "src/*.{js,jsx,ts,tsx}",
       "!src/definitions",
       "!src/tests",
       "!src/{setupTests,shim}.js",
-      "!src/index.{js,jsx}"
+      "!src/index.{js,jsx,ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {
@@ -94,5 +108,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@types/react-dom": "^16.8.4"
   }
 }

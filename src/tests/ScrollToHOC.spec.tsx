@@ -1,8 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import ScrollToHOC from "../ScrollToHOC";
 
 afterAll(cleanup);
+
+jest.mock("../utilities/generateId", () => () => "0");
 
 beforeEach(() => {
   window.scrollTo = jest.fn();
@@ -31,7 +33,7 @@ describe("Test HOC.", () => {
     fireEvent.click(getByText("mybtn"));
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
-    expect(window.scrollTo.mock.calls[0]).toEqual([
+    expect((window.scrollTo as any).mock.calls[0]).toEqual([
       {
         left: 100,
         top: 200,

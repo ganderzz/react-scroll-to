@@ -1,16 +1,40 @@
-import React, { Component, isValidElement } from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
-import { relative } from "./utilities/relative";
+
+interface IContextProps {
+  addScrollArea(id: string, node: unknown);
+  removeScrollArea(id: string);
+}
 
 /* istanbul ignore next */
-export const ScrollToContext = React.createContext({});
+export const ScrollToContext = React.createContext<IContextProps>({
+  addScrollArea: (id, node) => {},
+  removeScrollArea: id => {}
+});
+
+interface IScrollOptions {
+  id?: string;
+  ref?: React.RefObject<unknown>;
+  x?: number;
+  y?: number;
+  smooth?: boolean;
+}
+
+interface IProps {
+  children?: (props: {
+    scroll: (props?: IScrollOptions) => void;
+  }) => React.ReactNode;
+}
 
 /**
  * Component that uses render props to inject
  * a function that allows the consumer to scroll to a
  * position in the window or ScrollArea component
  */
-class ScrollTo extends Component {
+class ScrollTo extends React.Component<IProps> {
+  scrollArea: { [key: string]: React.ReactNode } = {};
+  getContext: IContextProps;
+
   constructor(props) {
     super(props);
 
@@ -32,7 +56,7 @@ class ScrollTo extends Component {
     delete this.scrollArea[id];
   };
 
-  handleScroll = (props = {}) => {
+  handleScroll = (props: IScrollOptions = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
     const { id, ref, ...rest } = props;
 
@@ -69,9 +93,9 @@ class ScrollTo extends Component {
     const left = ScrollTo._parseLocation(options.x, node, false);
 
     /* istanbul ignore next */
-    if (isValidElement(node)) {
+    if (React.isValidElement(node)) {
       /* istanbul ignore next */
-      const rNode = ReactDOM.findDOMNode(node);
+      const rNode = ReactDOM.findDOMNode(node as any);
 
       /* istanbul ignore next */
       if (rNode) {
@@ -104,16 +128,11 @@ class ScrollTo extends Component {
       <ScrollToContext.Provider value={this.getContext}>
         {this.props.children &&
           this.props.children({
-            scrollTo: this.handleScroll,
-            relative
+            scroll: this.handleScroll
           })}
       </ScrollToContext.Provider>
     );
   }
 }
-
-ScrollTo.defaultProps = {
-  children: () => {}
-};
 
 export default ScrollTo;

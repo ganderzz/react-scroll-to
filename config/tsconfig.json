@@ -1,17 +1,31 @@
 {
   "compilerOptions": {
+    "target": "es2015",
     "module": "commonjs",
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false,
-    "strictFunctionTypes": true,
+    "jsx": "react",
+
     "baseUrl": "../",
-    "typeRoots": ["../"],
-    "types": ["react"],
-    "noEmit": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "jsxFactory": "createElement"
+
+    "strict": true,
+
+    "types": ["react", "react-dom", "jest"],
+    "allowSyntheticDefaultImports": true,
+
+    "experimentalDecorators": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "pretty": true,
+
+    "declaration": false
   },
-  "files": ["src/index.d.ts"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    ".github",
+    ".circleci",
+    "dist",
+    "coverage",
+    "docs"
+  ]
 }
