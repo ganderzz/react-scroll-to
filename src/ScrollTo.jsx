@@ -17,14 +17,20 @@ class ScrollTo extends Component {
     this.scrollArea = {};
 
     this.getContext = {
-      addScrollArea: (id, ref) => {
-        this.scrollArea[id] = ref;
-      },
-      removeScrollArea: id => {
-        delete this.scrollArea[id];
-      }
+      addScrollArea: this.addScrollArea,
+      removeScrollArea: this.removeScrollArea
     };
   }
+
+  /* istanbul ignore next */
+  addScrollArea = (id, ref) => {
+    this.scrollArea[id] = ref;
+  };
+
+  /* istanbul ignore next */
+  removeScrollArea = id => {
+    delete this.scrollArea[id];
+  };
 
   handleScroll = (props = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
@@ -40,8 +46,9 @@ class ScrollTo extends Component {
       const node = this.scrollArea[id];
 
       this._scrollNode(node, rest);
-    } else if (scrollAreaKeys.length > 0) {
+    } /* istanbul ignore next */ else if (scrollAreaKeys.length > 0) {
       // Scroll by all scroll areas
+      /* istanbul ignore next */
       scrollAreaKeys.forEach(key => {
         const node = this.scrollArea[key];
 

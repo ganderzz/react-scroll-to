@@ -21,8 +21,8 @@ exports[`Test render prop. Should render the functional children. 1`] = `
 exports[`Test render prop. Should scroll by ID 1`] = `
 Object {
   "id": "foo",
-  "scrollLeft": 100,
-  "scrollTop": 200,
+  "scrollLeft": 0,
+  "scrollTop": 0,
 }
 `;
 
@@ -36,7 +36,7 @@ exports[`Test render prop. Should scroll by ref when a React node is provided 1`
 
 exports[`Test render prop. Should update scroll position of ScrollArea's if present, rather than window 1`] = `
 Object {
-  "scrollLeft": 100,
-  "scrollTop": 200,
+  "scrollLeft": 0,
+  "scrollTop": 0,
 }
 `;
