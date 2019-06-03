@@ -1,15 +1,15 @@
 import React from "react";
-import { ScrollStory } from "./";
+import { ScrollStory } from ".";
 import { ScrollTo, ScrollArea } from "../src";
 
 ScrollStory.add("With ScrollArea", () => (
   <div style={{ padding: 20 }}>
     <ScrollTo>
-      {({ scrollTo }) => (
+      {({ scroll }) => (
         <React.Fragment>
           <button
             type="button"
-            onClick={() => scrollTo({ x: 0, y: 1000, smooth: true })}
+            onClick={() => scroll({ x: 0, y: 1000, smooth: true })}
           >
             Scroll area down
           </button>
@@ -34,7 +34,7 @@ ScrollStory.add("With ScrollArea", () => (
                 type="button"
                 style={{ marginLeft: 5 }}
                 onClick={() =>
-                  scrollTo({ id: "my-scroll-area", y: 0, smooth: true })
+                  scroll({ id: "my-scroll-area", y: 0, smooth: true })
                 }
               >
                 Scroll area up

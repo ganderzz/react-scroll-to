@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollStory } from ".";
 import { ScrollTo } from "../src/index";
 
-const refDOM = React.createRef();
+const refDOM = React.createRef<HTMLDivElement>();
 const mockData = {
   region: ["East", "West", "Central"],
   color: ["red", "green", "blue"],
@@ -13,11 +13,11 @@ const mockData = {
 ScrollStory.add("Scroll by Ref", () => (
   <div style={{ overflow: "auto", padding: 20 }}>
     <ScrollTo>
-      {({ scrollTo }) => (
+      {({ scroll }) => (
         <React.Fragment>
           <button
             type="button"
-            onClick={() => scrollTo({ ref: refDOM, y: 700, smooth: true })}
+            onClick={() => scroll({ ref: refDOM, y: 700, smooth: true })}
           >
             Scroll Ref Down
           </button>
@@ -25,7 +25,7 @@ ScrollStory.add("Scroll by Ref", () => (
           <button
             type="button"
             style={{ marginLeft: 5 }}
-            onClick={() => scrollTo({ ref: refDOM, y: 0, smooth: true })}
+            onClick={() => scroll({ ref: refDOM, y: 0, smooth: true })}
           >
             Scroll Ref Up
           </button>

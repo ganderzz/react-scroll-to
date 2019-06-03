@@ -8,7 +8,7 @@
 
     "strict": true,
 
-    "types": ["react", "react-dom", "jest"],
+    "types": ["react", "react-dom", "jest", "node"],
     "allowSyntheticDefaultImports": true,
 
     "experimentalDecorators": true,
