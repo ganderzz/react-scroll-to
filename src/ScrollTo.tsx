@@ -89,8 +89,8 @@ class ScrollTo extends React.Component<IProps> {
       return;
     }
 
-    const top = ScrollTo._parseLocation(options.y, node, true);
-    const left = ScrollTo._parseLocation(options.x, node, false);
+    const top = options.y;
+    const left = options.x;
 
     /* istanbul ignore next */
     if (React.isValidElement(node)) {
@@ -113,14 +113,6 @@ class ScrollTo extends React.Component<IProps> {
       node.scrollLeft = left;
       node.scrollTop = top;
     }
-  };
-
-  static _parseLocation = (parameter, node, isHorizontal) => {
-    if (typeof parameter !== "function") {
-      return parameter;
-    }
-
-    return parameter(node, isHorizontal);
   };
 
   render() {

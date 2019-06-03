@@ -1,16 +1,6 @@
 import * as React from "react";
 import { ScrollToContext } from "./ScrollTo";
-import { generateId } from "./utilities/generateId";
-
-export function createRefPoly(): React.RefObject<HTMLDivElement> {
-  function ref(instanceOrNode) {
-    ref.current = instanceOrNode || null;
-  }
-
-  ref.current = null;
-
-  return ref;
-}
+import { generateId } from "./utilities";
 
 interface IProps {
   id: string;
@@ -19,8 +9,7 @@ interface IProps {
 }
 
 export class ScrollArea extends React.Component<IProps> {
-  // Using React.createRef so we can easily unit test this
-  node = React.createRef ? React.createRef<HTMLDivElement>() : createRefPoly();
+  node = React.createRef<HTMLDivElement>();
   id = this.props.id || generateId();
 
   componentDidMount() {

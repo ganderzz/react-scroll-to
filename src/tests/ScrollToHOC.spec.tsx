@@ -4,8 +4,6 @@ import ScrollToHOC from "../ScrollToHOC";
 
 afterAll(cleanup);
 
-jest.mock("../utilities/generateId", () => () => "0");
-
 beforeEach(() => {
   window.scrollTo = jest.fn();
 });
@@ -23,7 +21,7 @@ describe("Test HOC.", () => {
 
   it("Should call window.scroll.", () => {
     const TestComponent = props => (
-      <button onClick={() => props.scrollTo({ x: 100, y: 200 })}>mybtn</button>
+      <button onClick={() => props.scroll({ x: 100, y: 200 })}>mybtn</button>
     );
     TestComponent.displayName = "test";
 
@@ -47,7 +45,7 @@ describe("Test HOC.", () => {
       return (
         <div>
           <div id="foo" />
-          <button onClick={() => props.scrollTo({ id: "foo", x: 100, y: 200 })}>
+          <button onClick={() => props.scroll({ id: "foo", x: 100, y: 200 })}>
             test-btn
           </button>
         </div>

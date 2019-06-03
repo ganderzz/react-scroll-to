@@ -5,8 +5,6 @@ import ScrollArea from "../ScrollArea";
 
 afterEach(cleanup);
 
-jest.mock("../utilities/generateId", () => () => "mock-id");
-
 beforeEach(() => {
   window.scrollTo = jest.fn();
 });

@@ -1,9 +1,7 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
 import { ScrollToContext } from "../ScrollTo";
-import ScrollArea, { createRefPoly } from "../ScrollArea";
-
-jest.mock("../utilities/generateId", () => () => "0");
+import ScrollArea from "../ScrollArea";
 
 const BaseScrollArea = props => {
   const { addScrollArea, removeScrollArea, ...rest } = props;
@@ -71,12 +69,5 @@ describe("Test Scroll Area.", () => {
         <ScrollArea style={{ padding: 20 }}>test</ScrollArea>
       </ScrollToContext.Provider>
     );
-  });
-
-  it("Should polyfill createRef", () => {
-    const ref = createRefPoly();
-    const { container } = render(<div ref={ref} />);
-
-    expect(ref.current).toBeTruthy();
   });
 });
