@@ -1,5 +1,5 @@
-import React from "react";
-import getDisplayName from "./utilities/getDisplayName";
+import * as React from "react";
+import { getDisplayName } from "./utilities";
 import ScrollTo from "./ScrollTo";
 
 /**

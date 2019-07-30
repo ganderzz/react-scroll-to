@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import ScrollTo from "../ScrollTo";
 import ScrollArea from "../ScrollArea";
@@ -25,16 +25,16 @@ describe("Test render prop.", () => {
   it("Should call window.scrollTo.", () => {
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
-          <button onClick={() => scrollTo({ x: 100, y: 200 })}>test</button>
+        {({ scroll }) => (
+          <button onClick={() => scroll({ x: 100, y: 200 })}>test</button>
         )}
       </ScrollTo>
     );
 
-    fireEvent.click(container.querySelector("button"));
+    fireEvent.click(container.querySelector("button") as any);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
-    expect(window.scrollTo.mock.calls[0]).toEqual([
+    expect((window.scrollTo as any).mock.calls[0]).toEqual([
       {
         left: 100,
         top: 200,
@@ -46,14 +46,14 @@ describe("Test render prop.", () => {
   it("Should call window.scrollTo with default x,y when no arguments are provided.", () => {
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => <button onClick={() => scrollTo()}>test</button>}
+        {({ scroll }) => <button onClick={() => scroll()}>test</button>}
       </ScrollTo>
     );
 
-    fireEvent.click(container.querySelector("button"));
+    fireEvent.click(container.querySelector("button") as any);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
-    expect(window.scrollTo.mock.calls[0]).toEqual([
+    expect((window.scrollTo as any).mock.calls[0]).toEqual([
       {
         left: undefined,
         top: undefined,
@@ -63,7 +63,7 @@ describe("Test render prop.", () => {
   });
 
   it("Should remove scroll area.", () => {
-    let element = new ScrollTo();
+    let element = new ScrollTo({});
     element.addScrollArea("id", "foo");
 
     element.removeScrollArea("id");
@@ -78,9 +78,9 @@ describe("Test render prop.", () => {
     };
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <React.Fragment>
-            <button onClick={() => scrollTo({ id: "id", x: 100, y: 200 })}>
+            <button onClick={() => scroll({ id: "id", x: 100, y: 200 })}>
               test
             </button>
 
@@ -91,7 +91,7 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = container.querySelector("button");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(mockNode).toMatchSnapshot();
   });
@@ -104,9 +104,9 @@ describe("Test render prop.", () => {
     };
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <React.Fragment>
-            <button onClick={() => scrollTo({ id: "foo", x: 100, y: 200 })}>
+            <button onClick={() => scroll({ id: "foo", x: 100, y: 200 })}>
               test
             </button>
 
@@ -117,7 +117,7 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = container.querySelector("button");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(mockNode).toMatchSnapshot();
   });
@@ -130,10 +130,10 @@ describe("Test render prop.", () => {
     };
     const { container } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <React.Fragment>
             <button
-              onClick={() => scrollTo({ id: "UnKnOWN-id", x: 100, y: 200 })}
+              onClick={() => scroll({ id: "UnKnOWN-id", x: 100, y: 200 })}
             >
               test
             </button>
@@ -145,7 +145,7 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = container.querySelector("button");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(mockNode).toMatchSnapshot();
   });
@@ -153,10 +153,10 @@ describe("Test render prop.", () => {
   it("Should use smooth scrolling when enabled", () => {
     const { getByText } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <button
             type="button"
-            onClick={() => scrollTo({ x: 100, y: 200, smooth: true })}
+            onClick={() => scroll({ x: 100, y: 200, smooth: true })}
           >
             myBtn
           </button>
@@ -165,10 +165,10 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = getByText("myBtn");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
-    expect(window.scrollTo.mock.calls[0]).toEqual([
+    expect((window.scrollTo as any).mock.calls[0]).toEqual([
       {
         left: 100,
         top: 200,
@@ -178,14 +178,14 @@ describe("Test render prop.", () => {
   });
 
   it("Should scroll by ref when a DOM node is provided", () => {
-    const refDOM = React.createRef ? React.createRef() : createReactContext();
+    const refDOM = React.createRef<HTMLDivElement>();
     const { getByText } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <>
             <button
               type="button"
-              onClick={() => scrollTo({ ref: refDOM, x: 100, y: 200 })}
+              onClick={() => scroll({ ref: refDOM, x: 100, y: 200 })}
             >
               myBtn
             </button>
@@ -197,24 +197,22 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = getByText("myBtn");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(refDOM.current).toMatchSnapshot();
   });
 
   it("Should scroll by ref when a React node is provided", () => {
-    const refDOM = {};
+    const refDOM = {} as React.RefObject<HTMLDivElement>;
     const MyElement = ({ children, ...props }) => (
       <div {...props}>{children}</div>
     );
 
     const { getByText } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <>
-            <MyElement
-              onClick={() => scrollTo({ ref: refDOM, x: 100, y: 200 })}
-            >
+            <MyElement onClick={() => scroll({ ref: refDOM, x: 100, y: 200 })}>
               myBtn
             </MyElement>
 
@@ -225,20 +223,20 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = getByText("myBtn");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(refDOM.current).toMatchSnapshot();
   });
 
   it("Should handle invalid ref", () => {
-    const refDOM = {};
+    const refDOM = {} as React.RefObject<HTMLDivElement>;
     const { getByText } = render(
       <ScrollTo>
-        {({ scrollTo }) => (
+        {({ scroll }) => (
           <>
             <button
               type="button"
-              onClick={() => scrollTo({ ref: refDOM, x: 100, y: 200 })}
+              onClick={() => scroll({ ref: refDOM, x: 100, y: 200 })}
             >
               myBtn
             </button>
@@ -250,36 +248,9 @@ describe("Test render prop.", () => {
     );
 
     const buttonEl = getByText("myBtn");
-    fireEvent.click(buttonEl);
+    fireEvent.click(buttonEl as any);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(0);
-    expect(window.scrollTo.mock.calls[0]).toEqual(undefined);
-  });
-
-  it("Should handle using the relative() function", () => {
-    const refDOM = React.createRef();
-    const { getByText } = render(
-      <ScrollTo>
-        {({ scrollTo, relative }) => (
-          <>
-            <button
-              type="button"
-              onClick={() => {
-                scrollTo({ ref: refDOM, y: 500 });
-                scrollTo({ ref: refDOM, y: relative(-50) });
-              }}
-            >
-              myBtn
-            </button>
-            <div ref={refDOM} />
-          </>
-        )}
-      </ScrollTo>
-    );
-
-    const buttonEl = getByText("myBtn");
-    fireEvent.click(buttonEl);
-
-    expect(refDOM.current.scrollTop).toBe(450);
+    expect((window.scrollTo as any).mock.calls[0]).toEqual(undefined);
   });
 });

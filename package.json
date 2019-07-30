@@ -26,10 +26,13 @@
     "@storybook/react": "5.1.9",
     "@testing-library/react": "8.0.5",
     "all-contributors-cli": "6.8.1",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.4",
+    "@types/react": "^16.8.19",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
-    "copy-webpack-plugin": "5.0.3",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
     "eslint": "6.0.1",
     "eslint-config-airbnb": "17.1.1",
     "eslint-config-prettier": "6.0.0",
@@ -42,6 +45,7 @@
     "prettier": "1.18.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "ts-jest": "24.0.2",
     "ts-loader": "6.0.4",
     "typescript": "3.5.3",
     "webpack": "4.36.1",
@@ -68,12 +72,27 @@
     "setupFiles": [
       "./src/tests/setup/shim.js"
     ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./config/tsconfig.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
     "collectCoverageFrom": [
-      "src/*.{js,jsx}",
+      "src/*.{js,jsx,ts,tsx}",
       "!src/definitions",
       "!src/tests",
       "!src/{setupTests,shim}.js",
-      "!src/index.{js,jsx}"
+      "!src/index.{js,jsx,ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {
@@ -94,5 +113,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@types/react-dom": "^16.8.4"
   }
 }

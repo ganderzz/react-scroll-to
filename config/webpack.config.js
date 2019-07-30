@@ -1,9 +1,8 @@
-const webpack = require("webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
+const DeclarationBundlerPlugin = require("declaration-bundler-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "..", "src", "index.js"),
+  entry: path.resolve(__dirname, "..", "src", "index.ts"),
   output: {
     path: path.resolve(__dirname, "..", "dist"),
     publicPath: path.resolve(__dirname, ".."),
@@ -38,15 +37,20 @@ module.exports = {
             cacheDirectory: true
           }
         }
+      },
+      {
+        test: /.(ts|tsx)$/,
+        loader: [
+          "babel-loader",
+          {
+            loader: "ts-loader",
+            options: {
+              configFile: path.resolve(__dirname, "tsconfig.json")
+            }
+          }
+        ],
+        exclude: /node_modules/
       }
     ]
-  },
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, "..", "src", "definitions"),
-        to: path.resolve(__dirname, "..", "dist", "definitions")
-      }
-    ])
-  ]
+  }
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import ScrollToHOC from "../ScrollToHOC";
 
@@ -21,7 +21,7 @@ describe("Test HOC.", () => {
 
   it("Should call window.scroll.", () => {
     const TestComponent = props => (
-      <button onClick={() => props.scrollTo({ x: 100, y: 200 })}>mybtn</button>
+      <button onClick={() => props.scroll({ x: 100, y: 200 })}>mybtn</button>
     );
     TestComponent.displayName = "test";
 
@@ -31,7 +31,7 @@ describe("Test HOC.", () => {
     fireEvent.click(getByText("mybtn"));
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
-    expect(window.scrollTo.mock.calls[0]).toEqual([
+    expect((window.scrollTo as any).mock.calls[0]).toEqual([
       {
         left: 100,
         top: 200,
@@ -45,7 +45,7 @@ describe("Test HOC.", () => {
       return (
         <div>
           <div id="foo" />
-          <button onClick={() => props.scrollTo({ id: "foo", x: 100, y: 200 })}>
+          <button onClick={() => props.scroll({ id: "foo", x: 100, y: 200 })}>
             test-btn
           </button>
         </div>

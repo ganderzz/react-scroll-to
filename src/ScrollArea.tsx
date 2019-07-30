@@ -1,20 +1,15 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { ScrollToContext } from "./ScrollTo";
-import generateId from "./utilities/generateId";
+import { generateId } from "./utilities";
 
-export function createRefPoly() {
-  function ref(instanceOrNode) {
-    ref.current = instanceOrNode || null;
-  }
-
-  ref.current = null;
-
-  return ref;
+interface IProps {
+  id: string;
+  addScrollArea(id: string, node: unknown);
+  removeScrollArea(id: string);
 }
 
-export class ScrollArea extends Component {
-  // Using React.createRef so we can easily unit test this
-  node = React.createRef ? React.createRef() : createRefPoly();
+export class ScrollArea extends React.Component<IProps> {
+  node = React.createRef<HTMLDivElement>();
   id = this.props.id || generateId();
 
   componentDidMount() {

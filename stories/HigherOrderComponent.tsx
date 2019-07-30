@@ -1,12 +1,12 @@
 import React from "react";
-import { ScrollStory } from "./";
+import { ScrollStory } from ".";
 import { ScrollToHOC } from "../src";
 
 ScrollStory.add("Higher Order Component", () => {
   const YButton = ScrollToHOC(props => (
     <button
       type="button"
-      onClick={() => props.scrollTo({ x: 0, y: props.y || 0 })}
+      onClick={() => props.scroll({ x: 0, y: props.y || 0 })}
       style={props.style}
     >
       {props.children}

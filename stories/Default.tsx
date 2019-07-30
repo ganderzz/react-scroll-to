@@ -12,11 +12,11 @@ ScrollStory.add("Default", () => (
     }}
   >
     <ScrollTo>
-      {({ scrollTo }) => (
+      {({ scroll }) => (
         <React.Fragment>
           <button
             type="button"
-            onClick={() => scrollTo({ y: 500, smooth: true })}
+            onClick={() => scroll({ y: 500, smooth: true })}
           >
             Scroll Down!
           </button>
@@ -24,7 +24,7 @@ ScrollStory.add("Default", () => (
           <button
             type="button"
             style={{ position: "absolute", left: 20, bottom: 20 }}
-            onClick={() => scrollTo({ y: 0, smooth: true })}
+            onClick={() => scroll({ y: 0, smooth: true })}
           >
             Scroll Up!
           </button>

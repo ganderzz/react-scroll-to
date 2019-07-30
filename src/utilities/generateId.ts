@@ -4,10 +4,8 @@
  * @returns {number}
  */
 
-const generateId = (() => {
+export const generateId = (() => {
   let counter = 0;
 
   return () => `scrollto-${counter++}`;
 })();
-
-export default generateId;
