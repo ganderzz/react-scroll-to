@@ -6,7 +6,7 @@
 
 [![CircleCI](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master.svg?style=svg)](https://circleci.com/gh/ganderzz/react-scroll-to/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/ganderzz/react-scroll-to/badge.svg?branch=feature%2Fcreate-circi-artifact)](https://coveralls.io/github/ganderzz/react-scroll-to?branch=feature%2Fcreate-circi-artifact)
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 </div>
@@ -195,11 +195,20 @@ Mixing and matching these options give different results.
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://www.dylanpaulus.com"><img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;" alt="Dylan Paulus"/><br /><sub><b>Dylan Paulus</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz" title="Code">💻</a> <a href="https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://anthonyng.me"><img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;" alt="Anthony Ng"/><br /><sub><b>Anthony Ng</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng" title="Code">💻</a> <a href="https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/UmenR"><img src="https://avatars1.githubusercontent.com/u/17663679?v=4" width="100px;" alt="UmenR"/><br /><sub><b>UmenR</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=UmenR" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ywen"><img src="https://avatars2.githubusercontent.com/u/22895?v=4" width="100px;" alt="Yi Wen"/><br /><sub><b>Yi Wen</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=ywen" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/thisis-Shitanshu"><img src="https://avatars3.githubusercontent.com/u/45510390?v=4" width="100px;" alt="Shitanshu Pandey"/><br /><sub><b>Shitanshu Pandey</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=thisis-Shitanshu" title="Code">💻</a></td>
+  </tr>
+</table>
 
-| [<img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;"/><br /><sub><b>Dylan Paulus</b></sub>](http://www.dylanpaulus.com)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;"/><br /><sub><b>Anthony Ng</b></sub>](http://anthonyng.me)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Code") [📖](https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/17663679?v=4" width="100px;"/><br /><sub><b>UmenR</b></sub>](https://github.com/UmenR)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=UmenR "Code") | [<img src="https://avatars2.githubusercontent.com/u/22895?v=4" width="100px;"/><br /><sub><b>Yi Wen</b></sub>](https://github.com/ywen)<br />[💻](https://github.com/ganderzz/react-scroll-to/commits?author=ywen "Code") |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-
-
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

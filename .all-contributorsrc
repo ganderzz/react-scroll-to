@@ -44,6 +44,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "thisis-Shitanshu",
+      "name": "Shitanshu Pandey",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/45510390?v=4",
+      "profile": "https://github.com/thisis-Shitanshu",
+      "contributions": [
+        "code"
+      ]
     }
-  ]
+  ],
+  "repoType": "github",
+  "commitConvention": "none"
 }
