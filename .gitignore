@@ -8,6 +8,7 @@ yarn-error.log*
 .cache
 
 dist
+docs
 
 # Runtime data
 pids
