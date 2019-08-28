@@ -1,5 +1,9 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
+import * as smoothscroll from "smoothscroll-polyfill";
+
+// Polyfill scrollTo() in Safari, IE, and Edge
+smoothscroll.polyfill();
 
 interface IContextProps {
   addScrollArea(id: string, node: unknown);
