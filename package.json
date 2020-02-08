@@ -16,7 +16,8 @@
     "build:docs": "build-storybook -c .storybook -o docs"
   },
   "peerDepedencies": {
-    "react": ">= ^16.0.0"
+    "react": ">= ^16.0.0",
+    "react-dom": ">= ^16.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
@@ -114,8 +115,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "dependencies": {
-    "smoothscroll-polyfill": "^0.4.4"
   }
 }

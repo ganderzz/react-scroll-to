@@ -1,11 +1,5 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import * as smoothscroll from "smoothscroll-polyfill";
-
-// Polyfill scrollTo() in Safari, IE, and Edge
-if (window) {
-  smoothscroll.polyfill();
-}
 
 interface IContextProps {
   addScrollArea(id: string, node: unknown);
@@ -84,7 +78,7 @@ class ScrollTo extends React.Component<IProps> {
 
         this._scrollNode(node, rest);
       });
-    } else {
+    } else if (window) {
       // Scroll by window
       this._scrollNode(window, rest);
     }
