@@ -108,13 +108,13 @@ export default class MyComponent extends Component {
       <>
         <ScrollTo>
           {({ scrollTo }) => (
-            <a onClick={() => scrollTo({ ref: this.myRef, x: 20, y: 500 })}>Scroll to Bottom</a>
+            <a onClick={() => scrollTo({ ref: this.myRef, x: 20, y: 500 })}>
+              Scroll to Bottom
+            </a>
           )}
         </ScrollTo>
 
-        <div ref={this.myRef}>
-          My Element
-        </div>
+        <div ref={this.myRef}>My Element</div>
       </>
     );
   }
@@ -156,7 +156,9 @@ export default ScrollToHOC(function(props) {
   return (
     <div>
       <ScrollArea id="foo" style={{ height: 1000 }}>
-        <a onClick={() => props.scrollTo({ id: "foo", y: 500 })}>Scroll to Bottom</a>
+        <a onClick={() => props.scrollTo({ id: "foo", y: 500 })}>
+          Scroll to Bottom
+        </a>
       </ScrollArea>
 
       <ScrollArea style={{ height: 1000 }}>
@@ -169,12 +171,12 @@ export default ScrollToHOC(function(props) {
 
 ### Types:
 
-* **Typescript** definitions are built in
-* **Flow** is currently not support (Open for PRs!)
+- **Typescript** definitions are built in
+- **Flow** is currently not support (Open for PRs!)
 
 ### 2.0 Changes
 
-* v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an object.
+- v2.0 has a new API for controlling scrolling. Instead of taking two arguments, x and y, the ScrollTo component now takes an object.
 
 ```js
 scrollTo({
@@ -188,7 +190,13 @@ scrollTo({
 
 Mixing and matching these options give different results.
 
-* The `scrollById` function has been deprecated in favor of the `id` field in `scrollTo`
+- The `scrollById` function has been deprecated in favor of the `id` field in `scrollTo`
+
+### Smooth Scrolling Not Working?
+
+Some browsers don't natively support smooth scroll. Checkout adding a polyfill like `smoothscroll-polyfill` to fix the issue.
+
+`npm install smoothscroll-polyfill`
 
 ## Contributors
 
@@ -209,6 +217,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

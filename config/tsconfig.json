@@ -17,7 +17,8 @@
     "noImplicitAny": false,
     "pretty": true,
 
-    "declaration": false
+    "declaration": false,
+    "sourceMap": true
   },
   "include": ["../src/**/*"],
   "exclude": [
