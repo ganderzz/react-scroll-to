@@ -5,6 +5,7 @@
     "jsx": "react",
 
     "baseUrl": "../",
+    "outDir": "../dist",
 
     "strict": true,
 
@@ -17,7 +18,7 @@
     "noImplicitAny": false,
     "pretty": true,
 
-    "declaration": false,
+    "declaration": true,
     "sourceMap": true
   },
   "include": ["../src/**/*"],
@@ -27,6 +28,7 @@
     ".circleci",
     "dist",
     "coverage",
-    "docs"
+    "docs",
+    "../src/tests"
   ]
 }
