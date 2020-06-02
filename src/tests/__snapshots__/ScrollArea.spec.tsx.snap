@@ -2,7 +2,7 @@
 
 exports[`Test Scroll Area. should call addScrollArea when mounting. 1`] = `
 Array [
-  "scrollto-0",
+  Symbol(),
   <div>
     <h1>
       Test
@@ -13,7 +13,7 @@ Array [
 
 exports[`Test Scroll Area. should call removeScrollArea when unmounting. 1`] = `
 Array [
-  "scrollto-1",
+  Symbol(),
 ]
 `;
 

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "module": "commonjs",
+    "module": "esnext",
     "jsx": "react",
 
-    "baseUrl": "../",
-    "outDir": "../dist",
+    "baseUrl": ".",
+    "outDir": "./dist",
 
     "strict": true,
 
@@ -21,7 +21,7 @@
     "declaration": true,
     "sourceMap": true
   },
-  "include": ["../src/**/*"],
+  "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
     ".github",
@@ -29,6 +29,6 @@
     "dist",
     "coverage",
     "docs",
-    "../src/tests"
+    "./src/tests"
   ]
 }
