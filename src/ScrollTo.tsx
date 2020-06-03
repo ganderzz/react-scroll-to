@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 interface IContextProps {
   addScrollArea(id: string, node: unknown);
@@ -38,8 +38,6 @@ class ScrollTo extends React.Component<IProps> {
   constructor(props) {
     super(props);
 
-    this.scrollArea = {};
-
     this.getContext = {
       addScrollArea: this.addScrollArea,
       removeScrollArea: this.removeScrollArea
@@ -47,16 +45,16 @@ class ScrollTo extends React.Component<IProps> {
   }
 
   /* istanbul ignore next */
-  addScrollArea = (id, ref) => {
+  public addScrollArea = (id, ref) => {
     this.scrollArea[id] = ref;
   };
 
   /* istanbul ignore next */
-  removeScrollArea = id => {
+  public removeScrollArea = id => {
     delete this.scrollArea[id];
   };
 
-  handleScroll = (props: IScrollOptions = {}) => {
+  public handleScroll = (props: IScrollOptions = {}) => {
     const scrollAreaKeys = Object.keys(this.scrollArea);
     const { id, ref, ...rest } = props;
 
@@ -64,27 +62,27 @@ class ScrollTo extends React.Component<IProps> {
       const refNode = ref.current ? ref.current : ref;
 
       // Scroll by ref
-      this._scrollNode(refNode, rest);
+      this.scrollNode(refNode, rest);
     } else if (id) {
       // Scroll by id
       const node = this.scrollArea[id];
 
-      this._scrollNode(node, rest);
+      this.scrollNode(node, rest);
     } /* istanbul ignore next */ else if (scrollAreaKeys.length > 0) {
       // Scroll by all scroll areas
       /* istanbul ignore next */
       scrollAreaKeys.forEach(key => {
         const node = this.scrollArea[key];
 
-        this._scrollNode(node, rest);
+        this.scrollNode(node, rest);
       });
     } else if (window) {
       // Scroll by window
-      this._scrollNode(window, rest);
+      this.scrollNode(window, rest);
     }
   };
 
-  _scrollNode = (node, options) => {
+  private scrollNode = (node, options) => {
     if (!node) {
       return;
     }
@@ -115,7 +113,7 @@ class ScrollTo extends React.Component<IProps> {
     }
   };
 
-  render() {
+  public render() {
     return (
       <ScrollToContext.Provider value={this.getContext}>
         {this.props.children &&
