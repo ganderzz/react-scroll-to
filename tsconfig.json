@@ -21,7 +21,7 @@
     "declaration": true,
     "sourceMap": true
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "./definitions/**/*"],
   "exclude": [
     "node_modules",
     ".github",

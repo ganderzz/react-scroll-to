@@ -1,29 +1,12 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-
-interface IContextProps {
-  addScrollArea(id: string, node: unknown);
-  removeScrollArea(id: string);
-}
-
-/* istanbul ignore next */
-export const ScrollToContext = React.createContext<IContextProps>({
-  addScrollArea: (id, node) => {},
-  removeScrollArea: id => {}
-});
-
-interface IScrollOptions {
-  id?: string;
-  ref?: React.RefObject<unknown>;
-  x?: number;
-  y?: number;
-  smooth?: boolean;
-}
+import { IScrollOptions } from "./IScrollOptions";
+import { scrollNode } from "./logic";
+import { useScrollTo } from "./UseScrollTo";
 
 interface IProps {
   children?: (props: {
     scroll: (props?: IScrollOptions) => void;
-  }) => React.ReactNode;
+  }) => JSX.Element;
 }
 
 /**
@@ -31,98 +14,12 @@ interface IProps {
  * a function that allows the consumer to scroll to a
  * position in the window or ScrollArea component
  */
-class ScrollTo extends React.Component<IProps> {
-  scrollArea: { [key: string]: React.ReactNode } = {};
-  getContext: IContextProps;
+export function ScrollTo({ children }: IProps) {
+  const { scroll } = useScrollTo();
 
-  constructor(props) {
-    super(props);
-
-    this.getContext = {
-      addScrollArea: this.addScrollArea,
-      removeScrollArea: this.removeScrollArea
-    };
+  if (!children) {
+    return null;
   }
 
-  /* istanbul ignore next */
-  public addScrollArea = (id, ref) => {
-    this.scrollArea[id] = ref;
-  };
-
-  /* istanbul ignore next */
-  public removeScrollArea = id => {
-    delete this.scrollArea[id];
-  };
-
-  public handleScroll = (props: IScrollOptions = {}) => {
-    const scrollAreaKeys = Object.keys(this.scrollArea);
-    const { id, ref, ...rest } = props;
-
-    if (ref) {
-      const refNode = ref.current ? ref.current : ref;
-
-      // Scroll by ref
-      this.scrollNode(refNode, rest);
-    } else if (id) {
-      // Scroll by id
-      const node = this.scrollArea[id];
-
-      this.scrollNode(node, rest);
-    } /* istanbul ignore next */ else if (scrollAreaKeys.length > 0) {
-      // Scroll by all scroll areas
-      /* istanbul ignore next */
-      scrollAreaKeys.forEach(key => {
-        const node = this.scrollArea[key];
-
-        this.scrollNode(node, rest);
-      });
-    } else if (window) {
-      // Scroll by window
-      this.scrollNode(window, rest);
-    }
-  };
-
-  private scrollNode = (node, options) => {
-    if (!node) {
-      return;
-    }
-
-    const top = options.y;
-    const left = options.x;
-
-    /* istanbul ignore next */
-    if (React.isValidElement(node)) {
-      /* istanbul ignore next */
-      const rNode = ReactDOM.findDOMNode(node as any);
-
-      /* istanbul ignore next */
-      if (rNode) {
-        node = rNode;
-      }
-    }
-
-    if (node.scrollTo) {
-      node.scrollTo({
-        top,
-        left,
-        behavior: options.smooth ? "smooth" : "auto"
-      });
-    } else {
-      node.scrollLeft = left;
-      node.scrollTop = top;
-    }
-  };
-
-  public render() {
-    return (
-      <ScrollToContext.Provider value={this.getContext}>
-        {this.props.children &&
-          this.props.children({
-            scroll: this.handleScroll
-          })}
-      </ScrollToContext.Provider>
-    );
-  }
+  return children({ scroll });
 }
-
-export default ScrollTo;
