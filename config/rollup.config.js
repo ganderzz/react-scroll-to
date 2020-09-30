@@ -2,13 +2,32 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
+import replace from "@rollup/plugin-replace";
 import typescript from "rollup-plugin-typescript2";
 import pkg from "../package.json";
 
 const inputFile = "src/index.ts";
-const externals = ["react", "react-dom", "@babel/runtime"];
+const external = ["react", "react-dom", "@babel/runtime"];
+
+const globals = {
+  react: "React",
+  "react-dom": "ReactDOM",
+};
 
 const useMinifier = process.env.PRODUCTION === "true" ? [terser()] : [];
+const commonPlugins = [
+  replace({
+    __ENV__: process.env.PRODUCTION === "true" ? "production" : "development",
+    __DEV__: process.env.PRODUCTION !== "true",
+    __VERSION__: pkg.version,
+    exclude: ["node_modules"],
+  }),
+  babel({
+    babelHelpers: "runtime",
+    exclude: "(node_modules|dist|.github|config)/**",
+  }),
+  typescript({ tsconfig: "tsconfig.json" }),
+];
 
 export default [
   {
@@ -17,36 +36,24 @@ export default [
       name: pkg.name,
       file: pkg.browser,
       format: "umd",
-      globals: ["React", "ReactDOM"],
+      globals,
     },
-    external: externals,
+    external,
     plugins: [
       resolve(), // so Rollup can find `ms`
-      babel({
-        babelHelpers: "runtime",
-        exclude: "node_modules/**",
-      }),
-      typescript({ tsconfig: "tsconfig.json" }),
+      ...commonPlugins,
       commonjs(),
-
       ...useMinifier,
     ],
   },
 
   {
     input: inputFile,
-    external: externals,
-    plugins: [
-      babel({
-        babelHelpers: "runtime",
-        exclude: "node_modules/**",
-      }),
-      typescript({ tsconfig: "tsconfig.json" }),
-      ...useMinifier,
-    ],
+    external,
+    plugins: [...commonPlugins, ...useMinifier],
     output: [
-      { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" },
+      { file: pkg.main, format: "cjs", globals },
+      { file: pkg.module, format: "es", globals },
     ],
   },
 ];

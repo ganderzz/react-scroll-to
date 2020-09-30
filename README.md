@@ -128,7 +128,7 @@ export default class MyComponent extends Component {
 import React from "react";
 import { ScrollToHOC } from "react-scroll-to";
 
-export default ScrollToHOC(function(props) {
+export default ScrollToHOC(function (props) {
   return <a onClick={() => props.scroll({ y: 500 })}>Scroll to Bottom</a>;
 });
 ```
@@ -138,7 +138,7 @@ export default ScrollToHOC(function(props) {
 import React from "react";
 import { ScrollToHOC, ScrollArea } from "react-scroll-to";
 
-export default ScrollToHOC(function(props) {
+export default ScrollToHOC(function (props) {
   return (
     <ScrollArea style={{ height: 1000 }}>
       <a onClick={() => props.scroll({ y: 500 })}>Scroll to Bottom</a>
@@ -152,7 +152,7 @@ export default ScrollToHOC(function(props) {
 import React from "react";
 import { ScrollToHOC, ScrollArea } from "react-scroll-to";
 
-export default ScrollToHOC(function(props) {
+export default ScrollToHOC(function (props) {
   return (
     <div>
       <ScrollArea id="foo" style={{ height: 1000 }}>
@@ -197,27 +197,3 @@ Mixing and matching these options give different results.
 Some browsers don't natively support smooth scroll. Checkout adding a polyfill like `smoothscroll-polyfill` to fix the issue.
 
 `npm install smoothscroll-polyfill`
-
-## Contributors
-
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://www.dylanpaulus.com"><img src="https://avatars3.githubusercontent.com/u/5566054?v=4" width="100px;" alt="Dylan Paulus"/><br /><sub><b>Dylan Paulus</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz" title="Code">💻</a> <a href="https://github.com/ganderzz/react-scroll-to/commits?author=ganderzz" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://anthonyng.me"><img src="https://avatars1.githubusercontent.com/u/14035529?v=4" width="100px;" alt="Anthony Ng"/><br /><sub><b>Anthony Ng</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng" title="Code">💻</a> <a href="https://github.com/ganderzz/react-scroll-to/commits?author=newyork-anthonyng" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/UmenR"><img src="https://avatars1.githubusercontent.com/u/17663679?v=4" width="100px;" alt="UmenR"/><br /><sub><b>UmenR</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=UmenR" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/ywen"><img src="https://avatars2.githubusercontent.com/u/22895?v=4" width="100px;" alt="Yi Wen"/><br /><sub><b>Yi Wen</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=ywen" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/thisis-Shitanshu"><img src="https://avatars3.githubusercontent.com/u/45510390?v=4" width="100px;" alt="Shitanshu Pandey"/><br /><sub><b>Shitanshu Pandey</b></sub></a><br /><a href="https://github.com/ganderzz/react-scroll-to/commits?author=thisis-Shitanshu" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

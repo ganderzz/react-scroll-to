@@ -1,45 +1,43 @@
 import * as React from "react";
-import { ScrollToContext } from "./ScrollTo";
+import { useScrollArea } from "./UseScrollArea";
 
 interface IProps {
-  id: string;
-  addScrollArea(id: string | symbol, node: unknown);
-  removeScrollArea(id: string | symbol);
+  tag?: string;
 }
 
-export class ScrollArea extends React.Component<
-  IProps & React.PropsWithoutRef<JSX.IntrinsicElements["div"]>
-> {
-  node = React.createRef<HTMLDivElement>();
-  id = this.props.id || Symbol();
+export function ScrollArea({
+  tag,
+  children,
+  ...rest
+}: IProps &
+  React.PropsWithoutRef<
+    JSX.IntrinsicElements["div"]
+  >): JSX.IntrinsicElements["div"] {
+  const refDOM = React.useRef<HTMLDivElement>(null);
+  const staticTag = React.useRef<string>(
+    tag ?? Math.random().toString(36).substr(2, 5)
+  );
+  const { addScrollArea, removeScrollArea } = useScrollArea();
 
-  public componentDidMount() {
-    this.props.addScrollArea(this.id, this.node.current);
-  }
+  React.useEffect(() => {
+    if (!tag) {
+      if (__DEV__) {
+        console.warn(
+          `Missing tag on ScrollArea and will be using an auto-generated id. This is not guarenteed to be unique, and can cause bugs!`
+        );
+      }
+    }
 
-  public componentWillUnmount() {
-    this.props.removeScrollArea(this.id);
-  }
+    addScrollArea(staticTag.current, refDOM);
 
-  public render() {
-    const { children, removeScrollArea, addScrollArea, ...props } = this.props;
+    () => {
+      removeScrollArea(staticTag.current);
+    };
+  }, [addScrollArea, removeScrollArea, tag]);
 
-    return (
-      <div {...props} ref={this.node}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div {...rest} ref={refDOM}>
+      {children}
+    </div>
+  );
 }
-
-export default props => (
-  <ScrollToContext.Consumer>
-    {({ addScrollArea, removeScrollArea }) => (
-      <ScrollArea
-        {...props}
-        removeScrollArea={removeScrollArea}
-        addScrollArea={addScrollArea}
-      />
-    )}
-  </ScrollToContext.Consumer>
-);
