@@ -1,8 +1,6 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { IScrollOptions } from "./IScrollOptions";
 
-export function scrollNode(node: any = window, options: IScrollOptions) {
+export function scrollNode(node: any = window, options: IScrollOptions): void {
   if (!node) {
     if (__DEV__) {
       console.warn("Could not find a node to scroll in ScrollTo.");
@@ -11,21 +9,10 @@ export function scrollNode(node: any = window, options: IScrollOptions) {
     return;
   }
 
-  let scrollNode = node;
+  const scrollNode = node;
 
   const top = options.y;
   const left = options.x;
-
-  /* istanbul ignore next */
-  if (React.isValidElement(node)) {
-    /* istanbul ignore next */
-    const rNode = ReactDOM.findDOMNode(node as any) as Element;
-
-    /* istanbul ignore next */
-    if (rNode) {
-      scrollNode = rNode;
-    }
-  }
 
   if (__DEV__) {
     if (

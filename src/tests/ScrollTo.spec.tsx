@@ -75,7 +75,7 @@ describe("Test render prop.", () => {
     const { getByRole } = render(
       <ScrollTo>
         {({ scroll }) => (
-          <React.Fragment>
+          <>
             <button
               role="button"
               onClick={() => scroll({ tag: "id", x: 100, y: 200 })}
@@ -84,7 +84,7 @@ describe("Test render prop.", () => {
             </button>
 
             <ScrollArea id="id">test</ScrollArea>
-          </React.Fragment>
+          </>
         )}
       </ScrollTo>
     );
@@ -104,7 +104,7 @@ describe("Test render prop.", () => {
     const { getByRole } = render(
       <ScrollTo>
         {({ scroll }) => (
-          <React.Fragment>
+          <>
             <button
               role="button"
               onClick={() => scroll({ tag: "foo", x: 100, y: 200 })}
@@ -113,7 +113,7 @@ describe("Test render prop.", () => {
             </button>
 
             <ScrollArea id="foo">test</ScrollArea>
-          </React.Fragment>
+          </>
         )}
       </ScrollTo>
     );
@@ -132,7 +132,7 @@ describe("Test render prop.", () => {
     const { getByRole } = render(
       <ScrollTo>
         {({ scroll }) => (
-          <React.Fragment>
+          <>
             <button
               onClick={() => scroll({ tag: "UnKnOWN-id", x: 100, y: 200 })}
             >
@@ -140,7 +140,7 @@ describe("Test render prop.", () => {
             </button>
 
             <ScrollArea id="foo">test</ScrollArea>
-          </React.Fragment>
+          </>
         )}
       </ScrollTo>
     );

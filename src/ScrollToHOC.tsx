@@ -6,7 +6,8 @@ function getDisplayName(Component) {
 
   if (displayName || name) {
     return displayName || name;
-  } else if (typeof Component === "string" && Component.length > 0) {
+  }
+  if (typeof Component === "string" && Component.length > 0) {
     return Component;
   }
 
@@ -32,4 +33,4 @@ function ScrollToHOC(Component) {
   return WrappedComponent;
 }
 
-export default ScrollToHOC;
+export { ScrollToHOC };

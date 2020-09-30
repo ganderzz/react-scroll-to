@@ -1,16 +1,21 @@
 import * as React from "react";
 import { IScrollOptions } from "./IScrollOptions";
-import { scrollNode } from "./logic";
+import { scrollNode } from "./Logic";
 import { useScrollArea } from "./UseScrollArea";
+
+type ScrollToResponse<T> = {
+  ref: React.RefObject<React.ComponentClass<T>>;
+  scroll: (overrideOptions?: IScrollOptions | null) => void;
+};
 
 export function useScrollTo<T extends React.ElementType<unknown>>(
   options: IScrollOptions = {}
-) {
+): ScrollToResponse<T> {
   const node = React.useRef<React.ComponentClass<T>>(null);
   const { scrollAreas } = useScrollArea();
 
   const scroll = React.useCallback(
-    (overrideOptions: IScrollOptions | null = null) => {
+    (overrideOptions: IScrollOptions | null = null): void => {
       const opts = overrideOptions
         ? { ...options, ...overrideOptions }
         : options;
@@ -35,7 +40,7 @@ export function useScrollTo<T extends React.ElementType<unknown>>(
         scrollNode(window, rest);
       }
     },
-    [node, options]
+    [node, options, scrollAreas]
   );
 
   return { ref: node, scroll };

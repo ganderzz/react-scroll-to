@@ -1,11 +1,10 @@
 import * as React from "react";
 import { IScrollOptions } from "./IScrollOptions";
-import { scrollNode } from "./logic";
 import { useScrollTo } from "./UseScrollTo";
 
 interface IProps {
   children?: (props: {
-    scroll: (props?: IScrollOptions) => void;
+    scroll: (props?: IScrollOptions | null) => void;
   }) => JSX.Element;
 }
 

@@ -9,7 +9,10 @@ export function ScrollArea({
   tag,
   children,
   ...rest
-}: IProps & React.PropsWithoutRef<JSX.IntrinsicElements["div"]>) {
+}: IProps &
+  React.PropsWithoutRef<
+    JSX.IntrinsicElements["div"]
+  >): JSX.IntrinsicElements["div"] {
   const refDOM = React.useRef<HTMLDivElement>(null);
   const staticTag = React.useRef<string>(
     tag ?? Math.random().toString(36).substr(2, 5)
@@ -30,7 +33,7 @@ export function ScrollArea({
     () => {
       removeScrollArea(staticTag.current);
     };
-  }, []);
+  }, [addScrollArea, removeScrollArea, tag]);
 
   return (
     <div {...rest} ref={refDOM}>
